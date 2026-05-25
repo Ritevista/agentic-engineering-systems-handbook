@@ -1,0 +1,10 @@
+name: Publish Handbook
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    uses: ./.github/workflows/pages.yml
