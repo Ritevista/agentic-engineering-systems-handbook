@@ -1,0 +1,10 @@
+flowchart LR
+    DR[Developer request] --> SP[Slash command or prompt]
+    SP --> AG[Agent]
+    AG --> SSC[Steering + Skills + Context]
+    AG --> OSA[Optional subagents]
+    AG --> SPT[Specs/Plans/Tasks]
+    SPT --> IA[Implementation/Artifacts]
+    IA --> VER[Verification]
+    VER --> REV[Review]
+    REV --> DRO[Durable repo output]
