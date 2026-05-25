@@ -26,3 +26,11 @@ Nexus treats MCP-style tools as governed integration points used by agents acros
 ## Quick Reference
 
 To be expanded. This chapter intentionally frames MCP/tooling as a separate but connected layer and does not yet attempt a full MCP implementation guide.
+
+## References and Further Reading
+
+- To be expanded from `../references/bibliography.md`.
+
+## Source Notes
+
+This chapter uses the sources below for tool-specific behavior and terminology. The analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this handbook.
