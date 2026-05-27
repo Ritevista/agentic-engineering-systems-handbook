@@ -9,7 +9,8 @@
 ## Book publishing
 
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
-- [GitHub Pages: Configuring a Publishing Source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+- [GitHub Pages: Creating a custom GitHub Actions workflow to publish your site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-a-custom-github-actions-workflow-to-publish-your-site)
+- [GitHub Pages: Configuring a publishing source for your GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [mdBook Documentation](https://rust-lang.github.io/mdBook/)
 - [mdBook: Creating a Book](https://rust-lang.github.io/mdBook/guide/creating.html)

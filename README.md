@@ -48,18 +48,19 @@ For an organization repository, it will usually be:
 
 The exact URL is shown in:
 - GitHub repository → **Settings** → **Pages**
-- The **Deploy mdBook to GitHub Pages** workflow output in the **Actions** tab
+- The **Deploy mdBook site to Pages** workflow output in the **Actions** tab
 - Workflow definition: `.github/workflows/pages.yml`
 
-## Enabling GitHub Pages
+## Publishing with GitHub Pages
 
 1. Go to the GitHub repository.
 2. Open **Settings**.
 3. Open **Pages**.
-4. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-5. Push to `main` or run the workflow manually from the **Actions** tab.
-6. After the workflow succeeds, open the Pages URL shown by GitHub.
+4. Under **Build and deployment**, select **GitHub Actions** if available.
+5. If the UI initially shows only **Branch**, keep this workflow and run it from the **Actions** tab; GitHub may expose/show the Actions deployment option after the workflow is present.
+6. Run the workflow manually from **Actions** or push to `main`.
+7. Open the deployment URL shown by the workflow output.
 
 ## Publishing Safety Note
 
-Do not publish confidential company information, private URLs, real credentials, internal hostnames, or proprietary architecture details. This repository is intended to use fictional/anonymized examples such as the Nexus Engineering Control Plane.
+The published GitHub Pages site may be publicly accessible depending on repository and account settings. Do not include confidential company data, private URLs, credentials, internal hostnames, or proprietary architecture details. Use fictional/anonymized examples such as Nexus Engineering Control Plane.
