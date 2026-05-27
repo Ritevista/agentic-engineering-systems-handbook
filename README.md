@@ -34,3 +34,32 @@ This repository is an initial scaffold. Chapters are intentionally placeholders 
 
 ## Additional scaffold coverage
 This scaffold now also includes a secondary migration-oriented example track (**Mercury GitOps Platform Migration**) and starter agent/skill placeholders for cross-tool portability discussions.
+
+
+## Reading the Book Online
+
+This handbook is published with GitHub Pages using a GitHub Actions workflow.
+
+After GitHub Pages is enabled, the public URL will usually be:
+- `https://<github-username>.github.io/agentic-engineering-systems-handbook/`
+
+For an organization repository, it will usually be:
+- `https://<github-org>.github.io/agentic-engineering-systems-handbook/`
+
+The exact URL is shown in:
+- GitHub repository → **Settings** → **Pages**
+- The **Deploy mdBook to GitHub Pages** workflow output in the **Actions** tab
+- Workflow definition: `.github/workflows/pages.yml`
+
+## Enabling GitHub Pages
+
+1. Go to the GitHub repository.
+2. Open **Settings**.
+3. Open **Pages**.
+4. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+5. Push to `main` or run the workflow manually from the **Actions** tab.
+6. After the workflow succeeds, open the Pages URL shown by GitHub.
+
+## Publishing Safety Note
+
+Do not publish confidential company information, private URLs, real credentials, internal hostnames, or proprietary architecture details. This repository is intended to use fictional/anonymized examples such as the Nexus Engineering Control Plane.

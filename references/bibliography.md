@@ -8,10 +8,12 @@
 
 ## Book publishing
 
-- [mdBook Documentation](https://rust-lang.github.io/mdBook/)
-- [mdBook: Creating a Book](https://rust-lang.github.io/mdBook/guide/creating.html)
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
 - [GitHub Pages: Configuring a Publishing Source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [mdBook Documentation](https://rust-lang.github.io/mdBook/)
+- [mdBook: Creating a Book](https://rust-lang.github.io/mdBook/guide/creating.html)
+- [mdBook: Continuous Integration](https://rust-lang.github.io/mdBook/continuous-integration.html)
 
 ## Licensing and attribution
 
