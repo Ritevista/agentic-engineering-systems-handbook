@@ -2,7 +2,6 @@
 title = "Agentic Engineering Systems"
 authors = ["Author"]
 language = "en"
-multilingual = false
 src = "src"
 
 [build]
@@ -13,4 +12,4 @@ default-theme = "light"
 preferred-dark-theme = "navy"
 smart-punctuation = true
 mathjax-support = false
-git-repository-url = ""
+git-repository-url = "https://github.com/Ritevista/agentic-engineering-systems-handbook"

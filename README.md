@@ -40,16 +40,16 @@ This scaffold now also includes a secondary migration-oriented example track (**
 
 This handbook is published with GitHub Pages using a GitHub Actions workflow.
 
-After GitHub Pages is enabled, the public URL will usually be:
-- `https://<github-username>.github.io/agentic-engineering-systems-handbook/`
-
-For an organization repository, it will usually be:
-- `https://<github-org>.github.io/agentic-engineering-systems-handbook/`
+After GitHub Pages is enabled, the public URL for this repository will usually be:
+- `https://ritevista.github.io/agentic-engineering-systems-handbook/`
 
 The exact URL is shown in:
 - GitHub repository → **Settings** → **Pages**
 - The **Deploy mdBook site to Pages** workflow output in the **Actions** tab
 - Workflow definition: `.github/workflows/pages.yml`
+
+You can also browse the raw Markdown chapters directly on GitHub from:
+- [`src/SUMMARY.md`](src/SUMMARY.md)
 
 ## Publishing with GitHub Pages
 
