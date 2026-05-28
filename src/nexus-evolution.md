@@ -36,50 +36,11 @@ Every chapter should answer:
 
 ## Chapter progression
 
-```mermaid
-flowchart LR
-    C1[Ad-hoc AI use] --> C2[Shared vocabulary]
-    C2 --> C3[Bounded agents]
-    C3 --> C4[Delegated subagents]
-    C4 --> C5[Repo steering]
-    C5 --> C6[Reusable skills]
-    C6 --> C7[Workflow triggers]
-    C7 --> C8[Hooks and guardrails]
-    C8 --> C9[Permissions and sandboxing]
-    C9 --> C10[Context boundaries]
-    C10 --> C11[Specs, plans, tasks]
-    C11 --> C12[Durable artifacts]
-    C12 --> C13[Verification evidence]
-    C13 --> C14[Tool/MCP gateway]
-    C14 --> C15[Repo layout]
-    C15 --> C16[Decision framework]
-    C16 --> C17[Anti-pattern library]
-    C17 --> C18[Tool portability]
-    C18 --> C19[Team maturity model]
-```
+![Nexus chapter progression](diagrams/generated/nexus-chapter-progression.svg)
 
 ## Nexus capability layers
 
-```mermaid
-flowchart TB
-    L0["L0: Ad-hoc AI usage<br/>Individual prompts, chat-only decisions, inconsistent review"]
-
-    L1["L1: Shared language<br/>Agents, skills, steering, tools, artifacts, verification"]
-
-    L2["L2: Repository control<br/>AGENTS.md, repo rules, build/test commands, architecture boundaries"]
-
-    L3["L3: Reusable workflows<br/>Skills, slash commands, templates, repeatable task playbooks"]
-
-    L4["L4: Guarded execution<br/>Hooks, permissions, approvals, sandboxing, context boundaries"]
-
-    L5["L5: Evidence and artifacts<br/>Specs, plans, ADRs, runbooks, PR evidence, verification records"]
-
-    L6["L6: Tool-enabled control plane<br/>MCP/tool gateway, CI access, issue tracker, docs search, deployment metadata"]
-
-    L7["L7: Team operating model<br/>Decision frameworks, anti-pattern library, portability, maturity model"]
-
-    L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
-```
+![Nexus capability layers](diagrams/generated/nexus-capability-layers.svg)
 
 ## Running workflow example
 

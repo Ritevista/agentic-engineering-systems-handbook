@@ -39,7 +39,7 @@ Do not write this as a beginner AI book, a prompt cookbook, or a vendor-specific
 - Keep terminology consistent across chapters.
 - Important decisions should become artifacts, not remain only in chat.
 - When adding new chapters, update `src/SUMMARY.md`.
-- When adding diagrams, prefer Mermaid-compatible `.mmd` files unless the surrounding chapter already embeds Mermaid directly.
+- When adding diagrams, follow `diagrams/README.md`; it is the source of truth for diagram authoring and publishing.
 - Use references for tool-specific claims.
 - Prefer official documentation and standards over blogs.
 - Do not copy long passages from external sources.
@@ -108,6 +108,10 @@ When adding or editing a chapter, include a Nexus case-study section using this 
     What should readers copy into their own organization?
 
 Do not make Nexus decorative. It should function as a running reference implementation for the book.
+
+## Diagram Authoring
+
+Follow `diagrams/README.md` for diagram source, generated SVGs, naming, and regeneration commands. Keep that file as the single source of truth for diagram conventions.
 
 ## Chapter Quality Bar
 

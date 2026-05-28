@@ -1,17 +1,17 @@
-flowchart TD
+flowchart TB
     U[User] --> SC[Slash Commands]
     U --> P[Prompt]
     SC --> A[Agent]
     P --> A
     ST[Steering] --> A
     SK[Skills] --> A
-    CM[Context/Memory] --> A
-    PAS[Permissions/Approvals/Sandboxing] --> A
+    CM[Context / Memory] --> A
+    PAS[Permissions / Approvals / Sandboxing] --> A
     A --> SA[Subagents]
     HK[Hooks] --> A
-    A --> SPT[Specs/Plans/Tasks]
+    A --> SPT[Specs / Plans / Tasks]
     SPT --> AR[Artifacts]
-    A --> TM[Tools/MCP]
+    A --> TM[Tools / MCP]
     TM --> AR
     AR --> V[Verification]
     V --> U

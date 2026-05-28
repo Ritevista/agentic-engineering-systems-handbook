@@ -42,7 +42,10 @@ jobs:
           echo "$RUNNER_TEMP/mdbook" >> "$GITHUB_PATH"
 
       - name: Build
-        run: mdbook build
+        run: |
+          mdbook build
+          mkdir -p book/diagrams
+          cp -R diagrams/generated book/diagrams/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

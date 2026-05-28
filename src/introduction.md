@@ -86,33 +86,7 @@ Read:
 
 ## Reference architecture
 
-```mermaid
-flowchart TD
-    Goal[Engineering Goal / Change Request]
-    Spec[Spec / Plan / Task]
-    Agent[Bounded Agent Role]
-    Steering[Repo Steering / AGENTS.md]
-    Skill[Reusable Skill]
-    Command[Slash Command / Workflow Trigger]
-    Hook[Hook / Lifecycle Guardrail]
-    Tool[MCP / External Tool]
-    Sandbox[Permissions / Approvals / Sandbox]
-    Verify[Tests / Evals / Review Checklist]
-    Artifact[Durable Artifact]
-    Repo[System of Record: Repo / Docs / Issue Tracker]
-
-    Goal --> Spec
-    Spec --> Agent
-    Steering --> Agent
-    Skill --> Agent
-    Command --> Agent
-    Agent --> Tool
-    Hook --> Agent
-    Tool --> Sandbox
-    Agent --> Verify
-    Verify --> Artifact
-    Artifact --> Repo
-```
+![Reference architecture](diagrams/generated/reference-architecture.svg)
 
 ## Agentic engineering maturity model
 

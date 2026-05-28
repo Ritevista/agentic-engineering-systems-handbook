@@ -1,0 +1,11 @@
+flowchart TB
+    L0["L0: Ad-hoc AI usage<br/>Individual prompts, chat-only decisions, inconsistent review"]
+    L1["L1: Shared language<br/>Agents, skills, steering, tools, artifacts, verification"]
+    L2["L2: Repository control<br/>AGENTS.md, repo rules, build/test commands, architecture boundaries"]
+    L3["L3: Reusable workflows<br/>Skills, slash commands, templates, repeatable task playbooks"]
+    L4["L4: Guarded execution<br/>Hooks, permissions, approvals, sandboxing, context boundaries"]
+    L5["L5: Evidence and artifacts<br/>Specs, plans, ADRs, runbooks, PR evidence, verification records"]
+    L6["L6: Tool-enabled control plane<br/>MCP/tool gateway, CI access, issue tracker, docs search, deployment metadata"]
+    L7["L7: Team operating model<br/>Decision frameworks, anti-pattern library, portability, maturity model"]
+
+    L0 --> L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
