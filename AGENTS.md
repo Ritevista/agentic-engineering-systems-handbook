@@ -61,6 +61,54 @@ This field manual should help readers answer practical engineering questions suc
 - How do we preserve durable artifacts instead of losing decisions in chat?
 - How do we scale from individual AI usage to team-level engineering governance?
 
+## Nexus Evolution Rule
+
+Nexus is the running case study for this field manual. It must evolve cumulatively across chapters.
+
+Every major chapter should answer:
+
+> What does Nexus have after this chapter that it did not have before?
+
+A chapter is weak if the only answer is "better understanding." A strong chapter leaves Nexus with a concrete asset, such as:
+
+- a policy
+- a template
+- a skill
+- a command
+- a repository convention
+- a verification checklist
+- a role contract
+- an artifact
+- a decision table
+- a failure pattern
+- a maturity assessment
+
+When adding or editing a chapter, include a Nexus case-study section using this structure where practical:
+
+    ## Nexus case study
+
+    ### Before this chapter
+
+    What was broken or missing in Nexus?
+
+    ### Design decision
+
+    What did Nexus decide to introduce?
+
+    ### Implementation
+
+    What changed in the repo, workflow, skill, command, policy, tool contract, or artifact?
+
+    ### After this chapter
+
+    What new capability does Nexus now have?
+
+    ### Lesson
+
+    What should readers copy into their own organization?
+
+Do not make Nexus decorative. It should function as a running reference implementation for the book.
+
 ## Chapter Quality Bar
 
 Each major chapter should include, where relevant:
