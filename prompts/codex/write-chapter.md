@@ -1,12 +1,12 @@
 # Write Chapter Prompt Template
 
-Write exactly one handbook chapter for this repository.
+Write exactly one field manual chapter for this repository.
 
 Inputs:
 - Chapter file path: `<chapter-path>`
 - Chapter title: `<chapter-title>`
 - Primary primitive: `<primitive>`
-- Audience: senior developers, architects, platform engineers, engineering managers
+- Audience: senior developers, staff engineers, architects, platform engineers, and technical leads
 
 Requirements:
 - Keep a practical, architectural, reference-oriented tone.

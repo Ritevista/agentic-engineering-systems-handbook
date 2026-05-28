@@ -6,7 +6,7 @@ Define how **decision frameworks** fits into a reliable agentic engineering syst
 
 ## Key Questions
 
-- What does decision frameworks mean in this handbook context?
+- What does decision frameworks mean in this field manual context?
 - How should teams apply decision frameworks in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

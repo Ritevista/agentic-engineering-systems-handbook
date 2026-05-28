@@ -6,7 +6,7 @@ Define how **context and memory** fits into a reliable agentic engineering syste
 
 ## Key Questions
 
-- What does context and memory mean in this handbook context?
+- What does context and memory mean in this field manual context?
 - How should teams apply context and memory in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

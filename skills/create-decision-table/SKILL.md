@@ -31,4 +31,4 @@ Create concise decision tables that help teams choose between adjacent agentic e
 - Recommendation logic is clear.
 - Table uses valid Markdown syntax.
 - Verification implications are included.
-- Terminology aligns with handbook definitions.
+- Terminology aligns with field manual definitions.

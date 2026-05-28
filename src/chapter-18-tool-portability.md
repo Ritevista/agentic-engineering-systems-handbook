@@ -6,7 +6,7 @@ Define how **tool portability** fits into a reliable agentic engineering system 
 
 ## Key Questions
 
-- What does tool portability mean in this handbook context?
+- What does tool portability mean in this field manual context?
 - How should teams apply tool portability in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

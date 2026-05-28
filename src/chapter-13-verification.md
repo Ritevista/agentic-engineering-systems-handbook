@@ -6,7 +6,7 @@ Define how **verification, tests, evals, and checklists** fits into a reliable a
 
 ## Key Questions
 
-- What does verification, tests, evals, and checklists mean in this handbook context?
+- What does verification, tests, evals, and checklists mean in this field manual context?
 - How should teams apply verification, tests, evals, and checklists in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

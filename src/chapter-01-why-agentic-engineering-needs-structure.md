@@ -2,12 +2,13 @@
 
 ## Purpose
 
-Define how **why agentic engineering needs structure** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Define why AI-assisted software engineering needs shared structure before it can survive team usage, code review, security constraints, and long-lived repositories.
 
 ## Key Questions
 
 - Why are prompts alone insufficient for reliable engineering workflows?
 - What breaks when teams lack shared structure for AI-assisted work?
+- What should move from individual practice into repository-level steering, reusable skills, workflow triggers, verification evidence, and durable artifacts?
 
 ## Nexus Case Study Connection
 
@@ -18,6 +19,7 @@ In the Nexus Engineering Control Plane, this chapter explains how this primitive
 1. Failure modes of ad-hoc agentic workflows
 2. Control-plane mindset for engineering systems
 3. Minimum structural primitives for reliability
+4. Boundaries between steering, skills, tools, permissions, verification, and artifacts
 
 ## Quick Reference
 

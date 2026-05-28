@@ -6,7 +6,7 @@ Define how **slash commands** fits into a reliable agentic engineering system an
 
 ## Key Questions
 
-- What does slash commands mean in this handbook context?
+- What does slash commands mean in this field manual context?
 - How should teams apply slash commands in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

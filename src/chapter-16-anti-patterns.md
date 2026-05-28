@@ -6,7 +6,7 @@ Define how **anti-patterns** fits into a reliable agentic engineering system and
 
 ## Key Questions
 
-- What does anti-patterns mean in this handbook context?
+- What does anti-patterns mean in this field manual context?
 - How should teams apply anti-patterns in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

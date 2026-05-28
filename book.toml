@@ -1,6 +1,7 @@
 [book]
-title = "Agentic Engineering Systems"
+title = "Agentic Engineering Field Manual"
 authors = ["Author"]
+description = "Designing Governed AI-Assisted Software Workflows"
 language = "en"
 src = "src"
 

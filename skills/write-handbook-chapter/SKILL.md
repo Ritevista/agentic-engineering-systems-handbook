@@ -4,7 +4,7 @@
 write-handbook-chapter
 
 ## Description
-Write one handbook chapter at a time using a consistent architecture-first structure and Nexus-aligned terminology.
+Write one field manual chapter at a time using a consistent architecture-first structure and Nexus-aligned terminology.
 
 ## When to Use
 - A single chapter needs full drafting from placeholder to substantive content.

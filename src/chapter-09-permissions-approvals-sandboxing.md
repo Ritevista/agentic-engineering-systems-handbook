@@ -6,7 +6,7 @@ Define how **permissions, approvals, and sandboxing** fits into a reliable agent
 
 ## Key Questions
 
-- What does permissions, approvals, and sandboxing mean in this handbook context?
+- What does permissions, approvals, and sandboxing mean in this field manual context?
 - How should teams apply permissions, approvals, and sandboxing in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

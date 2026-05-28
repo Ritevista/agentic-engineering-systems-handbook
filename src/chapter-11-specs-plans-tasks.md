@@ -6,7 +6,7 @@ Define how **specs, plans, and tasks** fits into a reliable agentic engineering 
 
 ## Key Questions
 
-- What does specs, plans, and tasks mean in this handbook context?
+- What does specs, plans, and tasks mean in this field manual context?
 - How should teams apply specs, plans, and tasks in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

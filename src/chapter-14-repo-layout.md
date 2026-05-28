@@ -6,7 +6,7 @@ Define how **repo layout** fits into a reliable agentic engineering system and h
 
 ## Key Questions
 
-- What does repo layout mean in this handbook context?
+- What does repo layout mean in this field manual context?
 - How should teams apply repo layout in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

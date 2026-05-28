@@ -6,7 +6,7 @@ Define how **artifacts** fits into a reliable agentic engineering system and how
 
 ## Key Questions
 
-- What does artifacts mean in this handbook context?
+- What does artifacts mean in this field manual context?
 - How should teams apply artifacts in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

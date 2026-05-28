@@ -6,7 +6,7 @@ Define how **hooks** fits into a reliable agentic engineering system and how tea
 
 ## Key Questions
 
-- What does hooks mean in this handbook context?
+- What does hooks mean in this field manual context?
 - How should teams apply hooks in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

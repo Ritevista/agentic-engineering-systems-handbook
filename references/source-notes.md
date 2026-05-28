@@ -7,7 +7,7 @@ Each chapter should explicitly distinguish between these categories:
    - Must be backed by links in chapter references.
 
 2. **Original analysis**
-   - The handbook's own reasoning, framing, and interpretation.
+   - The field manual's own reasoning, framing, and interpretation.
    - Should be written in original language.
 
 3. **Nexus case-study examples**
@@ -32,5 +32,5 @@ For chapters with substantial dependence on external documentation:
 ```md
 ## Source Notes
 
-This chapter uses the sources below for tool-specific behavior and terminology. The analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this handbook.
+This chapter uses the sources below for tool-specific behavior and terminology. The analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual.
 ```

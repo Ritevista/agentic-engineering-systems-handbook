@@ -6,7 +6,7 @@ Define how **skills** fits into a reliable agentic engineering system and how te
 
 ## Key Questions
 
-- What does skills mean in this handbook context?
+- What does skills mean in this field manual context?
 - How should teams apply skills in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

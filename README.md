@@ -1,54 +1,105 @@
-# Agentic Engineering Systems
+# Agentic Engineering Field Manual
 
-**Subtitle:** A Developer Handbook for Designing Reliable AI-Assisted Software Workflows
+**Subtitle:** Designing Governed AI-Assisted Software Workflows
 
-## What this handbook is
-This repository hosts an mdBook-based technical handbook for designing reliable, reusable, and governable agentic engineering workflows.
+## What this field manual is
+
+This repository hosts an mdBook-based field manual for engineering teams that want to move from ad-hoc AI coding experiments to structured, reviewable, reusable, and governable AI-assisted software engineering workflows.
+
+This field manual helps engineering teams structure repositories, agents, skills, tool access, verification evidence, and durable artifacts so AI-assisted software engineering can survive real team usage.
+
+## Book promise
+
+This field manual helps engineering teams move from individual AI coding experiments to structured, reviewable, and governable AI-assisted software engineering.
+
+It focuses on the engineering system around agents:
+
+- repository steering
+- reusable skills
+- bounded agents and subagents
+- slash commands and workflow triggers
+- hooks and lifecycle guardrails
+- permissions, approvals, and sandboxing
+- context and memory boundaries
+- specs, plans, and tasks
+- durable artifacts
+- verification evidence
+- MCP and external tool access
+- team maturity and operating models
 
 ## Who it is for
-- Senior developers
-- Software architects
-- Platform engineers
-- Engineering managers
-- Technical leaders adopting coding agents and agentic CLIs
+
+Primary audience:
+
+- senior developers
+- staff engineers
+- software architects
+- platform engineers
+- technical leads responsible for standardizing AI-assisted engineering workflows
+
+Secondary audience:
+
+- engineering managers
+- DevOps/platform leaders
+- toolsmiths building internal AI engineering enablement
+
+This is not positioned as a beginner AI book.
+
+## What this book is not
+
+This is not:
+
+- a prompt cookbook
+- a beginner introduction to ChatGPT or coding assistants
+- a generic agent framework tutorial
+- a vendor-specific Codex, Claude Code, Cursor, Kiro, or MCP manual
+- a replacement for software architecture, security review, testing, or engineering judgment
 
 ## Why this exists
-Many teams use AI-assisted coding inconsistently across repositories, with uneven rules, review quality, and verification. This handbook provides a systems-architecture approach so teams can standardize how agentic work is scoped, executed, verified, and retained as durable engineering artifacts.
+
+Many teams use AI-assisted coding inconsistently across repositories, with uneven rules, review quality, and verification. This field manual provides a systems-architecture approach so teams can standardize how AI-assisted work is scoped, executed, verified, and retained as durable engineering artifacts.
 
 ## Nexus Engineering Control Plane case study
-The handbook uses a fictional running case study, **Nexus Engineering Control Plane**, to show how an organization evolves from ad-hoc assistant usage to a governed engineering control plane with shared skills, repo-specific steering, bounded agents, verification checklists, and durable outputs.
+
+The field manual uses a fictional running case study, **Nexus Engineering Control Plane**, to show how an organization evolves from ad-hoc assistant usage to a governed engineering control plane with shared skills, repo-specific steering, bounded agents, verification checklists, and durable outputs.
 
 ## Local build and preview
+
 Prerequisites:
+
 - [mdBook](https://rust-lang.github.io/mdBook/)
 
 Commands:
+
 ```bash
 mdbook build
 mdbook serve --open
 ```
 
 ## Project status
+
 This repository is an initial scaffold. Chapters are intentionally placeholders and will be expanded iteratively.
 
-
 ## Additional scaffold coverage
-This scaffold now also includes a secondary migration-oriented example track (**Mercury GitOps Platform Migration**) and starter agent/skill placeholders for cross-tool portability discussions.
 
+This scaffold now also includes a secondary migration-oriented example track (**Mercury GitOps Platform Migration**) and starter agent/skill placeholders for cross-tool portability discussions.
 
 ## Reading the Book Online
 
-This handbook is published with GitHub Pages using a GitHub Actions workflow.
+This field manual is published with GitHub Pages using a GitHub Actions workflow.
 
 After GitHub Pages is enabled, the public URL for this repository will usually be:
+
 - `https://ritevista.github.io/agentic-engineering-systems-handbook/`
 
 The exact URL is shown in:
-- GitHub repository → **Settings** → **Pages**
+
+- GitHub repository -> **Settings** -> **Pages**
 - The **Deploy mdBook site to Pages** workflow output in the **Actions** tab
 - Workflow definition: `.github/workflows/pages.yml`
 
 You can also browse the raw Markdown chapters directly on GitHub from:
+
 - [`src/SUMMARY.md`](src/SUMMARY.md)
 
 ## Publishing with GitHub Pages

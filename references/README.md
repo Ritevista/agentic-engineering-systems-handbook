@@ -1,6 +1,6 @@
 # References Management
 
-This folder defines how external references are used in the **Agentic Engineering Systems** handbook.
+This folder defines how external references are used in the **Agentic Engineering Field Manual**.
 
 ## Purpose
 - Keep tool-specific claims anchored to verifiable sources.

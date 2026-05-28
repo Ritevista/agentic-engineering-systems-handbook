@@ -1,6 +1,6 @@
 # Scaffold Book Prompt (Short Form)
 
-Create an mdBook scaffold for **Agentic Engineering Systems** using practical, architectural placeholders.
+Create an mdBook scaffold for **Agentic Engineering Field Manual** using practical, architectural placeholders.
 
 Requirements:
 - Keep content concise and reference-oriented.

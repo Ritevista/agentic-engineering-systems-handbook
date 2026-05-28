@@ -6,7 +6,7 @@ Define how **team maturity model** fits into a reliable agentic engineering syst
 
 ## Key Questions
 
-- What does team maturity model mean in this handbook context?
+- What does team maturity model mean in this field manual context?
 - How should teams apply team maturity model in the Nexus control-plane model?
 
 ## Nexus Case Study Connection

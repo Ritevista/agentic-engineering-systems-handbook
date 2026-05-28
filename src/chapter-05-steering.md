@@ -6,7 +6,7 @@ Define how **steering** fits into a reliable agentic engineering system and how 
 
 ## Key Questions
 
-- What does steering mean in this handbook context?
+- What does steering mean in this field manual context?
 - How should teams apply steering in the Nexus control-plane model?
 
 ## Nexus Case Study Connection
