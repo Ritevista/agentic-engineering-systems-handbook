@@ -13,3 +13,4 @@ preferred-dark-theme = "navy"
 smart-punctuation = true
 mathjax-support = false
 git-repository-url = "https://github.com/Ritevista/agentic-engineering-systems-handbook"
+no-section-label = true
