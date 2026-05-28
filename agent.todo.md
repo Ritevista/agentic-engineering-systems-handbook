@@ -4,16 +4,16 @@
 |-------|-------|
 | Current Phase | G6 Ship & Learn |
 | Next Phase | G6 Ship & Learn |
-| Task | Fix mdBook diagram rendering with generated SVGs |
+| Task | Keep main as the single canonical branch |
 
 ## Gate Status
 
 | Gate | Name | Status | Evidence | Skip Reason |
 |------|------|--------|----------|-------------|
-| G0 | Discovery | Passed | Generated HTML showed Mermaid fences emitted as `<code class="language-mermaid">` blocks; mdBook had no Mermaid preprocessor or static diagram generation. | — |
-| G1 | Requirements | Passed | Diagrams should render visually in the GitHub Pages mdBook and future diagram conventions should have one source of truth. | — |
-| G2 | Design | Passed | Use committed SVGs generated from Mermaid sources under `diagrams/src/`; document conventions in `diagrams/README.md`. | — |
+| G0 | Discovery | Passed | GitHub repository `default_branch` is `main`; Pages workflow deploy condition already targets `main`; remote also had `master`. | — |
+| G1 | Requirements | Passed | Keep one canonical branch and remove duplicate `main`/`master` usage. | — |
+| G2 | Design | Passed | Keep `main`, remove `master` from workflow triggers, push `main`, then delete `master`. | — |
 | G3 | POC / Spike | N/A | No high-risk implementation unknowns identified. | — |
-| G4 | Implementation | Passed | `src/introduction.md`, `src/nexus-evolution.md`, `diagrams/src/`, `diagrams/generated/`, `diagrams/README.md`, `AGENTS.md`, `.github/workflows/pages.yml` | — |
-| G5 | Review | Passed | `mmdc`, `mdbook build`, generated asset copy, `git diff --check`, `polyagentctl check --strict --project /home/svc_wsl/dev/projects/agentic-engineering-systems-handbook`, no Mermaid code blocks in built book, generated SVG image links present. | — |
-| G6 | Ship & Learn | In Progress | Amend local unpushed commit, push to `main`, sync `master`. | — |
+| G4 | Implementation | Passed | `.github/workflows/pages.yml` now triggers only on `main`; branch cleanup planned for remote `master`. | — |
+| G5 | Review | Passed | `git diff --check`, `polyagentctl check --strict --project /home/svc_wsl/dev/projects/agentic-engineering-systems-handbook`, GitHub API confirmed `default_branch` is `main`. | — |
+| G6 | Ship & Learn | In Progress | Commit, push `main`, delete remote and local `master`. | — |
