@@ -19,6 +19,8 @@ In the Nexus Engineering Control Plane, this chapter explains how this primitive
 2. Design and implementation guidance
 3. Nexus case study application
 
+> Related guardrail pattern: scanners such as LLM Guard may help detect unsafe input or output, but they do not replace permissions, approvals, sandboxing, or review. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+
 ## Quick Reference
 
 To be expanded.

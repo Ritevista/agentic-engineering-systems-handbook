@@ -19,6 +19,8 @@ In the Nexus Engineering Control Plane, this chapter explains how this primitive
 2. Design and implementation guidance
 3. Nexus case study application
 
+> Related implementation pattern: DSPy can be used when a repeated prompt workflow needs to become a modular, optimizable LM program. Few-shot examples and prompt-standardization patterns are discussed in [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+
 ## Quick Reference
 
 To be expanded.

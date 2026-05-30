@@ -168,6 +168,31 @@ Preserve these distinctions exactly:
 - verification = evidence and checks
 - MCP/tools = external capability layer
 
+## Related Patterns and Protocols Rule
+
+Related agent patterns, prompting techniques, guardrail tools, and interoperability protocols should support the book's core primitives, not replace them.
+
+Do not flatten BMAD, GSD, DSPy, LLM Guard, ReAct, Plan-and-Execute, BDI, zero-shot, few-shot, CoT, self-consistency, meta-prompting, MCP, A2A, AP2, UCP, and AG-UI into one undifferentiated glossary.
+
+Classify them by layer:
+
+- methodology/workflow framework
+- prompt/program standardization
+- guardrail/boundary component
+- reasoning/orchestration pattern
+- prompting technique
+- interoperability protocol
+
+Core chapters should stay focused on durable engineering primitives. Appendices may catalog related methods, tools, and protocols.
+
+## Running Example Rule
+
+Use **service rollout configuration change** as the primary running workflow example across the field manual.
+
+This example is preferred because it is broad enough for most software engineering teams while staying close to the book's platform engineering and architecture focus.
+
+Do not use payment retry as the primary running example. Payment or commerce examples may appear only as secondary examples when a chapter specifically discusses domain-specific risk, idempotency, or commerce protocols.
+
 ## Style Rules
 
 - Prefer concrete engineering language over hype.

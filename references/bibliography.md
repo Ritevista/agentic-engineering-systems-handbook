@@ -6,6 +6,21 @@
 - [OpenAI Codex: Custom instructions with AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
 - [OpenAI Codex: Agent Skills](https://developers.openai.com/codex/skills)
 
+## Related agentic patterns and protocols
+
+- [BMad Method official documentation](https://docs.bmad-method.org/)
+- [DSPy official documentation](https://dspy.ai/)
+- [LLM Guard official page](https://protectai.com/llm-guard)
+- [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+- [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903)
+- [Self-Consistency Improves Chain of Thought Reasoning in Language Models](https://arxiv.org/abs/2203.11171)
+- [Meta-Prompting: Enhancing Language Models with Task-Agnostic Scaffolding](https://arxiv.org/abs/2401.12954)
+- [Model Context Protocol official documentation](https://modelcontextprotocol.io/docs/getting-started/intro)
+- [A2A Protocol official documentation](https://a2a-protocol.org/latest/)
+- [AP2: Agent Payments Protocol documentation](https://ap2-protocol.org/)
+- [Universal Commerce Protocol on Google](https://developers.google.com/merchant/ucp)
+- [AG-UI official documentation](https://docs.ag-ui.com/introduction)
+
 ## Book publishing
 
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
