@@ -78,11 +78,11 @@ mdbook serve --open
 
 ## Project status
 
-This repository is an initial scaffold. Chapters are intentionally placeholders and will be expanded iteratively.
+This repository is an active mdBook source tree. Some chapters are concise field-manual entries that will be expanded iteratively, but public chapters should read as finished guidance rather than planning notes.
 
-## Additional scaffold coverage
+## Additional example coverage
 
-This scaffold now also includes a secondary migration-oriented example track (**Mercury GitOps Platform Migration**) and starter agent/skill placeholders for cross-tool portability discussions.
+The repository also includes secondary example tracks, including **Mercury GitOps Platform Migration**, plus starter agent and skill examples for cross-tool portability discussions.
 
 ## Reading the Book Online
 

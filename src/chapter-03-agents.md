@@ -1,26 +1,38 @@
 # Chapter 3: Agents
 
-## Purpose
+## Reader problem
 
-Define how **agents** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+An unbounded agent is a polite name for unclear responsibility.
 
-## Key Questions
+Teams often ask one assistant to plan, implement, review, document, test, and decide. That may work for small tasks. It fails when reviewability, accountability, and permission boundaries matter.
 
-- What makes an agent role bounded and reliable?
-- How should agent responsibilities be scoped across repositories?
+## Design principle
 
-## Nexus Case Study Connection
+An agent is a bounded role. Define its responsibility, inputs, allowed actions, expected outputs, and escalation points before treating it as part of the engineering workflow.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Boundary | Question |
+|---|---|
+| Responsibility | What work does this agent own? |
+| Inputs | What context may it use? |
+| Actions | What files, tools, or commands may it touch? |
+| Outputs | What artifact or evidence must it produce? |
+| Escalation | When must it stop or hand off? |
 
-## Planned Sections
+Related reasoning patterns such as ReAct, Plan-and-Execute, and BDI can shape agent behavior. They do not remove the need for a role contract.
 
-1. Agent role boundaries and contracts
-2. Agent ownership and accountability
-3. Nexus agent patterns across repos
+## Nexus case study
 
-> Related patterns: ReAct, Plan-and-Execute, and BDI are discussed in [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Before this chapter, Nexus relies on generic assistants with inconsistent behavior across repositories.
+
+Nexus introduces an agent role contract for implementation work. The implementation agent can edit code within an approved scope, must preserve repository steering, and must produce verification evidence before claiming completion.
+
+After this chapter, Nexus has a role contract instead of a generic helper.
 
 ## Quick Reference
 
-To be expanded.
+| Use an agent when... | Avoid an agent when... |
+|---|---|
+| The responsibility is bounded and repeatable. | The task is exploratory with no clear output. |
+| Inputs and permissions can be stated. | The agent would need broad unreviewed authority. |
+| The result can be verified. | The result depends on private reasoning only. |
+| The output becomes a durable artifact or patch. | The work is only a one-off explanation. |

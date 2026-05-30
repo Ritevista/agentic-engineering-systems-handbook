@@ -1,24 +1,39 @@
 # Chapter 12: Artifacts
 
-## Purpose
+## Reader problem
 
-Define how **artifacts** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Engineering decisions disappear when chat is the system of record.
 
-## Key Questions
+AI-assisted work produces plans, assumptions, trade-offs, review notes, and evidence. If those outputs stay in a private session, the repository loses the reasoning that future maintainers need.
 
-- What does artifacts mean in this field manual context?
-- How should teams apply artifacts in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Artifacts are durable outputs. They preserve decisions, evidence, and reusable knowledge outside the assistant session.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Artifact | What it preserves |
+|---|---|
+| ADR | Architectural decision and rationale |
+| Change note | Intent, risk, and compatibility impact |
+| Runbook | Operational procedure |
+| PR evidence | Tests, checks, review notes, and links |
+| Template | Repeatable structure for future work |
 
-## Planned Sections
+Artifacts should be written for future readers, not only for the current agent.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
+
+Before this chapter, Nexus often loses the reason a change was made.
+
+Nexus introduces an artifact taxonomy. For the API contract running example, a short change note or ADR records why the response contract changed, what compatibility checks were performed, and what documentation was updated.
+
+After this chapter, Nexus has a durable record strategy for AI-assisted work.
 
 ## Quick Reference
 
-To be expanded.
+| Preserve this... | As this artifact |
+|---|---|
+| Architectural rationale | ADR |
+| Change intent and impact | Change note |
+| Verification result | PR evidence |
+| Repeated workflow structure | Template or skill |
+| Operational procedure | Runbook |

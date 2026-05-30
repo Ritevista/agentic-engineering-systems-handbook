@@ -1,24 +1,37 @@
 # Chapter 4: Subagents
 
-## Purpose
+## Reader problem
 
-Define how **subagents** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Main agents become unreliable when every concern stays in one conversation.
 
-## Key Questions
+Implementation, review, security analysis, test planning, and documentation require different attention. A single agent can blur those responsibilities and miss the reason a second pass exists.
 
-- What does subagents mean in this field manual context?
-- How should teams apply subagents in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+A subagent is an isolated delegated worker. Use subagents when a task benefits from separation of context, independent review, or specialized focus.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Subagent type | Typical output |
+|---|---|
+| Review subagent | Findings, risks, and suggested fixes |
+| Test-planning subagent | Test matrix and edge cases |
+| Security subagent | Threat notes and sensitive-surface review |
+| Documentation subagent | Doc impact and update checklist |
 
-## Planned Sections
+Subagents are not extra autonomy for its own sake. They are a boundary mechanism.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
+
+Before this chapter, Nexus implementation work and review work often happen in the same thread.
+
+Nexus introduces delegated review subagents for risky changes. For the API contract running example, a review subagent checks compatibility, downstream client impact, authorization boundaries, and documentation impact.
+
+After this chapter, Nexus has a delegation model that separates execution from focused review.
 
 ## Quick Reference
 
-To be expanded.
+| Use a subagent for... | Keep in the main agent when... |
+|---|---|
+| Independent review | The task is small and low risk |
+| Specialized analysis | The main agent already owns the concern |
+| Parallel evidence gathering | Shared context would be simpler and safer |
+| Boundary-sensitive work | Delegation would hide accountability |

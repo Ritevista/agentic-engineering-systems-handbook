@@ -1,26 +1,37 @@
 # Chapter 9: Permissions, Approvals, and Sandboxing
 
-## Purpose
+## Reader problem
 
-Define how **permissions, approvals, and sandboxing** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Tool access without blast-radius control is not engineering discipline.
 
-## Key Questions
+AI-assisted workflows can read files, run commands, call tools, open network connections, and modify systems. Treating that access as a convenience creates avoidable risk.
 
-- What does permissions, approvals, and sandboxing mean in this field manual context?
-- How should teams apply permissions, approvals, and sandboxing in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Permissions, approvals, and sandboxing are blast-radius controls.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Control | Role |
+|---|---|
+| Permission | Defines what action is allowed |
+| Approval | Requires human authorization for higher-risk actions |
+| Sandboxing | Limits where and how execution can happen |
+| Audit trail | Records what was attempted or performed |
 
-## Planned Sections
+Scanners such as LLM Guard can help detect unsafe input or output, but they do not replace permissions, approvals, sandboxing, or review.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
 
-> Related guardrail pattern: scanners such as LLM Guard may help detect unsafe input or output, but they do not replace permissions, approvals, sandboxing, or review. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Before this chapter, Nexus has unclear boundaries around what assistants may inspect or modify.
+
+Nexus introduces permission tiers. For the API contract running example, reading local source and running tests may be allowed, while accessing production payload samples or client usage data requires explicit approval and sanitized handling.
+
+After this chapter, Nexus has a permission matrix that limits blast radius before tool use expands.
 
 ## Quick Reference
 
-To be expanded.
+| Risk | Control |
+|---|---|
+| Accidental writes | Sandbox and write approval |
+| Sensitive data exposure | Read approval and redaction rules |
+| Unsafe command execution | Command allowlist and escalation path |
+| Unclear accountability | Audit log and PR evidence |

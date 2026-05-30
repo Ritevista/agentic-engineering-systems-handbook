@@ -1,39 +1,55 @@
 # Chapter 2: Core Vocabulary
 
-## Purpose
+## Reader problem
 
-Establish a shared language so teams can design and govern agentic engineering workflows without ambiguity.
+Teams cannot govern what they cannot name precisely.
 
-## Key Questions
+Agentic engineering fails early when every capability is called an agent, every procedure is hidden in a prompt, and every external integration is treated like ordinary context. The result is architecture drift: unclear ownership, weak review, and no shared way to decide where a rule, workflow, or artifact belongs.
 
-- Which core terms must remain stable across chapters and repositories?
-- How do these terms prevent architecture and governance drift?
+## Design principle
 
-## Nexus Case Study Connection
+Use a small vocabulary with hard boundaries.
 
-Nexus uses this vocabulary as a cross-repo contract so `nexus-service`, `nexus-delivery`, and `nexus-playbook` can align implementation, governance, and verification.
+The core terms in this field manual are not synonyms. Each term names a different control surface in the engineering system.
 
-## Planned Sections
+| Term | Meaning in this book |
+|---|---|
+| Agent | Bounded role |
+| Subagent | Isolated delegated worker |
+| Steering | Doctrine, rules, and context |
+| Skill | Reusable task playbook |
+| Slash command | Workflow trigger |
+| Hook | Lifecycle automation or guardrail |
+| Permissions, approvals, and sandboxing | Blast-radius control |
+| Context and memory | What the agent knows or carries |
+| Specs, plans, and tasks | Work structure |
+| Artifacts | Durable outputs |
+| Verification | Evidence and checks |
+| MCP/tools | External capability layer |
 
-1. Core one-line definitions
-2. Relationship map between primitives
-3. Terms commonly confused in practice
+Related patterns such as ReAct, BDI, DSPy, LLM Guard, MCP, and A2A can support these primitives. They do not replace the vocabulary. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
 
-> Related pattern catalog: ReAct, BDI, DSPy, LLM Guard, MCP, and A2A are supporting terms discussed in [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md). They should not be flattened into the core vocabulary without classifying their layer first.
+## Nexus case study
+
+Nexus Software Systems starts with overloaded language. Teams call prompts "agents," call checklists "skills," and treat tool access as a convenience instead of an architecture boundary.
+
+Nexus Engineering Control Plane introduces a vocabulary map. The map lets `nexus-service`, `nexus-delivery`, and `nexus-playbook` describe the same workflow without redefining the terms in every repository.
+
+After this chapter, Nexus has a shared language for reviewing AI-assisted engineering designs.
 
 ## Quick Reference
 
-- **Agent**: A bounded role that executes defined responsibilities within explicit workflow constraints.
-- **Subagent**: An isolated delegated worker used for scoped parallel or specialized tasks.
-- **Steering**: Doctrine, rules, and context that constrain and guide agent behavior.
-- **Skill**: A reusable task playbook describing repeatable procedure and quality expectations.
-- **Slash command**: A workflow trigger that invokes predefined agentic actions.
-- **Hook**: Lifecycle automation or guardrail executed at specific workflow events.
-- **Permissions / approvals / sandboxing**: Blast-radius controls that limit capability, require authorization, and constrain execution context.
-- **Context / memory**: The information an agent knows, carries, and retrieves while working.
-- **Specs / plans / tasks**: Work-structure artifacts that translate goals into executable units.
-- **Artifacts**: Durable outputs stored in systems of record, not only in chat.
-- **Verification / tests / evals / checklists**: Evidence mechanisms used to validate correctness, safety, and policy compliance.
-- **Tooling / MCP / external capabilities**: The separate but connected external capability layer that agents call through governed interfaces.
-
-Tooling / MCP / external capabilities will be discussed later and treated as a separate but connected layer.
+| If the team asks... | Use this term |
+|---|---|
+| What role owns this responsibility? | Agent |
+| What isolated worker should handle a delegated task? | Subagent |
+| What repository rules guide the work? | Steering |
+| What reusable procedure should be followed? | Skill |
+| How is the workflow invoked? | Slash command |
+| What guardrail runs at a lifecycle point? | Hook |
+| What limits access or execution? | Permissions, approvals, and sandboxing |
+| What information is supplied or retained? | Context and memory |
+| How is work decomposed before execution? | Specs, plans, and tasks |
+| What durable output survives the session? | Artifact |
+| What proves the work is acceptable? | Verification |
+| What external system capability is being called? | MCP/tool |

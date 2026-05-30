@@ -61,6 +61,42 @@ This field manual should help readers answer practical engineering questions suc
 - How do we preserve durable artifacts instead of losing decisions in chat?
 - How do we scale from individual AI usage to team-level engineering governance?
 
+## Book Voice Rule
+
+Use the repository's Book Voice Contract in `docs/book-voice.md` when writing or editing chapters.
+
+The book should use the author's published thinking style, not casual chat style.
+
+That means:
+
+- direct
+- practical
+- architectural
+- systems-oriented
+- evidence-oriented
+- slightly adversarial toward weak engineering practices
+- free of hype and filler
+
+Do not imitate typos, casual phrasing, or exploratory chat language.
+
+When in doubt, write like a senior architect producing a field manual for other senior engineers.
+
+## Public Chapter Rule
+
+Public chapters should not expose internal planning scaffold sections such as:
+
+- Purpose
+- Key Questions
+- Planned Sections
+- To be expanded
+- Nexus Case Study Connection
+
+If these sections contain useful content, convert them into finished prose, quick-reference sections, or move them into authoring guidance.
+
+Public quick-reference sections should be operational for the reader. Do not publish chapter-meta rows such as "What does this chapter add?", "What is the concrete scenario?", or other authoring rationale.
+
+When checking published content, treat `src/` as the source of truth. The generated `book/` directory can be stale until `mdbook build` is run.
+
 ## Nexus Evolution Rule
 
 Nexus is the running case study for this field manual. It must evolve cumulatively across chapters.

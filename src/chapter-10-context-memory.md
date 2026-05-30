@@ -1,26 +1,39 @@
 # Chapter 10: Context and Memory
 
-## Purpose
+## Reader problem
 
-Define how **context and memory** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+More context is not automatically better.
 
-## Key Questions
+Teams often paste architecture notes, logs, tickets, code snippets, and prior decisions into a session until the assistant appears informed. That can help locally while making boundaries, provenance, and retention unclear.
 
-- What does context and memory mean in this field manual context?
-- How should teams apply context and memory in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Context and memory define what the agent knows or carries. Treat them as engineering inputs, not dumping grounds.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Context type | Use |
+|---|---|
+| Repository steering | Stable rules and local facts |
+| Task brief | Current objective, scope, and constraints |
+| Retrieved context | Relevant files, tickets, docs, or metadata |
+| Durable memory | Decisions or facts meant to survive sessions |
+| Transient chat | Temporary reasoning and exploration |
 
-## Planned Sections
+Zero-shot and few-shot prompting belong inside context-discipline decisions when teams decide what stays one-off and what becomes a skill or template.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
 
-> Related prompting patterns: zero-shot and few-shot prompting belong in context-discipline decisions when teams decide what belongs in a one-off prompt, reusable skill, or durable template. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Before this chapter, Nexus relies on pasted context and personal memory.
+
+Nexus introduces a context boundary policy. For the API contract running example, the task brief can include API conventions and sanitized examples, while sensitive payloads and client usage data require approval and must not become casual memory.
+
+After this chapter, Nexus has a policy for what agents may know, retrieve, and retain.
 
 ## Quick Reference
 
-To be expanded.
+| Context question | Field-manual answer |
+|---|---|
+| Is it stable repo doctrine? | Put it in steering. |
+| Is it task-specific? | Put it in the task brief. |
+| Is it sensitive? | Gate it with permissions. |
+| Must it survive? | Store it as an artifact or durable memory. |
+| Is it only exploratory? | Keep it transient. |

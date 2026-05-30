@@ -1,38 +1,47 @@
 # Chapter 17: Tooling, MCP, and External Capabilities
 
-## Purpose
+## Reader problem
 
-Establish tooling and MCP-style integrations as a separate but connected capability layer in the overall agentic system.
+Tools are not agents, and agents are not tools.
 
-## Key Questions
+External systems give AI-assisted workflows real power: Git, CI, issue trackers, documentation systems, deployment platforms, observability, and internal APIs. That power needs contracts, ownership, permissions, and auditability.
 
-- What is the difference between an agent and a tool?
-- Why should MCP be treated as an external capability layer, not as a skill or agent?
-- How do permissions, approvals, sandboxing, hooks, and auditability apply to MCP tools?
-- How should teams think about tool governance?
-- Why should tools have contracts, schemas, ownership, and verification?
-- How does the Nexus Engineering Control Plane use MCP-style tools for systems like Git, CI/CD, issue trackers, documentation, deployment platforms, and observability?
+## Design principle
 
-## Nexus Case Study Connection
+MCP/tools are the external capability layer. Treat every tool as an interface with a contract, not as informal context.
 
-Nexus treats MCP-style tools as governed integration points used by agents across `nexus-service`, `nexus-delivery`, and `nexus-playbook`, with explicit contracts, ownership, and verification evidence.
+| Tool concern | Required design question |
+|---|---|
+| Capability | What can the tool do? |
+| Schema | What inputs and outputs are valid? |
+| Permission | Who may call it, and when? |
+| Ownership | Who maintains the integration? |
+| Auditability | What is logged or preserved? |
+| Verification | How do callers know the result is trustworthy? |
 
-## Planned Sections
+MCP remains the primary tool/context capability layer for this field manual. Adjacent protocols such as A2A, AG-UI, AP2, and UCP belong in the appendix unless a chapter needs a specific interoperability comparison.
 
-1. Agents vs tools: role and responsibility boundaries
-2. External capability governance model (permissions, approvals, hooks, auditability)
-3. Tool contracts, schemas, ownership, and verification patterns in Nexus
+## Nexus case study
+
+Before this chapter, Nexus agents use external systems inconsistently.
+
+Nexus introduces a tool gateway contract. For the API contract running example, agents may read CI status, issue metadata, API docs, schema metadata, and safe usage metadata through governed tool interfaces.
+
+After this chapter, Nexus has a controlled external capability layer.
 
 ## Quick Reference
 
-To be expanded. This chapter intentionally frames MCP/tooling as a separate but connected layer and does not yet attempt a full MCP implementation guide.
-
-> Related protocols: A2A, AG-UI, AP2, and UCP address adjacent interoperability, UI, and commerce scenarios. MCP remains the primary tool/context capability layer for this field manual. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+| Do this | Avoid this |
+|---|---|
+| Define tool schemas and ownership. | Let tools become invisible prompt magic. |
+| Route tool use through permissions. | Give broad access by default. |
+| Preserve tool results when they matter. | Treat observations as unverifiable chat. |
+| Separate agents from tools. | Call every integration an agent. |
 
 ## References and Further Reading
 
-- To be expanded from `../references/bibliography.md`.
+- See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md) for related protocol positioning.
 
 ## Source Notes
 
-This chapter uses the sources below for tool-specific behavior and terminology. The analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual.
+This chapter uses source-backed references only where tool-specific behavior or protocol terminology is discussed. The analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual.

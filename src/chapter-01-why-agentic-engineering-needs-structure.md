@@ -1,116 +1,166 @@
 # Chapter 1: Why Agentic Engineering Needs Structure
 
-## Purpose
+## The individual productivity trap
 
-Define why AI-assisted software engineering needs shared structure before it can survive team usage, code review, security constraints, and long-lived repositories.
+AI coding assistants make individual developers faster before they make engineering organizations better.
 
-Prompts alone do not create an engineering system. They do not define ownership, evidence, permissions, or durable records. A team needs shared structure so AI-assisted work can be repeated, reviewed, constrained, and improved.
+That is the trap. A developer can produce a useful patch, explanation, migration script, or test draft in minutes. The local experience feels like progress. At team scale, the system around that work may still be weak: no shared rules, no durable decision, no evidence trail, no permission boundary, and no consistent review expectation.
 
-## Key Questions
+The question is not whether AI can help write code. It can. The question is whether the work can survive review, maintenance, incident analysis, onboarding, and reuse after the chat window is gone.
 
-- Why are prompts alone insufficient for reliable engineering workflows?
-- What breaks when teams lack shared structure for AI-assisted work?
-- What should move from individual practice into repository-level steering, reusable skills, workflow triggers, verification evidence, and durable artifacts?
+## Prompts are not an engineering system
 
-## Nexus Case Study Connection
+Prompts can instruct. They cannot govern.
 
-The canonical case study is **Nexus Engineering Control Plane**.
+A good prompt can remind an assistant to write tests, consider edge cases, or explain trade-offs. It cannot create ownership. It cannot enforce repository rules. It cannot decide which tools require approval. It cannot prove that verification happened. It cannot preserve an architectural decision unless the team writes that decision into a system of record.
 
-Nexus Engineering Control Plane starts at L0 ad-hoc prompting: useful outputs remain in chat; no repeatability. Some senior developers show pockets of L1 individual discipline through personal prompts and manual checks. The organization has not reached L2 repository steering because repo conventions, local verification, and shared guidance are not yet consistent.
+Important engineering behavior should not depend on private prompts.
 
-This chapter moves Nexus Engineering Control Plane toward L2. It does not complete the control plane. It defines why Nexus Engineering Control Plane needs shared structure across `nexus-service`, `nexus-delivery`, and `nexus-playbook` before later chapters add bounded agents, reusable skills, workflow triggers, tool access, and verification evidence.
+Teams that hide policy inside personal prompting habits get uneven outcomes. The senior engineer with a strong prompt gets one workflow. The new engineer gets another. The reviewer sees code, but not necessarily the constraints, assumptions, or verification path that produced it.
 
-The running scenario is a **backward-compatible API contract change** in `nexus-service`. In Chapter 1, the scenario is a destination marker. Later chapters show how Nexus Engineering Control Plane turns that change into a governed workflow. Here, it shows why the work is too risky to leave inside a one-off prompt. The canonical scenario is defined in [Running Example](./running-example.md).
+## What breaks at L0
 
-## Planned Sections
+L0 is ad-hoc prompting. It is useful, but it is not yet governable.
 
-1. Failure modes of ad-hoc agentic workflows
-2. Control-plane mindset for engineering systems
-3. Minimum structural primitives for reliability
-4. Boundaries between steering, skills, tools, permissions, verification, and artifacts
+At L0, the assistant is usually invoked as a private helper. The repository does not know what rules should guide the assistant. The workflow does not define what evidence is required. The team cannot reliably repeat the same task with the same boundaries.
 
-## Failure modes of ad-hoc agentic workflows
-
-Ad-hoc agentic workflows depend on local memory and individual judgment. Agentic workflow means AI-assisted delegated work. The failure is not that a model writes code. The failure is that the team cannot see the boundary, repeat the process, or verify the result.
-
-### What breaks without shared structure
-
-| Failure mode | What happens | Concrete effect |
+| Failure mode | What happens | Engineering effect |
 |---|---|---|
-| Prompt drift | Developers describe the same task differently. | Similar changes produce different designs, tests, and review notes. |
-| Hidden context | Key constraints stay in chat or personal notes. | Reviewers cannot see why the agent made a decision. |
-| Unbounded execution | The assistant treats a local request as permission to change adjacent behavior. | A new optional response field is added without checking schema rules or downstream client behavior. |
-| Weak verification | The assistant claims completion without evidence. | A PR says tests pass, but no command output, risk note, or checklist is attached. |
-| Tool overreach | The assistant gets access before the team defines blast radius - mistake damage scope. | A read-only investigation becomes a write-capable workflow without approval. |
-| Lost artifacts | Decisions remain in chat instead of the repository. | An API contract decision is unavailable when a client integration starts failing. |
+| Prompt drift | Developers ask for the same work in different ways. | Similar changes produce different designs, tests, and review notes. |
+| Hidden context | Constraints stay in chat, memory, or personal notes. | Reviewers cannot tell which assumptions shaped the patch. |
+| Unbounded scope | The assistant changes adjacent behavior because the boundary is implicit. | A narrow request becomes a broader change without deliberate review. |
+| Weak evidence | The assistant claims completion without durable proof. | PRs lack command output, risk notes, or acceptance evidence. |
+| Tool overreach | Tool access appears before blast radius is defined. | A read-only investigation can become a write-capable workflow by accident. |
+| Lost decisions | The decision stays in chat. | The team reconstructs intent later from code and memory. |
 
-The pattern is consistent. The team gets useful outputs but weak control. The work may be good once. It is not yet an engineering practice.
+The pattern is consistent: useful output, weak control.
 
-## Control-plane mindset for engineering systems
+## Why L1 individual discipline is not enough
 
-A control plane is the policy coordination layer. In infrastructure, it decides what may run, where it may run, and under which constraints. In agentic engineering, the control-plane mindset applies the same discipline to AI-assisted software work.
+L1 is disciplined personal practice. It is better than L0.
 
-The control plane does not replace engineering judgment. It makes judgment inspectable. It gives teams a place to define rules, inputs, permissions, evidence, and durable outputs.
+At L1, a strong developer may keep reusable prompts, ask for tests, request a plan before implementation, paste relevant architecture notes, and run verification before opening a PR. That improves the practitioner's work.
 
-For the Nexus Engineering Control Plane API-contract problem, this means the service change does not start as "ask the assistant to add the field." It starts as a governed change request with API conventions, schema or versioning rules, downstream client impact, authorization boundaries, documentation expectations, and evidence requirements.
+It still does not improve the engineering system enough.
 
-| Control-plane concern | Engineering question | Case-study implication |
+L1 improves the practitioner. L2 improves the engineering system.
+
+The distinction matters. A repository cannot depend on every engineer remembering the same private prompt. A reviewer cannot audit a workflow that only exists in one developer's habits. A platform team cannot scale governance by asking every person to become an expert prompt operator.
+
+## Why L2 repository steering is the first serious move
+
+L2 begins when stable rules move into the repository.
+
+Repository steering is doctrine, rules, and context. It tells the assistant what this repository is, how it is built, where the boundaries are, which commands matter, what must not be changed casually, and what evidence is expected.
+
+Steering is the first serious move because it changes the default. The assistant no longer starts from a blank chat. It starts inside a documented engineering environment.
+
+For Nexus, L2 does not mean the whole control plane is complete. It means the first durable control surface exists. `nexus-service` can state API conventions, versioning rules, ownership boundaries, local test commands, and PR evidence expectations where both people and assistants can see them.
+
+## The control-plane mindset
+
+A control plane coordinates policy, access, workflow, and evidence. In agentic engineering, the control-plane mindset applies that discipline to AI-assisted software work.
+
+The control plane does not replace engineering judgment. It makes judgment inspectable.
+
+| Control-plane concern | Engineering question | Chapter 1 implication |
 |---|---|---|
-| Steering | Defines what the agent must know before work starts. | `AGENTS.md` records API conventions, ownership boundaries, unsafe files, and repo commands. |
-| Workflow | Defines how repeatable work starts. | A later command can route API changes through planning and review. |
-| Permissions | Defines what the agent may access or change. | Client usage data, production examples, or sensitive payloads require approval before use. |
-| Verification | Defines what evidence must exist before merge. | Contract tests, regression tests, compatibility notes, docs updates, and review evidence become required. |
-| Artifacts | Captures decisions outside chat. | The API contract decision becomes an ADR or change note. |
+| Rules | What must the assistant know before work starts? | Put stable repository guidance in steering. |
+| Workflow | How should repeatable work begin? | Do not rely on one-off chat rituals. |
+| Permissions | What can the assistant read, write, or execute? | Treat access as a design decision. |
+| Verification | What evidence proves the work is acceptable? | Require tests, checks, and review notes where risk warrants them. |
+| Artifacts | What should survive beyond the session? | Preserve decisions in ADRs, change notes, specs, or PR evidence. |
 
-## Minimum structural primitives for reliability
+Bad systems hide responsibilities inside prompts. Good systems separate concerns.
 
-Structure starts with a small set of primitives. Primitive means basic building block. The team should name each primitive and keep its boundary clear.
+## Minimum structural primitives
 
-### The structural primitives
+The book builds the control plane from a small set of primitives. Each primitive answers a different engineering question.
 
-| Primitive | Defines | Typical repository form |
+| Primitive | Definition | What it gives Nexus |
 |---|---|---|
-| Steering | Provides doctrine, rules, and local context. | `AGENTS.md`, architecture notes, repo commands |
-| Skill | Provides a reusable task playbook. | `SKILL.md`, checklist, task recipe |
-| Slash command | Triggers a standard workflow. | Command definition, workflow entry point |
-| Agent | Provides a bounded role. | Role contract, allowed scope, expected outputs |
-| Subagent | Delegates isolated work. | Review worker, test planner, security checker |
-| Hook | Enforces lifecycle automation or guardrails. | Pre-commit check, evidence gate, release check |
-| Permissions | Controls blast radius. | Approval rules, sandbox policy, tool tiers |
-| Context and memory | Defines what the agent knows or carries. | Repo context, task brief, durable notes |
-| Specs, plans, and tasks | Structures work before execution. | Spec, plan, task list |
-| Artifacts | Stores durable outputs. | ADR, runbook, PR evidence, review note |
-| Verification | Requires evidence and checks. | Test output, checklist, eval result |
-| MCP and tools | Provides external capabilities. | Tool contract, gateway, integration policy |
+| Steering | Doctrine, rules, and context. | Repository guidance for agent-ready work. |
+| Skill | Reusable task playbook. | Repeatable procedures for common engineering tasks. |
+| Slash command | Workflow trigger. | A standard way to start governed work. |
+| Agent | Bounded role. | Clear responsibility and expected outputs. |
+| Subagent | Isolated delegated worker. | Focused review, test, security, or documentation work. |
+| Hook | Lifecycle automation or guardrail. | Checks at important workflow boundaries. |
+| Permissions, approvals, and sandboxing | Blast-radius control. | Limits on access, execution, and write scope. |
+| Context and memory | What the agent knows or carries. | Bounded input instead of uncontrolled context flooding. |
+| Specs, plans, and tasks | Work structure. | Reviewable decomposition before execution. |
+| Artifacts | Durable outputs. | Decisions and evidence that survive chat. |
+| Verification | Evidence and checks. | Proof that the work meets expectations. |
+| MCP/tools | External capability layer. | Governed access to systems outside the model. |
 
-This chapter does not implement every primitive. It establishes why the primitives must exist. Later chapters define their contracts.
+The tool matters. The structure matters more.
 
-## Boundaries between steering, skills, tools, permissions, verification, and artifacts
+## Boundaries between primitives
 
-Teams lose control when every concept becomes a prompt. The boundary matters because each primitive answers a different engineering question.
+Teams lose control when every concept becomes a prompt.
 
 | Concept | Primary question | Boundary rule |
 |---|---|---|
 | Steering | What rules and context govern this repository? | Put stable doctrine and repo facts here. |
 | Skill | How should this repeatable task be performed? | Put reusable procedure here. |
-| Tool | What external capability may the agent use? | Put access through an explicit contract. |
+| Slash command | How should the workflow be started? | Put invocation and routing here. |
+| Agent | Who owns this bounded responsibility? | Put role contract and expected output here. |
+| Tool | What external capability may be called? | Put access behind explicit contracts. |
 | Permission | What action requires control or approval? | Put blast-radius limits here. |
 | Verification | What evidence proves the work is acceptable? | Put commands, checks, and review evidence here. |
 | Artifact | What result must survive beyond chat? | Put durable decisions and outputs here. |
 
-The backward-compatible API contract change touches every boundary. Steering defines API conventions and ownership rules. A skill can generate contract, compatibility, authorization, documentation, and regression checks. A tool may read CI status, API docs, schema metadata, or safe usage metadata. Permission rules protect client usage data and sensitive payloads. Verification proves behavior. Artifacts preserve the API-contract decision.
+Start by separating the responsibilities. Once the boundaries are visible, each primitive can be designed, reviewed, and improved without turning the whole system back into a private prompt.
+
+## Nexus case study
+
+Nexus Software Systems begins with useful but inconsistent AI usage. Developers use assistants to draft changes, explain code, and generate tests. The organization has pockets of L1 discipline, but no shared control surface.
+
+The running scenario is a backward-compatible API contract change in `nexus-service`. The canonical scenario is defined in [Running Example](./running-example.md). Chapter 1 uses it only to show why structure is needed.
 
 Nexus accepted that trade-off because uncontrolled speed at L0 was already creating review burden. Three months earlier, an assistant-generated patch added a response field to an API and updated one unit test. No one recorded whether downstream clients depended on the old contract, whether the field required authorization review, or whether the API documentation needed to change. When a client integration later failed in staging, the team spent a day reconstructing a decision that should have been preserved as a short change note or ADR.
 
 That cost is what L2 is meant to prevent.
 
+After this chapter, Nexus has a mandate: move stable AI-assisted engineering behavior out of private prompts and into repository-visible structure. The first concrete asset is repository steering. Later chapters add the rest of the control plane.
+
+## Minimum viable structure for a team
+
+A team does not need a full platform to leave L0. It needs enough structure that repeated work no longer depends on private prompting habits.
+
+| Minimum element | What to write down first |
+|---|---|
+| Repository steering | Architecture boundaries, test commands, review expectations, unsafe areas, and ownership notes. |
+| Verification expectation | What evidence belongs in a PR before merge. |
+| Artifact rule | Which decisions require ADRs, change notes, specs, or runbooks. |
+| Permission boundary | Which file, tool, network, or production actions require approval. |
+| Reusable workflow candidates | The tasks repeated often enough to become skills or commands later. |
+
+Do this before building elaborate agent hierarchies. A weak repository with many agents is still a weak repository.
+
+## First operating principle
+
+Convert private prompting discipline into shared engineering structure.
+
+That is the first operating principle of the field manual. It does not reject prompts. It puts prompts in their place. Prompts are useful inputs to a governed workflow. They are not the workflow, the policy, the evidence, or the system of record.
+
 ## Quick Reference
 
-| Question | Use this answer |
+### Core argument
+
+AI-assisted engineering becomes useful at team scale only when individual prompting is converted into shared engineering structure.
+
+### Maturity anchor
+
+| Level | Pattern | Chapter 1 lesson |
+|---|---|---|
+| L0 | Ad-hoc prompting | Useful outputs remain in chat; little is repeatable |
+| L1 | Individual discipline | Good results depend on personal habit |
+| L2 | Repository steering | Important rules and checks move into the repository |
+
+### What Nexus gains
+
+| Before Chapter 1 | After Chapter 1 |
 |---|---|
-| Where does Nexus Engineering Control Plane start? | L0 ad-hoc prompting, with pockets of L1 individual discipline. |
-| What does this chapter add? | A structural reason to move toward L2 repository steering. |
-| What is the main failure of prompts alone? | Useful output remains hard to repeat, review, constrain, or verify. |
-| What is the control-plane mindset? | Define the rules, access, workflow, evidence, and durable records around AI-assisted work. |
-| What is the concrete scenario? | Backward-compatible API contract change. |
-| What should readers copy first? | A small set of named primitives with clear boundaries. |
+| Useful assistant output, weak repeatability. | A clear reason to move toward repository steering. |
+| Private prompts carry engineering behavior. | Stable rules start moving into the repository. |
+| Decisions disappear into chat. | Durable artifacts become part of the operating model. |
