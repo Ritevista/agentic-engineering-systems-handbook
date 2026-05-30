@@ -2,18 +2,18 @@
 
 | Field | Value |
 |-------|-------|
-| Current Phase | G5 Review |
-| Next Phase | G6 Ship & Learn |
-| Task | Reorder early chapters to match maturity flow and update Nexus progression guidance |
+| Current Phase | Complete |
+| Next Phase | None |
+| Task | Rename early chapter source files to match public chapter numbers and URLs |
 
 ## Gate Status
 
 | Gate | Name | Status | Evidence | Skip Reason |
 |------|------|--------|----------|-------------|
-| G0 | Discovery | Passed | Inspected `src/SUMMARY.md`, `src/nexus-evolution.md`, `AGENTS.md`, chapter titles for Chapters 3-6, the chapter-writing skill, and diagram sources. | — |
-| G1 | Requirements | Passed | Reorder the early chapters so steering and skills come before agents and subagents, and update Nexus evolution, authoring guidance, and chapter references to match. | — |
-| G2 | Design | Passed | Keep filenames stable, update visible chapter numbers and summary order, adjust Nexus progression wording, and leave deeper chapter content intact. | — |
-| G3 | POC / Spike | N/A | Markdown-only reordering with no technical unknowns. | — |
-| G4 | Implementation | Passed | Updated `src/SUMMARY.md`, chapter H1 titles for Steering/Skills/Agents/Subagents, `src/nexus-evolution.md`, `AGENTS.md`, `skills/write-handbook-chapter/SKILL.md`, and `diagrams/src/nexus-chapter-progression.d2`. | — |
-| G5 | Review | Passed | `git diff --check` and `mdbook build` passed; `d2` is not installed, so generated SVGs were not regenerated in this environment. | — |
-| G6 | Ship & Learn | In Progress | Summarize files changed, diagram regeneration status, and recommended next step. | — |
+| G0 | Discovery | Passed | Inspected current early chapter filenames, public H1 titles, `src/SUMMARY.md`, and references to old chapter paths. | — |
+| G1 | Requirements | Passed | Public URLs should match public chapter numbers for Steering, Skills, Agents, and Subagents. | — |
+| G2 | Design | Passed | Rename only affected early chapter source files and update `src/SUMMARY.md`; keep chapter content and H1 titles unchanged. | — |
+| G3 | POC / Spike | N/A | Filename-only mdBook routing change with no technical unknowns. | — |
+| G4 | Implementation | Passed | Renamed chapter files and updated summary links. | — |
+| G5 | Review | Passed | Verified matching H1 titles and summary links, confirmed no stale source/book references to old early chapter filenames, and ran `git diff --check` plus `mdbook build`. | — |
+| G6 | Ship & Learn | Passed | Final response summarizes renamed files, checks, and expected URL changes. | — |
