@@ -147,6 +147,21 @@ Prompts can instruct. They cannot govern alone.
 
 Steering has to match how engineering work actually happens.
 
+## Working location changes the active steering
+
+The directory where the agent starts is not just a filesystem detail. It is part of the steering context.
+
+When work starts at the repository root, the agent should see broad repository doctrine. When work starts inside a package or module, the agent should see narrower local rules. When work happens in a worktree, temporary notes may apply. When work happens in a testbed, executable setup and evidence rules matter more than prose.
+
+| Work location | What the agent is probably doing | Steering that should apply | Common mistake |
+|---|---|---|---|
+| Repository root | Cross-cutting change, repo-wide search, architectural cleanup | Root `AGENTS.md`, repo build/test rules, global constraints | Putting module-specific details into root steering |
+| Module directory | Local package/API/UI change | Root steering plus module-local steering | Launching from repo root and flooding the agent with irrelevant context |
+| Git worktree | Parallel or experimental branch work | Shared repo steering plus gitignored local notes | Duplicating repo policy in temporary notes |
+| Dev container or local sandbox | Reproducible local execution | Repo steering plus executable setup and sandbox boundaries | Describing setup only in prose instead of scripts |
+| Testbed or CI-like runner | Validation, integration testing, rollout simulation | Environment contract, setup scripts, permission policy, evidence expectations | Treating testbed behavior as ordinary repository steering |
+| Session prompt | Current task and acceptance criteria | Task-local constraints and explicit "do not touch" guidance | Using the prompt to carry permanent repository rules |
+
 ### Repositories
 
 Root steering should hold stable shared guidance:
@@ -187,6 +202,144 @@ It should answer:
 - what evidence must be captured
 
 A good testbed contract points to setup scripts, runner configuration, sandbox policy, firewall rules, and evidence locations. It does not ask every agent to reconstruct the environment from prose.
+
+## Example: same repository, different starting directories
+
+Assume `nexus-service` has this structure:
+
+```text
+nexus-service/
+├─ AGENTS.md
+├─ services/
+│  └─ api/
+│     ├─ AGENTS.md
+│     └─ src/
+├─ apps/
+│  └─ web/
+│     ├─ AGENTS.md
+│     └─ src/
+└─ docs/
+```
+
+If the task is:
+
+> Add a backward-compatible response field to the public API.
+
+Start the agent from:
+
+```text
+nexus-service/services/api/
+```
+
+The active steering should include:
+
+- root repository steering from `nexus-service/AGENTS.md`
+- API module steering from `services/api/AGENTS.md`
+- the current session brief for the specific API change
+
+Do not start from `apps/web/`.
+
+Do not start from repo root unless the change requires repo-wide search or cross-module coordination.
+
+If the task is:
+
+> Update documentation for the API change.
+
+Start from repo root or `docs/`, depending on how documentation is organized. The API module steering may still matter, but the documentation steering should govern formatting, changelog rules, and publishing expectations.
+
+## Example: worktree-local steering
+
+A worktree is useful when the agent needs an isolated branch or parallel task, but it should not become a second source of repository truth.
+
+Example:
+
+```text
+nexus-service/
+├─ AGENTS.md
+└─ services/api/AGENTS.md
+
+../nexus-service-api-contract-worktree/
+├─ AGENTS.md
+├─ services/api/AGENTS.md
+└─ .agent-local.md
+```
+
+The shared steering remains:
+
+- root `AGENTS.md`
+- module `services/api/AGENTS.md`
+
+The worktree-local note may contain temporary context:
+
+````md
+# .agent-local.md
+
+## Temporary local notes
+
+- Current branch explores adding `supportTier` to the public account response.
+- Do not modify unrelated account endpoints.
+- Use the small local fixture dataset.
+- Stop before changing authorization behavior.
+
+## Cleanup
+
+- Delete or rewrite this file before merging or sharing the worktree.
+````
+
+`.agent-local.md` is a recommended internal convention, not a universal standard. If used, add it to `.gitignore` and bridge it into the specific agent tools your team uses.
+
+Do not put secrets, tokens, passwords, or live endpoint credentials in worktree-local steering.
+
+## Example: testbed steering
+
+A testbed is not just another directory. It is an execution environment.
+
+For the API contract change, Nexus may validate the change in an integration testbed:
+
+```text
+testbeds/api-contract/
+├─ steering.md
+├─ compose.yml
+├─ seed-data.sh
+└─ collect-evidence.sh
+```
+
+A minimal `testbeds/api-contract/steering.md` should not duplicate repository doctrine. It should describe the environment contract:
+
+````md
+# API contract testbed steering
+
+## Environment purpose
+
+Use this testbed to validate backward-compatible API response changes.
+
+Do not use it for load testing or production-data analysis.
+
+## Setup
+
+- Start services with `docker compose -f testbeds/api-contract/compose.yml up -d`.
+- Seed non-production fixtures with `testbeds/api-contract/seed-data.sh`.
+
+## Access boundaries
+
+- Use only synthetic or approved non-production payloads.
+- Do not connect to production clients or production data stores.
+- Do not copy secrets into steering files.
+
+## Evidence required
+
+Before handoff, collect:
+
+- contract test output
+- changed endpoint response sample
+- relevant service logs
+- API documentation diff
+- exact commit and testbed profile used
+````
+
+The executable scripts do the setup. The steering file explains purpose, boundaries, and evidence.
+
+If a rule must be enforced, do not rely on testbed steering alone. Use sandbox policy, runner configuration, hooks, CI, or review gates.
 
 ## Tool-agnostic steering stack
 
@@ -357,6 +510,20 @@ Start with the rules that senior engineers repeat during review. Put those rules
 - ...
 ```
 
+## Where should this instruction live?
+
+| Instruction | Best location | Reason |
+|---|---|---|
+| "Public API response changes must preserve existing clients." | Root or API module `AGENTS.md` | Stable repository doctrine |
+| "Run contract tests for changed API handlers." | Root or API module `AGENTS.md` | Stable local verification expectation |
+| "Generate API-change test cases." | Skill | Reusable task playbook |
+| "Start the API-change workflow." | Slash command | Workflow trigger |
+| "Do not access production payloads." | Steering plus permissions/sandboxing | Advisory rule plus enforceable boundary |
+| "Use this temporary fixture dataset for this branch." | Gitignored local worktree note | Temporary checkout-specific context |
+| "Start services with this compose file." | Testbed setup script and testbed steering | Executable environment setup |
+| "Capture logs, contract test output, and docs diff." | Testbed steering plus PR evidence template | Evidence expectation |
+| "Block merge if contract tests fail." | CI or review gate | Hard enforcement |
+
 ## Quick Reference
 
 ### Core argument
@@ -374,6 +541,20 @@ Steering is the persistent, scoped instruction layer for repository doctrine, ru
 | It states review expectations. | It is one-off task detail: use a session brief. |
 | It points to required proof. | It is evidence: store a verification artifact. |
 | It links to canonical docs. | It is external capability: use a tool or MCP contract. |
+
+### Working-location rule
+
+Start the agent from the narrowest directory that still contains the task's real scope.
+
+- Use repo root for cross-cutting work.
+- Use module directories for local package or API work.
+- Use worktrees for isolated parallel tasks.
+- Use testbeds for executable validation.
+- Use session prompts for the current task, not permanent repo doctrine.
+
+### Testbed rule
+
+Testbed steering should describe purpose, boundaries, setup entry points, and required evidence. The setup itself should live in executable scripts, runner configuration, sandbox policy, or CI.
 
 ### Steering quality checklist
 
