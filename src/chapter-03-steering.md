@@ -97,7 +97,7 @@ The test is simple: if the guidance should shape many tasks in this scope, it ma
 
 Steering is not one file for all situations. It is a scoped stack.
 
-![Steering layers](../diagrams/generated/steering-layers.svg)
+![Steering layers](diagrams/generated/steering-layers.svg)
 
 | Layer | Scope | Typical location | What belongs there |
 |---|---|---|---|

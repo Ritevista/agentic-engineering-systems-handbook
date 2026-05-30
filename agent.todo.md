@@ -4,16 +4,16 @@
 |-------|-------|
 | Current Phase | Complete |
 | Next Phase | None |
-| Task | Add concrete working-location steering examples to Chapter 3 |
+| Task | Fix Chapter 3 steering diagram path |
 
 ## Gate Status
 
 | Gate | Name | Status | Evidence | Skip Reason |
 |------|------|--------|----------|-------------|
-| G0 | Discovery | Passed | Inspected the Steering chapter section layout, existing worktree/testbed content, Quick Reference, and current git state. | — |
-| G1 | Requirements | Passed | Add targeted examples for repository root, module directory, Git worktree, dev container/local sandbox, testbed, and session prompt steering without rewriting the chapter. | — |
-| G2 | Design | Passed | Insert examples into the existing repositories/worktrees/testbeds section, add a placement decision table before Quick Reference content, and extend Quick Reference with working-location and testbed rules. | — |
-| G3 | POC / Spike | N/A | Markdown-only chapter patch with no technical unknowns. | — |
-| G4 | Implementation | Passed | Added working-location table, starting-directory example, worktree-local example, testbed example, decision table, and Quick Reference rules. | — |
-| G5 | Review | Passed | Reviewed inserted sections for fence integrity and no secret examples; `git diff --check`, `mdbook build`, and `polyagentctl gate-check agent.todo.md` passed. | — |
-| G6 | Ship & Learn | Passed | Final response summarizes changed files, examples added, assumptions, and recommended next step. | — |
+| G0 | Discovery | Passed | Inspected Chapter 3 diagram reference, existing diagram links in published chapters, `diagrams/README.md`, and the GitHub Pages copy step. | — |
+| G1 | Requirements | Passed | Fix the missing Chapter 3 diagram while following repository diagram publishing conventions. | — |
+| G2 | Design | Passed | Use the same mdBook-relative path as existing chapters, `diagrams/generated/...`, and align the diagram README example with that convention. | — |
+| G3 | POC / Spike | N/A | Markdown-only path fix with no technical unknowns. | — |
+| G4 | Implementation | Passed | Updated Chapter 3 diagram path and diagram README example. | — |
+| G5 | Review | Passed | `git diff --check` and `mdbook build` passed; copied generated diagrams into `book/diagrams/` and confirmed rendered HTML uses `diagrams/generated/steering-layers.svg`. | — |
+| G6 | Ship & Learn | Passed | Final response summarizes changed files and validation. | — |
