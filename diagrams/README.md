@@ -12,7 +12,7 @@ This directory is the source of truth for diagram authoring in the field manual.
 Published chapters should embed generated SVGs with normal Markdown image syntax:
 
 ```md
-![Diagram title](../diagrams/generated/example.svg)
+![Diagram title](diagrams/generated/example.svg)
 ```
 
 ## Authoring Rules
