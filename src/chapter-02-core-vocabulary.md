@@ -94,21 +94,23 @@ The table below classifies the parts of that workflow so later chapters can deep
 
 This is the chapter's practical test. If the team cannot classify the API change without calling every part "the agent," the workflow is not designed yet.
 
-## Related patterns are not core primitives
+## Adjacent concepts belong in the right layer
 
-Related patterns and protocols can support the field manual's primitives. They do not replace them.
+The vocabulary in this chapter is the field manual's core vocabulary. It names the control surfaces we use throughout the book: roles, rules, workflows, guardrails, tools, evidence, and durable outputs.
 
-ReAct is a reasoning/action pattern, not the same thing as an agent role. Plan-and-Execute is an orchestration pattern, not a substitute for specs, plans, tasks, or verification. BDI is a design lens, not a repository control surface.
+Other agentic patterns, prompting techniques, guardrail libraries, and interoperability protocols are useful. But they should enter the book at the layer where they help.
 
-DSPy is an implementation and optimization framework, not the same thing as a skill. A skill is the team's reusable task playbook, whether or not it uses an optimization framework.
+A reasoning pattern belongs in the agent chapter.
 
-LLM Guard is a guardrail component, not the whole permission model. A scanner may help detect risk, but blast-radius control still needs permissions, approvals, sandboxing, ownership, and auditability.
+A prompt-programming framework belongs near skills and verification.
 
-A2A and AG-UI are interoperability and user-interface protocols, not replacements for repository structure. AP2 and UCP are commerce-oriented protocols and should not become core vocabulary unless a chapter needs that domain.
+A scanner or guardrail library belongs near permissions, context boundaries, and safety.
 
-MCP/tools are the external capability layer. They are not the agent itself.
+An interoperability protocol belongs near tools, MCP, and portability.
 
-For the catalog of adjacent methods, prompting techniques, guardrail tools, and protocols, see [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Do not flatten all of these into one glossary. A team gets better structure when each concept is placed where it affects engineering behavior.
+
+This chapter defines the book's core terms. Later chapters and the [appendix](./appendix-agentic-patterns-and-protocols.md) connect those terms to adjacent methods, tools, and protocols.
 
 ## Nexus case study
 
