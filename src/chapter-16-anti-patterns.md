@@ -1,24 +1,40 @@
 # Chapter 16: Anti-Patterns
 
-## Purpose
+## Reader problem
 
-Define how **anti-patterns** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Bad AI-assisted workflows often look productive at first.
 
-## Key Questions
+The failure is not always obvious. A team may ship patches quickly while accumulating hidden context, weak evidence, unclear responsibility, and unsafe access patterns.
 
-- What does anti-patterns mean in this field manual context?
-- How should teams apply anti-patterns in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Anti-patterns are named failure patterns. They help teams recognize when useful assistant output is masking structural weakness.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Anti-pattern | Failure |
+|---|---|
+| God agent | One role owns too many responsibilities |
+| Mega-skill | A reusable playbook becomes an unreadable process blob |
+| Fake verification | The agent claims checks ran without evidence |
+| Context flooding | More input hides the important constraints |
+| Tool overreach | External capability is added without blast-radius control |
+| Chat as system of record | Decisions disappear after the session |
 
-## Planned Sections
+Naming the failure makes it easier to design the correction.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
+
+Before this chapter, Nexus treats recurring AI workflow failures as isolated incidents.
+
+Nexus creates an anti-pattern library. For the API contract running example, the library records failures such as changing a response contract without compatibility review or claiming documentation was updated without a linked artifact.
+
+After this chapter, Nexus has a failure catalog that improves review and training.
 
 ## Quick Reference
 
-To be expanded.
+| If you see... | Check for... |
+|---|---|
+| One agent doing everything | Missing role boundaries |
+| Large opaque prompt templates | Missing skills or commands |
+| Confident completion summaries | Missing verification evidence |
+| Pasted logs and docs everywhere | Missing context policy |
+| Broad tool permissions | Missing approval and sandbox rules |

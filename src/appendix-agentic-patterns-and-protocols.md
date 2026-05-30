@@ -1,7 +1,5 @@
 # Appendix: Agentic Patterns, Prompting Techniques, and Protocols
 
-## Purpose
-
 This appendix catalogs related patterns, frameworks, tools, and protocols that support the field manual's core primitives.
 
 These topics are useful, but they are not the spine of the field manual. The spine remains structure, steering, skills, agents, subagents, slash commands, hooks, permissions, context and memory, specs/plans/tasks, artifacts, verification, MCP/tools, repository layout, decision frameworks, anti-patterns, portability, and maturity.
@@ -29,9 +27,9 @@ Do not make BMAD canonical unless the book explicitly adopts it as a Nexus Engin
 
 ### GSD
 
-GSD should be treated as lightweight/spec-driven agentic development when the term is used in this book. It maps to specs/plans/tasks and verifiable execution.
+GSD is reserved for lightweight or spec-driven agentic development patterns when the term is used in this book. It maps to specs/plans/tasks and verifiable execution.
 
-TODO: Confirm the intended source and meaning of "GSD" before treating it as a named methodology. Define the acronym explicitly before using it in any chapter.
+Do not treat GSD as a canonical named methodology in the main chapters unless the source and acronym are defined explicitly.
 
 ## Prompt/program standardization
 
@@ -153,7 +151,7 @@ These appendix-specific references should be reconciled with the repository's cu
 
 - BMad Method official documentation - https://docs.bmad-method.org/
 - BMad Method GitHub repository - https://github.com/bmad-code-org/bmad-method
-- TODO: Confirm the intended meaning/source of "GSD" before treating it as a named methodology. If used, define it explicitly as lightweight/spec-driven agentic development and cite the exact source.
+- Add a stable source before treating GSD as a named methodology in the main chapters.
 
 ### Prompt/program standardization
 
@@ -177,7 +175,7 @@ These appendix-specific references should be reconciled with the repository's cu
 - Chain-of-thought paper: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models" - https://arxiv.org/abs/2201.11903
 - Self-consistency paper: "Self-Consistency Improves Chain of Thought Reasoning in Language Models" - https://arxiv.org/abs/2203.11171
 - Meta-prompting paper: "Meta-Prompting: Enhancing Language Models with Task-Agnostic Scaffolding" - https://arxiv.org/abs/2401.12954
-- TODO: Add a stable reference for zero-shot and few-shot prompting, preferably from an official model provider guide or a survey paper.
+- Add a stable reference for zero-shot and few-shot prompting before making tool-specific claims in the main chapters.
 
 ### Protocols and interoperability
 

@@ -1,24 +1,39 @@
 # Chapter 14: Repo Layout
 
-## Purpose
+## Reader problem
 
-Define how **repo layout** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Agent-ready repositories fail when guidance is scattered.
 
-## Key Questions
+If steering, skills, specs, artifacts, examples, and verification evidence all live in different ad-hoc places, teams cannot reuse or govern the workflow. Layout is part of the control plane.
 
-- What does repo layout mean in this field manual context?
-- How should teams apply repo layout in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Repository layout should make AI-assisted engineering structure discoverable.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Concern | Typical location |
+|---|---|
+| Repository steering | `AGENTS.md` or equivalent |
+| Reusable skills | `skills/` |
+| Specs and plans | `specs/` or `docs/` |
+| Durable decisions | `docs/adrs/` or `docs/decisions/` |
+| Examples | `examples/` |
+| Verification evidence | PR description, CI, or evidence directory |
 
-## Planned Sections
+The exact names can vary. The responsibilities should not.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
+
+Before this chapter, Nexus repositories organize agent guidance differently.
+
+Nexus introduces a standard repository layout. `nexus-service`, `nexus-delivery`, and `nexus-playbook` can now place steering, skills, specs, artifacts, examples, and evidence in predictable locations.
+
+After this chapter, Nexus has a repository convention that makes governance easier to inspect.
 
 ## Quick Reference
 
-To be expanded.
+| Layout rule | Reason |
+|---|---|
+| Put steering at the repo root. | Agents and humans find local rules quickly. |
+| Keep skills separate from steering. | Procedures evolve differently from doctrine. |
+| Store artifacts in durable paths. | Decisions survive chat and tool sessions. |
+| Keep examples realistic but sanitized. | Readers can copy patterns safely. |

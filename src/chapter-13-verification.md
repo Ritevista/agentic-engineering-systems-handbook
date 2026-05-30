@@ -1,26 +1,39 @@
 # Chapter 13: Verification, Tests, Evals, and Checklists
 
-## Purpose
+## Reader problem
 
-Define how **verification, tests, evals, and checklists** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+"Done" is not evidence.
 
-## Key Questions
+AI-assisted work can sound complete before it is correct. A polished explanation, passing-looking patch, or confident summary does not prove behavior, safety, compatibility, or maintainability.
 
-- What does verification, tests, evals, and checklists mean in this field manual context?
-- How should teams apply verification, tests, evals, and checklists in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Verification is evidence and checks. It turns claims into reviewable proof.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Verification type | What it proves |
+|---|---|
+| Tests | Behavior still works |
+| Evals | Repeated agent behavior meets a quality bar |
+| Checklists | Required review concerns were considered |
+| Command output | A specific check actually ran |
+| Review evidence | A qualified reviewer inspected the right risk |
 
-## Planned Sections
+Self-consistency, eval-backed prompt programs, and model metrics can support verification. They do not replace tests, review, or acceptance evidence.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
 
-> Related verification patterns: self-consistency, eval-backed DSPy workflows, and prompt-program metrics can inform checks, but they do not replace tests, review, or explicit acceptance evidence. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Before this chapter, Nexus accepts too many agent claims without proof.
+
+Nexus introduces a PR evidence checklist. For the API contract running example, the checklist requires contract tests, regression tests, compatibility notes, authorization review where needed, documentation updates, and recorded command output.
+
+After this chapter, Nexus has a verification standard instead of a confidence standard.
 
 ## Quick Reference
 
-To be expanded.
+| Claim | Required evidence |
+|---|---|
+| Tests pass | Command output or CI link |
+| Contract remains compatible | Contract test result and compatibility note |
+| Documentation is updated | Linked doc change |
+| Risk was reviewed | Checklist or reviewer note |
+| Agent completed the task | Patch, artifacts, and verification evidence |

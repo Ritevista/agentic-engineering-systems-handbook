@@ -1,26 +1,40 @@
 # Chapter 19: Team Maturity Model
 
-## Purpose
+## Reader problem
 
-Define how **team maturity model** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+AI adoption is hard to improve when the team cannot describe its current state.
 
-## Key Questions
+One group may have strong prompts. Another may have repository steering. A third may have tool integrations without governance. Without a maturity model, leaders confuse activity with capability.
 
-- What does team maturity model mean in this field manual context?
-- How should teams apply team maturity model in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+A maturity model is a measurement tool. It should show what capability exists, what evidence proves it, and what the next practical move is.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Level | Pattern | Evidence |
+|---|---|---|
+| L0 | Ad-hoc prompting | Useful outputs remain in chat |
+| L1 | Individual discipline | Personal prompts, manual checks, local habits |
+| L2 | Repository steering | Shared repo rules and verification expectations |
+| L3 | Reusable workflows | Skills, commands, hooks, and artifacts |
+| L4 | Governed tool access | Permissions, tool contracts, and auditability |
+| L5 | Continuous improvement | Metrics, review loops, and maturity assessment |
 
-## Planned Sections
+Methodologies such as BMAD or lightweight spec-driven development can be discussed as adoption patterns. They are not substitutes for measuring the control plane itself.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
 
-> Related adoption patterns: BMAD and GSD may appear as methodology examples in maturity discussions, but they should remain supporting frameworks unless Nexus explicitly adopts them. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Before this chapter, Nexus has practices but no shared maturity assessment.
+
+Nexus introduces a maturity rubric across `nexus-service`, `nexus-delivery`, and `nexus-playbook`. Each repository is assessed by evidence: steering quality, workflow reuse, permission boundaries, verification records, and durable artifacts.
+
+After this chapter, Nexus has a way to improve deliberately instead of celebrating scattered AI usage.
 
 ## Quick Reference
 
-To be expanded.
+| Weak maturity signal | Strong maturity signal |
+|---|---|
+| Many assistant sessions | Repeatable workflows |
+| Impressive demos | Durable artifacts |
+| Private prompt libraries | Repository steering and skills |
+| Broad tool access | Governed permissions |
+| Claimed productivity | Evidence-backed engineering outcomes |

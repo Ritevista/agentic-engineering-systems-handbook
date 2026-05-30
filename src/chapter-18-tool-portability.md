@@ -1,26 +1,39 @@
 # Chapter 18: Tool Portability
 
-## Purpose
+## Reader problem
 
-Define how **tool portability** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Workflows become brittle when they are designed around one vendor's surface area.
 
-## Key Questions
+Specific tools matter. Their commands, permission models, and extension points shape what is possible. But the engineering structure should outlive any one interface.
 
-- What does tool portability mean in this field manual context?
-- How should teams apply tool portability in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Separate workflow intent from tool implementation.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Portable layer | Tool-specific layer |
+|---|---|
+| Role contract | Agent configuration syntax |
+| Skill procedure | Tool-specific skill file format |
+| Workflow trigger | Slash command implementation |
+| Verification requirement | CI provider or command syntax |
+| Tool contract | MCP server, connector, or API binding |
 
-## Planned Sections
+Portability does not mean pretending tools are identical. It means preserving the architecture when the tool changes.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
 
-> Related portability patterns: A2A, AG-UI, DSPy, and protocol mapping can help separate workflow intent from vendor-specific implementations. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Before this chapter, Nexus workflows are too easy to tie to one assistant product.
+
+Nexus introduces a portability matrix. For the API contract running example, the team maps steering, skills, commands, permissions, verification, and artifacts across the tools used by different repositories.
+
+After this chapter, Nexus can move workflow structure across tools without redesigning the operating model.
 
 ## Quick Reference
 
-To be expanded.
+| Preserve | Adapt |
+|---|---|
+| Primitive boundary | Vendor syntax |
+| Verification expectation | Local command names |
+| Artifact requirement | Storage path |
+| Permission policy | Tool approval mechanism |
+| Workflow intent | Trigger implementation |

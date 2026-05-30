@@ -1,26 +1,38 @@
 # Chapter 11: Specs, Plans, and Tasks
 
-## Purpose
+## Reader problem
 
-Define how **specs, plans, and tasks** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Agents move too quickly when work is not decomposed.
 
-## Key Questions
+Directly asking for implementation can collapse requirement discovery, design, task sequencing, and coding into one opaque step. That may be acceptable for trivial changes. It is weak practice for work that affects contracts, data, security, or operations.
 
-- What does specs, plans, and tasks mean in this field manual context?
-- How should teams apply specs, plans, and tasks in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Specs, plans, and tasks are work structure.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Artifact | Role |
+|---|---|
+| Spec | Defines what must be true and why |
+| Plan | Defines the approach and trade-offs |
+| Task list | Breaks execution into reviewable units |
+| Acceptance criteria | States how completion will be judged |
 
-## Planned Sections
+Plan-and-Execute and lightweight spec-driven development patterns belong here when they produce reviewable work structure and execution evidence.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
 
-> Related workflow patterns: Plan-and-Execute and lightweight spec-driven development patterns such as GSD belong here when they produce reviewable specs, plans, tasks, and execution evidence. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Before this chapter, Nexus agents often jump from request to patch.
+
+Nexus requires a short spec and task plan for risky API changes. For the running example, the plan identifies compatibility, authorization, documentation, test, and rollout-note tasks before implementation begins.
+
+After this chapter, Nexus has a work-structure template that slows the right things down.
 
 ## Quick Reference
 
-To be expanded.
+| If the change is... | Required structure |
+|---|---|
+| Trivial and local | Short task note may be enough |
+| Cross-module | Plan and task list |
+| Contract-affecting | Spec, compatibility notes, and acceptance criteria |
+| Security-sensitive | Spec, risk notes, and explicit review path |
+| Operationally risky | Plan, rollback notes, and verification evidence |

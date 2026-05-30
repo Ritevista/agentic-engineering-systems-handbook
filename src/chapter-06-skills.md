@@ -1,26 +1,38 @@
 # Chapter 6: Skills
 
-## Purpose
+## Reader problem
 
-Define how **skills** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Repeated prompts become process debt.
 
-## Key Questions
+If a task is performed often, the team should not rely on each developer remembering the right prompt, checklist, examples, and quality bar. That behavior belongs in a reusable playbook.
 
-- What does skills mean in this field manual context?
-- How should teams apply skills in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+A skill is a reusable task playbook. It describes when to use the procedure, what inputs are required, what steps to follow, what outputs to produce, and how to verify the result.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Skill section | Role |
+|---|---|
+| When to use | Prevents accidental overuse |
+| Inputs | Defines required context |
+| Process | Makes the workflow repeatable |
+| Output format | Makes review easier |
+| Verification | Prevents "done" without evidence |
 
-## Planned Sections
+DSPy, few-shot examples, and prompt-standardization patterns can support skills when behavior needs measurable repeatability. They do not replace the playbook.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
 
-> Related implementation pattern: DSPy can be used when a repeated prompt workflow needs to become a modular, optimizable LM program. Few-shot examples and prompt-standardization patterns are discussed in [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+Before this chapter, Nexus developers copy private prompt fragments for recurring work.
+
+Nexus introduces an API-change test-plan skill. For the running example, the skill generates checks for contract compatibility, authorization, documentation, regression risk, and PR evidence.
+
+After this chapter, Nexus has a reusable task playbook instead of repeated prompt improvisation.
 
 ## Quick Reference
 
-To be expanded.
+| Create a skill when... | Do not create a skill when... |
+|---|---|
+| The task repeats across people or repos. | The task is a one-time exploration. |
+| The quality bar can be written down. | The work has no stable procedure yet. |
+| The output should follow a pattern. | Repository doctrine is the real need. |
+| The procedure should be improved over time. | A simple command wrapper is enough. |

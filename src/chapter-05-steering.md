@@ -1,24 +1,38 @@
 # Chapter 5: Steering
 
-## Purpose
+## Reader problem
 
-Define how **steering** fits into a reliable agentic engineering system and how teams should apply it with clear boundaries and durable outputs.
+Agents cannot respect repository rules they cannot see.
 
-## Key Questions
+When architecture rules, local commands, unsafe areas, ownership boundaries, and review expectations live only in human memory, AI-assisted work becomes inconsistent. Prompting harder does not fix missing repository doctrine.
 
-- What does steering mean in this field manual context?
-- How should teams apply steering in the Nexus control-plane model?
+## Design principle
 
-## Nexus Case Study Connection
+Steering is doctrine, rules, and context. Put stable repository guidance where people and agents can both use it.
 
-In the Nexus Engineering Control Plane, this chapter explains how this primitive is standardized across `nexus-service`, `nexus-delivery`, and `nexus-playbook` to reduce workflow variance and improve verification.
+| Steering content | Example |
+|---|---|
+| Architecture boundaries | Which modules own which responsibilities |
+| Local commands | Build, test, lint, and documentation commands |
+| Unsafe areas | Files or systems requiring explicit approval |
+| Review expectations | Evidence needed before merge |
+| Terminology | Repository-specific names and constraints |
 
-## Planned Sections
+Steering is not a task procedure. Repeatable procedures belong in skills.
 
-1. Definition and boundaries
-2. Design and implementation guidance
-3. Nexus case study application
+## Nexus case study
+
+Before this chapter, Nexus repositories depend on informal team memory.
+
+Nexus adds repository steering to `nexus-service`. For the API contract running example, steering records API conventions, schema/versioning expectations, ownership, test commands, and evidence requirements.
+
+After this chapter, Nexus has its first durable repository-level control surface.
 
 ## Quick Reference
 
-To be expanded.
+| Put it in steering when... | Put it elsewhere when... |
+|---|---|
+| It is stable repository doctrine. | It is a reusable task sequence: use a skill. |
+| It constrains many tasks. | It triggers a workflow: use a slash command. |
+| It helps agents understand local rules. | It proves completion: use verification evidence. |
+| It should be reviewed with the repository. | It is external access: use a tool contract. |
