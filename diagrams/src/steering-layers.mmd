@@ -1,0 +1,11 @@
+flowchart TB
+    A[Global or organization steering] --> B[User steering]
+    B --> C[Repository steering]
+    C --> D[Module or directory steering]
+    D --> E[Local worktree notes]
+    E --> F[Session task brief]
+
+    C --> G[Testbed and environment contract]
+    G --> H[Sandbox, runner, services, secrets]
+    H --> I[Hooks, permissions, CI, review gates]
+    I --> J[Evidence and steering refinement]
