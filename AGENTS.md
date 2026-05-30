@@ -221,6 +221,20 @@ Classify them by layer:
 
 Core chapters should stay focused on durable engineering primitives. Appendices may catalog related methods, tools, and protocols.
 
+## Adjacent Concepts Rule
+
+Do not dump external AI patterns, prompting techniques, protocols, or tools into core vocabulary chapters.
+
+Place them where they affect engineering behavior:
+
+- reasoning patterns go in agent/orchestration chapters
+- prompt/programming frameworks go near skills and verification
+- guardrail libraries go near permissions, context boundaries, and safety
+- interoperability protocols go near tools, MCP, and portability
+- methodology frameworks go in appendices or adoption/maturity chapters
+
+Chapter 2 should define the book's core vocabulary only.
+
 ## Running Example Rule
 
 The current primary running example is **Backward-compatible API contract change**.
