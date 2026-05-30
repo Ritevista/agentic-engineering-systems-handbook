@@ -2,6 +2,7 @@
 
 - [Introduction](./introduction.md)
 - [How Nexus Evolves Through This Field Manual](./nexus-evolution.md)
+- [Running Example](./running-example.md)
 - [1. Why Agentic Engineering Needs Structure](./chapter-01-why-agentic-engineering-needs-structure.md)
 - [2. Core Vocabulary](./chapter-02-core-vocabulary.md)
 - [3. Agents](./chapter-03-agents.md)

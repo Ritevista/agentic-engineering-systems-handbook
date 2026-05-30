@@ -187,11 +187,30 @@ Core chapters should stay focused on durable engineering primitives. Appendices 
 
 ## Running Example Rule
 
-Use **service rollout configuration change** as the primary running workflow example across the field manual.
+The current primary running example is **Backward-compatible API contract change**.
 
-This example is preferred because it is broad enough for most software engineering teams while staying close to the book's platform engineering and architecture focus.
+Treat the running example as a centralized book-level asset, not scattered prose.
 
-Do not use payment retry as the primary running example. Payment or commerce examples may appear only as secondary examples when a chapter specifically discusses domain-specific risk, idempotency, or commerce protocols.
+The canonical source is `src/running-example.md`.
+
+When writing chapters:
+
+- reference the running example only where it clarifies the chapter concept
+- adapt only the relevant part of the example
+- avoid copying the full scenario into every chapter
+- do not introduce a competing primary running example without updating `src/running-example.md`
+- payment retry, service rollout configuration, dependency upgrade, and authorization changes may be used as secondary examples when they fit a specific chapter
+
+## Running Example Change Checklist
+
+If the primary running example changes later, update:
+
+1. `src/running-example.md`
+2. `src/nexus-evolution.md`
+3. Chapter 1 Nexus case-study micro-story
+4. `AGENTS.md`
+5. chapter-writing skills/templates
+6. any `examples/nexus/` artifacts that depend on the old example
 
 ## Style Rules
 

@@ -44,34 +44,6 @@ Every chapter should answer:
 
 ## Running workflow example
 
-Use this example throughout the field manual where a concrete scenario is needed:
+For the primary running workflow, this field manual uses a backward-compatible API contract change. See [Running Example](./running-example.md).
 
-**Service rollout configuration change**
-
-A developer asks AI to update how a service is configured for rollout in `nexus-service`.
-
-In the ad-hoc state, the assistant may produce a plausible patch: change a timeout, update a Helm value, modify a deployment setting, or adjust a pipeline step. But without structure, the change may miss environment-specific constraints, rollback behavior, deployment verification, ownership rules, or operational documentation.
-
-As Nexus matures, this same change moves through repository steering, planning, reusable skills, subagent review, permission controls, durable artifacts, and verification evidence.
-
-| Chapter area | Service rollout configuration example |
-|---|---|
-| Structure | The change is treated as a governed workflow, not a casual prompt. |
-| Vocabulary | The team separates agent, skill, artifact, verification, permission, and tool. |
-| Agent | An implementation agent owns the bounded configuration change. |
-| Subagent | A review subagent checks rollout risk, rollback behavior, and environment assumptions. |
-| Steering | `AGENTS.md` defines service ownership, deployment rules, safe files, and test commands. |
-| Skill | A rollout test-plan skill generates validation, rollback, and environment checks. |
-| Slash command | `/plan-rollout-change` starts the standard workflow. |
-| Hook | A PR evidence hook blocks incomplete rollout submissions. |
-| Permissions | Access to deployment metadata or environment-specific configuration requires approval. |
-| Context | Sensitive environment details are bounded and not stored casually. |
-| Specs/plans/tasks | The rollout change becomes a short spec, implementation plan, and task list. |
-| Artifacts | An ADR or change note captures why the rollout behavior changed. |
-| Verification | The PR includes CI results, dry-run output, rollout risk notes, rollback notes, and review evidence. |
-| Tools/MCP | The tool gateway exposes CI status, issue metadata, and safe deployment metadata. |
-| Repo layout | Specs, ADRs, runbooks, and PR evidence are stored consistently. |
-| Decisions | A decision table explains why this became a governed workflow, not just a prompt. |
-| Anti-patterns | Failure case: the agent changes rollout configuration without checking environment-specific behavior or rollback impact. |
-| Portability | The same workflow maps across different coding-agent tools. |
-| Maturity | The team moves from ad-hoc AI usage toward governed engineering practice. |
+Chapters should normally reference that canonical page and adapt only the part of the example needed for the chapter. Secondary examples may include service rollout configuration changes, dependency upgrades, authorization changes, or payment retry/idempotency changes when a chapter needs a more specific risk pattern.
