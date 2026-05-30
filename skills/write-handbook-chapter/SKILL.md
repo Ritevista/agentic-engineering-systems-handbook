@@ -51,6 +51,8 @@ Use the centralized running example from `src/running-example.md` when a concret
 
 Do not introduce a competing primary running example unless `src/running-example.md`, `src/nexus-evolution.md`, Chapter 1, `AGENTS.md`, and related templates are updated together.
 
+Do not publish internal running-example maintenance guidance or avoid-term lists in chapter content. Keep that material in repo authoring guidance.
+
 ## Output Expectations
 - One complete chapter with practical depth.
 - Consistent terminology.

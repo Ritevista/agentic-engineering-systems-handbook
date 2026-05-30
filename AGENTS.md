@@ -200,6 +200,8 @@ When writing chapters:
 - avoid copying the full scenario into every chapter
 - do not introduce a competing primary running example without updating `src/running-example.md`
 - payment retry, service rollout configuration, dependency upgrade, and authorization changes may be used as secondary examples when they fit a specific chapter
+- Avoid using these as primary running-example terms in published chapters: "payment retry policy change", "payment retry and idempotency policy change", "duplicate charges", "sensitive payment logs", "service rollout configuration change", "rollout timeout", "Helm value", and "deployment setting".
+- Keep running-example maintenance checklists in repo guidance such as `AGENTS.md` or authoring skills, not in published `src/` content.
 
 ## Running Example Change Checklist
 

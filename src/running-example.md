@@ -12,7 +12,7 @@ The backward-compatible API contract change is broad enough for senior developer
 
 It touches code, tests, API design, compatibility, documentation, rollout, authorization, verification evidence, and durable artifacts without depending on a narrow domain such as payments or a platform-only scenario such as deployment configuration.
 
-Secondary examples may include service rollout configuration changes, dependency upgrades, authorization changes, or payment retry/idempotency changes. These are useful in specific chapters, but the primary running example is the backward-compatible API contract change.
+Other examples may appear where a chapter needs a narrower risk pattern, but the primary running example is the backward-compatible API contract change.
 
 ## Chapter-area mapping
 
@@ -52,29 +52,3 @@ Use these terms when applying the running example:
 - contract tests
 - compatibility notes
 - PR evidence
-
-Avoid using these as the primary running-example terms:
-
-- payment retry policy change
-- payment retry and idempotency policy change
-- duplicate charges
-- sensitive payment logs
-- service rollout configuration change
-- rollout timeout
-- Helm value
-- deployment setting
-
-## Changing the running example later
-
-This running example is intentionally centralized because it may change as the book evolves.
-
-If the primary running example changes later, update:
-
-1. this canonical running example page
-2. `src/nexus-evolution.md`, if it contains chapter-by-chapter references
-3. Chapter 1 Nexus case-study micro-story
-4. chapter-writing guidance in `AGENTS.md`
-5. any chapter template or skill that instructs authors to use the running example
-6. any examples under `examples/nexus/`, if they exist
-
-Avoid scattering full scenario descriptions across chapters. Chapters should normally reference the running example briefly and adapt only the part relevant to that chapter.

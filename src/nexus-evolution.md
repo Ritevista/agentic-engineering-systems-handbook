@@ -46,4 +46,4 @@ Every chapter should answer:
 
 For the primary running workflow, this field manual uses a backward-compatible API contract change. See [Running Example](./running-example.md).
 
-Chapters should normally reference that canonical page and adapt only the part of the example needed for the chapter. Secondary examples may include service rollout configuration changes, dependency upgrades, authorization changes, or payment retry/idempotency changes when a chapter needs a more specific risk pattern.
+Chapters should normally reference that canonical page and adapt only the part of the example needed for the chapter.
