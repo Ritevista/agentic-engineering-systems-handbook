@@ -20,7 +20,7 @@ Nexus Engineering Control Plane starts at L0 ad-hoc prompting: useful outputs re
 
 This chapter moves Nexus Engineering Control Plane toward L2. It does not complete the control plane. It defines why Nexus Engineering Control Plane needs shared structure across `nexus-service`, `nexus-delivery`, and `nexus-playbook` before later chapters add bounded agents, reusable skills, workflow triggers, tool access, and verification evidence.
 
-The running scenario is a **Payment retry and idempotency policy change**. In Chapter 1, the scenario is a destination marker. Later chapters show how Nexus Engineering Control Plane turns that change into a governed workflow. Here, it shows why the work is too risky to leave inside a one-off prompt.
+The running scenario is a **service rollout configuration change** in `nexus-service`. In Chapter 1, the scenario is a destination marker. Later chapters show how Nexus Engineering Control Plane turns that change into a governed workflow. Here, it shows why the work is too risky to leave inside a one-off prompt.
 
 ## Planned Sections
 
@@ -39,10 +39,10 @@ Ad-hoc agentic workflows depend on local memory and individual judgment. Agentic
 |---|---|---|
 | Prompt drift | Developers describe the same task differently. | Similar changes produce different designs, tests, and review notes. |
 | Hidden context | Key constraints stay in chat or personal notes. | Reviewers cannot see why the agent made a decision. |
-| Unbounded execution | The assistant treats a local request as permission to change adjacent behavior. | A payment retry limit changes from three attempts to five, and no one remembers why during staging duplicate-charge triage. |
+| Unbounded execution | The assistant treats a local request as permission to change adjacent behavior. | A rollout timeout changes and no one remembers why during staging deployment triage. |
 | Weak verification | The assistant claims completion without evidence. | A PR says tests pass, but no command output, risk note, or checklist is attached. |
 | Tool overreach | The assistant gets access before the team defines blast radius - mistake damage scope. | A read-only investigation becomes a write-capable workflow without approval. |
-| Lost artifacts | Decisions remain in chat instead of the repository. | A retry-budget decision is unavailable when another team changes billing behavior. |
+| Lost artifacts | Decisions remain in chat instead of the repository. | A rollout-behavior decision is unavailable when another team updates deployment settings. |
 
 The pattern is consistent. The team gets useful outputs but weak control. The work may be good once. It is not yet an engineering practice.
 
@@ -52,15 +52,15 @@ A control plane is the policy coordination layer. In infrastructure, it decides 
 
 The control plane does not replace engineering judgment. It makes judgment inspectable. It gives teams a place to define rules, inputs, permissions, evidence, and durable outputs.
 
-For the Nexus Engineering Control Plane payment-retry problem, this means the retry change does not start as "ask the assistant to fix payments." It starts as a governed change request with domain rules, an idempotency check, a test plan, and evidence requirements.
+For the Nexus Engineering Control Plane rollout-configuration problem, this means the service change does not start as "ask the assistant to update deployment behavior." It starts as a governed change request with repository rules, rollout-risk review, rollback expectations, environment assumptions, and evidence requirements.
 
 | Control-plane concern | Engineering question | Case-study implication |
 |---|---|---|
-| Steering | Defines what the agent must know before work starts. | `AGENTS.md` records payment-domain constraints and repo commands. |
-| Workflow | Defines how repeatable work starts. | A later command can route payment changes through planning and review. |
-| Permissions | Defines what the agent may access or change. | Sensitive payment logs require approval before use. |
-| Verification | Defines what evidence must exist before merge. | Retry tests, idempotency checks, and rollback notes become required evidence. |
-| Artifacts | Captures decisions outside chat. | The retry-budget decision becomes an ADR or spec note. |
+| Steering | Defines what the agent must know before work starts. | `AGENTS.md` records service ownership, safe files, deployment rules, and repo commands. |
+| Workflow | Defines how repeatable work starts. | A later command can route rollout changes through planning and review. |
+| Permissions | Defines what the agent may access or change. | Deployment metadata or environment-specific configuration requires approval before use. |
+| Verification | Defines what evidence must exist before merge. | CI results, dry-run output, rollout risk notes, and rollback notes become required evidence. |
+| Artifacts | Captures decisions outside chat. | The rollout-behavior decision becomes an ADR or change note. |
 
 ## Minimum structural primitives for reliability
 
@@ -98,7 +98,11 @@ Teams lose control when every concept becomes a prompt. The boundary matters bec
 | Verification | What evidence proves the work is acceptable? | Put commands, checks, and review evidence here. |
 | Artifact | What result must survive beyond chat? | Put durable decisions and outputs here. |
 
-The payment retry and idempotency policy change touches every boundary. Steering defines payment rules. A skill can generate the test plan. A tool may read CI status. Permission rules protect sensitive logs. Verification proves behavior. Artifacts preserve the retry-budget decision.
+The service rollout configuration change touches every boundary. Steering defines service ownership and deployment rules. A skill can generate validation, rollback, and environment checks. A tool may read CI status or safe deployment metadata. Permission rules protect environment-specific configuration. Verification proves behavior. Artifacts preserve the rollout-behavior decision.
+
+Nexus accepted that trade-off because uncontrolled speed at L0 was already creating review burden. Three months earlier, an assistant-generated patch changed a rollout timeout and updated a deployment value. No one recorded why. When the change later caused staging rollouts to fail intermittently, the team spent a day reconstructing a decision that should have taken one sentence to preserve.
+
+That cost is what L2 is meant to prevent.
 
 ## Quick Reference
 
@@ -108,5 +112,5 @@ The payment retry and idempotency policy change touches every boundary. Steering
 | What does this chapter add? | A structural reason to move toward L2 repository steering. |
 | What is the main failure of prompts alone? | Useful output remains hard to repeat, review, constrain, or verify. |
 | What is the control-plane mindset? | Define the rules, access, workflow, evidence, and durable records around AI-assisted work. |
-| What is the concrete scenario? | Payment retry and idempotency policy change. |
+| What is the concrete scenario? | Service rollout configuration change. |
 | What should readers copy first? | A small set of named primitives with clear boundaries. |

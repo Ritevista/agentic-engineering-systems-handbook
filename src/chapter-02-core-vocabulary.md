@@ -19,6 +19,8 @@ Nexus uses this vocabulary as a cross-repo contract so `nexus-service`, `nexus-d
 2. Relationship map between primitives
 3. Terms commonly confused in practice
 
+> Related pattern catalog: ReAct, BDI, DSPy, LLM Guard, MCP, and A2A are supporting terms discussed in [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md). They should not be flattened into the core vocabulary without classifying their layer first.
+
 ## Quick Reference
 
 - **Agent**: A bounded role that executes defined responsibilities within explicit workflow constraints.

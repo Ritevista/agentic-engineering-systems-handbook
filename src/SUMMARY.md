@@ -21,3 +21,4 @@
 - [17. Tooling, MCP, and External Capabilities](./chapter-17-tooling-mcp-external-capabilities.md)
 - [18. Tool Portability](./chapter-18-tool-portability.md)
 - [19. Team Maturity Model](./chapter-19-maturity-model.md)
+- [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md)

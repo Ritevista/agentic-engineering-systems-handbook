@@ -19,6 +19,8 @@ In the Nexus Engineering Control Plane, this chapter explains how this primitive
 2. Design and implementation guidance
 3. Nexus case study application
 
+> Related verification patterns: self-consistency, eval-backed DSPy workflows, and prompt-program metrics can inform checks, but they do not replace tests, review, or explicit acceptance evidence. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+
 ## Quick Reference
 
 To be expanded.

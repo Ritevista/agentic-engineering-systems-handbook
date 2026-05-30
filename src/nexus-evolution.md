@@ -44,30 +44,34 @@ Every chapter should answer:
 
 ## Running workflow example
 
-Use this example throughout the book where a concrete scenario is needed:
+Use this example throughout the field manual where a concrete scenario is needed:
 
-`Payment retry policy change`
+**Service rollout configuration change**
 
-A developer asks AI to improve failed payment retry behavior. In the ad-hoc state, the assistant may produce risky or incomplete changes. As Nexus matures, this same change moves through steering, planning, skills, subagent review, permission controls, artifacts, and verification evidence.
+A developer asks AI to update how a service is configured for rollout in `nexus-service`.
 
-| Chapter area | Payment retry example |
+In the ad-hoc state, the assistant may produce a plausible patch: change a timeout, update a Helm value, modify a deployment setting, or adjust a pipeline step. But without structure, the change may miss environment-specific constraints, rollback behavior, deployment verification, ownership rules, or operational documentation.
+
+As Nexus matures, this same change moves through repository steering, planning, reusable skills, subagent review, permission controls, durable artifacts, and verification evidence.
+
+| Chapter area | Service rollout configuration example |
 |---|---|
 | Structure | The change is treated as a governed workflow, not a casual prompt. |
-| Vocabulary | The team separates agent, skill, artifact, verification, and tool. |
-| Agent | An implementation agent owns the code change. |
-| Subagent | A review subagent checks idempotency and duplicate-charge risk. |
-| Steering | `AGENTS.md` defines payment-domain rules. |
-| Skill | A payment test-plan skill generates edge cases. |
-| Slash command | `/plan-payment-change` triggers the workflow. |
-| Hook | A PR evidence hook blocks incomplete submissions. |
-| Permissions | Access to sensitive logs requires approval. |
-| Context | Sensitive payment context is bounded and not stored casually. |
-| Specs/plans/tasks | Retry policy becomes spec, plan, and task list. |
-| Artifacts | ADR captures the retry-budget decision. |
-| Verification | PR includes tests, risks, rollback notes, and evidence. |
-| Tools/MCP | Tool gateway exposes CI status and issue metadata safely. |
-| Repo layout | Specs, ADRs, runbooks, and evidence are stored consistently. |
-| Decisions | Decision table explains why this became a skill, not just a prompt. |
-| Anti-patterns | Failure case: agent changes retry loop without idempotency review. |
-| Portability | Workflow maps across different coding-agent tools. |
-| Maturity | Team moves from ad-hoc usage toward governed practice. |
+| Vocabulary | The team separates agent, skill, artifact, verification, permission, and tool. |
+| Agent | An implementation agent owns the bounded configuration change. |
+| Subagent | A review subagent checks rollout risk, rollback behavior, and environment assumptions. |
+| Steering | `AGENTS.md` defines service ownership, deployment rules, safe files, and test commands. |
+| Skill | A rollout test-plan skill generates validation, rollback, and environment checks. |
+| Slash command | `/plan-rollout-change` starts the standard workflow. |
+| Hook | A PR evidence hook blocks incomplete rollout submissions. |
+| Permissions | Access to deployment metadata or environment-specific configuration requires approval. |
+| Context | Sensitive environment details are bounded and not stored casually. |
+| Specs/plans/tasks | The rollout change becomes a short spec, implementation plan, and task list. |
+| Artifacts | An ADR or change note captures why the rollout behavior changed. |
+| Verification | The PR includes CI results, dry-run output, rollout risk notes, rollback notes, and review evidence. |
+| Tools/MCP | The tool gateway exposes CI status, issue metadata, and safe deployment metadata. |
+| Repo layout | Specs, ADRs, runbooks, and PR evidence are stored consistently. |
+| Decisions | A decision table explains why this became a governed workflow, not just a prompt. |
+| Anti-patterns | Failure case: the agent changes rollout configuration without checking environment-specific behavior or rollback impact. |
+| Portability | The same workflow maps across different coding-agent tools. |
+| Maturity | The team moves from ad-hoc AI usage toward governed engineering practice. |

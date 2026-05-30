@@ -19,6 +19,8 @@ In the Nexus Engineering Control Plane, this chapter explains how this primitive
 2. Design and implementation guidance
 3. Nexus case study application
 
+> Related portability patterns: A2A, AG-UI, DSPy, and protocol mapping can help separate workflow intent from vendor-specific implementations. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+
 ## Quick Reference
 
 To be expanded.

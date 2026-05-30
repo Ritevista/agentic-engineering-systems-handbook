@@ -27,6 +27,8 @@ Nexus treats MCP-style tools as governed integration points used by agents acros
 
 To be expanded. This chapter intentionally frames MCP/tooling as a separate but connected layer and does not yet attempt a full MCP implementation guide.
 
+> Related protocols: A2A, AG-UI, AP2, and UCP address adjacent interoperability, UI, and commerce scenarios. MCP remains the primary tool/context capability layer for this field manual. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+
 ## References and Further Reading
 
 - To be expanded from `../references/bibliography.md`.

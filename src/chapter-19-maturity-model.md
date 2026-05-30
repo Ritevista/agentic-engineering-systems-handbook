@@ -19,6 +19,8 @@ In the Nexus Engineering Control Plane, this chapter explains how this primitive
 2. Design and implementation guidance
 3. Nexus case study application
 
+> Related adoption patterns: BMAD and GSD may appear as methodology examples in maturity discussions, but they should remain supporting frameworks unless Nexus explicitly adopts them. See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+
 ## Quick Reference
 
 To be expanded.

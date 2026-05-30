@@ -19,6 +19,8 @@ In the Nexus Engineering Control Plane, this chapter explains how this primitive
 2. Agent ownership and accountability
 3. Nexus agent patterns across repos
 
+> Related patterns: ReAct, Plan-and-Execute, and BDI are discussed in [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md).
+
 ## Quick Reference
 
 To be expanded.
