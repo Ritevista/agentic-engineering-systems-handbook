@@ -35,6 +35,16 @@ Write one field manual chapter at a time using a consistent architecture-first s
 
 Each chapter should advance the Nexus Engineering Control Plane.
 
+Expected early Nexus asset sequence:
+
+1. Chapter 1 -> Nexus problem statement
+2. Chapter 2 -> Nexus vocabulary map
+3. Chapter 3 Steering -> sample repo `AGENTS.md`
+4. Chapter 4 Skills -> sample `SKILL.md`
+5. Chapter 5 Agents -> implementation-agent role contract
+6. Chapter 6 Subagents -> subagent delegation model
+7. Chapter 7 Slash Commands -> slash command catalog
+
 The chapter should explicitly show:
 
 1. what Nexus lacked before this concept

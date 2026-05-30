@@ -81,6 +81,28 @@ Do not imitate typos, casual phrasing, or exploratory chat language.
 
 When in doubt, write like a senior architect producing a field manual for other senior engineers.
 
+## Chapter Order Rule
+
+The early chapters should follow the maturity flow:
+
+1. Why structure is needed
+2. Core vocabulary
+3. Steering
+4. Skills
+5. Agents
+6. Subagents
+7. Slash commands
+
+Reasoning:
+
+- Chapter 1 moves the reader from L0/L1 toward L2 repository steering.
+- Chapter 2 stabilizes the vocabulary.
+- Steering comes before skills because reusable workflows need repo rules, local commands, and architecture constraints.
+- Skills come before agents because repeated workflows should become reusable task playbooks before assigning execution roles.
+- Agents come before subagents because delegation only makes sense after the main role is bounded.
+
+Do not reorder these casually. If the order changes, update `src/SUMMARY.md`, `src/nexus-evolution.md`, diagram sources, and chapter-writing guidance together.
+
 ## Public Chapter Rule
 
 Public chapters should not expose internal planning scaffold sections such as:

@@ -2,7 +2,7 @@
 
 Nexus Engineering Control Plane is the running case study used throughout this field manual.
 
-Nexus starts as an organization where developers use AI coding assistants individually and inconsistently. Across the book, Nexus gradually adds structure: shared vocabulary, bounded agents, repo steering, reusable skills, workflow triggers, hooks, permissions, context boundaries, specs, durable artifacts, verification evidence, tool access, repository layout, decision frameworks, anti-patterns, portability, and maturity assessment.
+Nexus starts as an organization where developers use AI coding assistants individually and inconsistently. Across the book, Nexus gradually adds structure: shared vocabulary, repo steering, reusable skills, bounded agents, delegated subagents, workflow triggers, hooks, permissions, context boundaries, specs, durable artifacts, verification evidence, tool access, repository layout, decision frameworks, anti-patterns, portability, and maturity assessment.
 
 By the end of the book, Nexus should no longer look like "people using AI tools." It should look like an engineering control plane for governed AI-assisted software delivery.
 
@@ -16,10 +16,10 @@ Every chapter should answer:
 |---|---|---|---|---|
 | Why Agentic Engineering Needs Structure | Developers use AI tools individually. Outputs are inconsistent. | The need for structure, governance, repeatability, and artifacts. | Nexus is introduced as a response to uncontrolled AI usage. | Nexus problem statement |
 | Core Vocabulary | Teams use terms like agent, skill, tool, memory, and workflow loosely. | Shared language. | Nexus gets a common operating vocabulary. | Vocabulary map |
-| Agents | One generic AI assistant is expected to do everything. | Bounded agent roles. | Nexus defines role-specific agents: implementation, review, documentation, and security. | Agent role contract |
-| Subagents | Main agents become overloaded. | Delegated isolated workers. | Nexus uses subagents for review, test planning, security checks, and documentation. | Subagent delegation model |
-| Steering | Agents do not understand repo rules. | Repository doctrine, rules, and context. | Product repos get `AGENTS.md` files with architecture rules, commands, and boundaries. | Sample repo `AGENTS.md` |
-| Skills | Teams repeat the same prompts manually. | Reusable task playbooks. | Nexus creates skills such as `write-adr`, `generate-test-plan`, `review-pr`, and `write-runbook`. | Sample `SKILL.md` |
+| Steering | Teams know they need structure, but repo rules still live in personal habit and scattered notes. | Repository doctrine, rules, local commands, and context. | Product repos begin to expose shared guidance through `AGENTS.md` or equivalent repo steering. | Sample repo `AGENTS.md` |
+| Skills | Teams repeat similar prompts and review steps manually. | Reusable task playbooks. | Nexus starts converting repeated workflows into shared skills such as API-change review, ADR writing, and test-plan generation. | Sample `SKILL.md` |
+| Agents | Nexus has steering and skills, but execution responsibility is still too broad. | Bounded agent roles. | Nexus defines role-specific agents that operate within steering and use skills. | Implementation-agent role contract |
+| Subagents | The main agent role is bounded, but some review and analysis tasks need isolation. | Delegated isolated workers. | Nexus uses subagents for compatibility review, test planning, security checks, and documentation review. | Subagent delegation model |
 | Slash Commands | Workflows are hard to trigger consistently. | Standard workflow triggers. | Developers use commands like `/plan-change`, `/review-pr`, and `/create-adr`. | Slash command catalog |
 | Hooks | Humans remember guardrails manually. | Lifecycle automation and guardrails. | Nexus adds pre-change, pre-commit, pre-release, and evidence-check hooks. | Hook policy |
 | Permissions, Approvals, and Sandboxing | Tool access is too broad or unclear. | Blast-radius control. | Nexus introduces permission tiers and approval rules. | Permission matrix |

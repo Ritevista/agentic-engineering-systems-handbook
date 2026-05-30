@@ -1,4 +1,4 @@
-# Chapter 6: Skills
+# Chapter 4: Skills
 
 ## Reader problem
 
