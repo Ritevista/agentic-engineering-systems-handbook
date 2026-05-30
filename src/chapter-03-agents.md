@@ -1,4 +1,4 @@
-# Chapter 3: Agents
+# Chapter 5: Agents
 
 ## Reader problem
 
@@ -24,7 +24,7 @@ Related reasoning patterns such as ReAct, Plan-and-Execute, and BDI can shape ag
 
 Before this chapter, Nexus relies on generic assistants with inconsistent behavior across repositories.
 
-Nexus introduces an agent role contract for implementation work. The implementation agent can edit code within an approved scope, must preserve repository steering, and must produce verification evidence before claiming completion.
+Nexus introduces an implementation-agent role contract. The implementation agent can edit code within an approved scope, must preserve repository steering, and must produce verification evidence before claiming completion.
 
 After this chapter, Nexus has a role contract instead of a generic helper.
 

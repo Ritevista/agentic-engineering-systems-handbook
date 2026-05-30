@@ -1,4 +1,4 @@
-# Chapter 5: Steering
+# Chapter 3: Steering
 
 ## Reader problem
 

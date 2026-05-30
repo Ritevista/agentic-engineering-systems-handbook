@@ -1,4 +1,4 @@
-# Chapter 4: Subagents
+# Chapter 6: Subagents
 
 ## Reader problem
 
@@ -23,7 +23,7 @@ Subagents are not extra autonomy for its own sake. They are a boundary mechanism
 
 Before this chapter, Nexus implementation work and review work often happen in the same thread.
 
-Nexus introduces delegated review subagents for risky changes. For the API contract running example, a review subagent checks compatibility, downstream client impact, authorization boundaries, and documentation impact.
+Nexus introduces a subagent delegation model for risky changes. For the API contract running example, a review subagent checks compatibility, downstream client impact, authorization boundaries, and documentation impact.
 
 After this chapter, Nexus has a delegation model that separates execution from focused review.
 
