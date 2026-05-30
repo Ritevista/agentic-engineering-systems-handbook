@@ -4,16 +4,16 @@
 |-------|-------|
 | Current Phase | G6 Ship & Learn |
 | Next Phase | G6 Ship & Learn |
-| Task | Replace the running workflow example with service rollout configuration change |
+| Task | Convert Nexus overview diagrams from Mermaid to D2 for better published layout |
 
 ## Gate Status
 
 | Gate | Name | Status | Evidence | Skip Reason |
 |------|------|--------|----------|-------------|
-| G0 | Discovery | Passed | Searched for payment retry, idempotency, duplicate-charge, sensitive payment, and running workflow references; inspected `src/nexus-evolution.md`, Chapter 1, `AGENTS.md`, and `skills/write-handbook-chapter/SKILL.md`. | — |
-| G1 | Requirements | Passed | Replace the primary running example with service rollout configuration change; remove payment/idempotency assumptions from Chapter 1 and Nexus evolution; add authoring guidance. | — |
-| G2 | Design | Passed | Patch only the running example section, Chapter 1 scenario references, and `AGENTS.md` running-example rule without changing core primitives. | — |
+| G0 | Discovery | Passed | Confirmed `d2` was not installed, inspected the two Nexus overview Mermaid sources and `diagrams/README.md`, then installed D2 under `/tmp/d2` for local rendering. | — |
+| G1 | Requirements | Passed | Convert only `nexus-chapter-progression` and `nexus-capability-layers` to D2; keep generated SVG publishing; document when to use Mermaid vs D2 and how to review locally. | — |
+| G2 | Design | Passed | Use grouped D2 layouts: chapter progression as book phases and capability layers as adoption/control-plane lanes. | — |
 | G3 | POC / Spike | N/A | Markdown-only placeholder update with no implementation unknowns. | — |
-| G4 | Implementation | Passed | Updated `src/nexus-evolution.md`, Chapter 1, `AGENTS.md`, and workflow snapshot. | — |
-| G5 | Review | Passed | Targeted scan confirms old payment running-example language remains only in the explicit `AGENTS.md` prohibition and workflow evidence; `git diff --check` passed; `polyagentctl check --strict --project .` passed. | — |
+| G4 | Implementation | Passed | Replaced the two `.mmd` overview sources with `.d2` sources, regenerated SVGs, and updated diagram guidance. | — |
+| G5 | Review | Passed | `d2 validate` passed for both D2 sources; regenerated SVGs are `1350 x 364` and `618 x 744`; `git diff --check`, `polyagentctl check --strict --project .`, and `mdbook build` passed; copied generated diagrams into `book/diagrams/generated` for local preview. | — |
 | G6 | Ship & Learn | In Progress | Summarize changed files and recommended next step. | — |
