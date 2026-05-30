@@ -1,0 +1,13 @@
+flowchart LR
+    A[Skill catalog] --> B[Name and description]
+    B --> C{Task matches?}
+    C -->|No| D[Proceed without skill]
+    C -->|Yes| E[Load SKILL.md]
+    E --> F[Read references or assets if needed]
+    E --> G[Run scripts if needed]
+    F --> H[Produce output]
+    G --> H
+    H --> I[Check quality gates]
+    I -->|Pass| J[Return result]
+    I -->|Fail| K[Revise or escalate]
+    K --> I

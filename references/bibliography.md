@@ -3,9 +3,14 @@
 ## Agent guidance and skills
 
 - [AGENTS.md — Open format for guiding coding agents](https://agents.md/)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Microsoft Agent Framework: Agent Skills](https://learn.microsoft.com/en-us/agent-framework/agents/skills)
 - [OpenAI Codex: Custom instructions with AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
 - [OpenAI Codex: Agent Skills](https://developers.openai.com/codex/skills)
+- [OpenAI Skills catalog](https://github.com/openai/skills)
 - [Anthropic Claude Code: Memory / CLAUDE.md](https://code.claude.com/docs/en/memory)
+- [Anthropic Claude Code: Agent Skills](https://code.claude.com/docs/en/skills)
+- [Anthropic Skills repository](https://github.com/anthropics/skills)
 - [Anthropic Claude Code: Hooks](https://code.claude.com/docs/en/hooks)
 - [Anthropic Claude Code: Permissions](https://code.claude.com/docs/en/permissions)
 - [Anthropic Claude Code: Sandboxing](https://code.claude.com/docs/en/sandboxing)
@@ -18,6 +23,7 @@
 - [Gemini CLI documentation](https://geminicli.com/docs/)
 - [Kiro Steering documentation](https://kiro.dev/docs/steering/)
 - [Kiro CLI Steering documentation](https://kiro.dev/docs/cli/steering/)
+- [VS Code: Use Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills)
 
 ## Related agentic patterns and protocols
 
