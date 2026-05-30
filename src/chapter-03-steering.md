@@ -399,21 +399,4 @@ Create or review one repository steering file. Move one repeated repository expe
 
 This chapter synthesizes official documentation and research on repository instructions, memory files, steering files, custom instructions, hooks, permissions, sandboxing, and environment setup. The chapter's decision frameworks, Nexus example, templates, and tool-agnostic steering stack are original to this field manual.
 
-## References and Further Reading
-
-- [AGENTS.md](https://agents.md/)
-- [OpenAI Codex: Custom instructions with AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
-- [OpenAI Codex: Agent Skills](https://developers.openai.com/codex/skills)
-- [Anthropic Claude Code: Memory / CLAUDE.md](https://code.claude.com/docs/en/memory)
-- [Anthropic Claude Code: Hooks](https://code.claude.com/docs/en/hooks)
-- [Anthropic Claude Code: Permissions](https://code.claude.com/docs/en/permissions)
-- [Anthropic Claude Code: Sandboxing](https://code.claude.com/docs/en/sandboxing)
-- [GitHub Copilot: Adding repository custom instructions](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions)
-- [GitHub Copilot: Custom instructions support](https://docs.github.com/en/copilot/reference/custom-instructions-support)
-- [GitHub Copilot coding agent: Configure development environment](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/customize-the-agent-environment)
-- [GitHub Copilot cloud agent: Configure secrets and variables](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/configure-secrets-and-variables)
-- [GitHub Copilot cloud agent: Customize firewall](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/customize-the-agent-firewall)
-- [Gemini CLI: Provide context with GEMINI.md files](https://geminicli.com/docs/cli/gemini-md/)
-- [Gemini CLI documentation](https://geminicli.com/docs/)
-- [Kiro Steering documentation](https://kiro.dev/docs/steering/)
-- [Kiro CLI Steering documentation](https://kiro.dev/docs/cli/steering/)
+The supporting source catalog is maintained outside the chapter in [`references/bibliography.md`](../references/bibliography.md).
