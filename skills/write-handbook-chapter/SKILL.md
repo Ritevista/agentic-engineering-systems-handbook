@@ -45,6 +45,12 @@ The chapter should explicitly show:
 4. how that asset changes daily engineering behavior
 5. what readers can reuse in their own teams
 
+## Running example
+
+Use the centralized running example from `src/running-example.md` when a concrete scenario helps the chapter. Reference only the relevant part of the example instead of copying the full scenario into every chapter.
+
+Do not introduce a competing primary running example unless `src/running-example.md`, `src/nexus-evolution.md`, Chapter 1, `AGENTS.md`, and related templates are updated together.
+
 ## Output Expectations
 - One complete chapter with practical depth.
 - Consistent terminology.
