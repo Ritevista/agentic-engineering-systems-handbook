@@ -4,16 +4,16 @@
 |-------|-------|
 | Current Phase | Complete |
 | Next Phase | None |
-| Task | Fix Chapter 3 steering diagram path |
+| Task | Revise Chapter 4 Skills using deep research and Nexus alignment |
 
 ## Gate Status
 
 | Gate | Name | Status | Evidence | Skip Reason |
 |------|------|--------|----------|-------------|
-| G0 | Discovery | Passed | Inspected Chapter 3 diagram reference, existing diagram links in published chapters, `diagrams/README.md`, and the GitHub Pages copy step. | — |
-| G1 | Requirements | Passed | Fix the missing Chapter 3 diagram while following repository diagram publishing conventions. | — |
-| G2 | Design | Passed | Use the same mdBook-relative path as existing chapters, `diagrams/generated/...`, and align the diagram README example with that convention. | — |
-| G3 | POC / Spike | N/A | Markdown-only path fix with no technical unknowns. | — |
-| G4 | Implementation | Passed | Updated Chapter 3 diagram path and diagram README example. | — |
-| G5 | Review | Passed | `git diff --check` and `mdbook build` passed; copied generated diagrams into `book/diagrams/` and confirmed rendered HTML uses `diagrams/generated/steering-layers.svg`. | — |
-| G6 | Ship & Learn | Passed | Final response summarizes changed files and validation. | — |
+| G0 | Discovery | Passed | Inspected `src/chapter-04-skills.md`, `src/SUMMARY.md`, `src/nexus-evolution.md`, `skills/write-handbook-chapter/SKILL.md`, `docs/book-voice.md`, references, and current git state. | — |
+| G1 | Requirements | Passed | Use the supplied deep research to turn Chapter 4 into a finished field-manual chapter on skills, aligned to Nexus and the backward-compatible API contract change, without a vendor survey. | — |
+| G2 | Design | Passed | Keep chapter order and filename stable; synthesize research into practical guidance, add a skill progressive-disclosure diagram, add Nexus `api-change-test-plan` sample `SKILL.md`, and keep vendor references in the central bibliography. | — |
+| G3 | POC / Spike | N/A | Markdown chapter revision and Mermaid diagram with no technical unknowns. | — |
+| G4 | Implementation | Passed | Rewrote Chapter 4, added `diagrams/src/skill-progressive-disclosure.mmd`, rendered `diagrams/generated/skill-progressive-disclosure.svg`, and updated `references/bibliography.md`. | — |
+| G5 | Review | Passed | `git diff --check` and `mdbook build` passed; copied generated diagrams into `book/diagrams/` and confirmed rendered HTML uses `diagrams/generated/skill-progressive-disclosure.svg` with no placeholder citation tokens. | — |
+| G6 | Ship & Learn | Passed | Final response summarizes changed files, validation, assumptions, and recommended next step. | — |
