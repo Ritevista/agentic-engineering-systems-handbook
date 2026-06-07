@@ -1,0 +1,6 @@
+flowchart TD
+    ST["Steering<br/>repo doctrine"] -. governs .-> AG["Agent<br/>accountable role"]
+    AG -->|invokes| SK["Skill<br/>reusable procedure"]
+    AG -->|delegates| SUB["Subagent<br/>focused pass"]
+    SUB -->|invokes| SK
+    AG -->|produces| ART["Artifact + evidence"]

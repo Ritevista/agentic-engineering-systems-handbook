@@ -1,0 +1,22 @@
+direction: right
+
+workflow: "Workflow" {
+  shape: rectangle
+}
+
+contract: "Role contract" {
+  shape: rectangle
+
+  agent: "Agent" {
+    shape: rectangle
+  }
+  responsibility: "Responsibility"
+  inputs: "Inputs"
+  actions: "Actions"
+  outputs: "Outputs"
+  escalation: "Escalation"
+}
+
+workflow -> contract.inputs: "task + context"
+contract.outputs -> workflow: "artifact + evidence"
+contract.escalation -> workflow: "stop / hand off"
