@@ -30,24 +30,7 @@ Good skills are:
 - reviewed and improved like code
 - tested for routing and output quality before broad rollout
 
-The boundary matters:
-
-| Concept | Role |
-|---|---|
-| steering | doctrine/rules/context |
-| skill | reusable task playbook |
-| slash command | workflow trigger |
-| agent | bounded role |
-| subagent | isolated delegated worker |
-| hook | lifecycle automation/guardrail |
-| permissions/approvals/sandboxing | blast-radius control |
-| context/memory | what the agent knows/carries |
-| specs/plans/tasks | work structure |
-| artifacts | durable outputs |
-| verification | evidence and checks |
-| MCP/tools | external capability layer |
-
-Bad systems hide task procedures inside prompts. Good systems move repeated procedures into skills.
+Skills are one control surface among several. [Chapter 2](./chapter-02-core-vocabulary.md) maps the full vocabulary. Bad systems hide task procedures inside prompts. Good systems move repeated procedures into skills.
 
 ## Progressive disclosure
 
