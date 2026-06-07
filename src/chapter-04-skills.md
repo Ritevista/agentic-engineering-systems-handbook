@@ -241,9 +241,9 @@ description: Create a test plan for backward-compatible public API response chan
 
 Output contracts matter for the same reason. If the result will be reviewed, committed, checked by CI, or passed to another agent, the format must be predictable.
 
-## Testing a skill
-
 Untested skills are prompt bundles with nicer packaging.
+
+## Testing a skill
 
 Test skills at two levels: routing and execution.
 
@@ -278,10 +278,11 @@ Skills need lifecycle management once they are shared.
 | Validate | Run routing tests, output contract tests, and script tests | Prevents broken routing and unusable outputs |
 | Publish | Put the skill in version control or a managed catalog | Creates provenance and review history |
 | Promote | Make it default only after evidence | Avoids surprising downstream teams |
+| Roll back | Preserve the last known-good version and document the recovery path | Keeps a bad skill update from becoming a platform-wide failure |
 | Observe | Track failures, false triggers, and reviewer feedback | Skills improve through operational evidence |
 | Retire | Remove stale or unsafe skills deliberately | Old playbooks become risk |
 
-Do not silently overwrite a shared skill that other teams depend on. Publish a new version, record the change, and keep rollback possible.
+Do not silently overwrite a shared skill that other teams depend on. Publish a new version, record the change, and keep rollback executable.
 
 ## Governance and security
 
@@ -293,6 +294,7 @@ Before sharing a skill:
 
 - confirm the owner
 - review bundled scripts and dependencies
+- pin script dependencies and record the lockfile or runtime version
 - scan for secrets and sensitive examples
 - check that network and filesystem assumptions are explicit
 - define the intended scope of use
@@ -310,7 +312,7 @@ Hard controls still live elsewhere. Use permissions, sandboxing, hooks, CI, and 
 | Mega-skill | Too broad to route reliably and too large to follow | Split by coherent task contract |
 | Prompt dump | Moves a long prompt into `SKILL.md` without structure | Add routing, inputs, procedure, output contract, and quality gates |
 | Vendor-first skill | Locks the core workflow to one tool's extension fields | Keep a portable core and isolate adapters |
-| No negative triggers | Skill activates for near misses | Add when-not-to-use cases and trigger-negative tests |
+| No negative triggers | Skill activates for near misses | Add when-not-to-use cases and test them |
 | No output contract | Reviewers receive inconsistent prose | Define a required structure |
 | Script as black box | Agent cannot judge side effects or failures | Document purpose, inputs, outputs, and failure modes |
 | Secrets in examples | Turns reusable guidance into a leak vector | Use synthetic fixtures and secret stores |
@@ -421,7 +423,7 @@ description: Describe the task, when to use it, and when not to use it.
 - ...
 ```
 
-### Skill review checklist
+### Pre-merge skill review checklist
 
 - Does the skill have one coherent job?
 - Is the description routing logic, not marketing copy?
@@ -432,6 +434,7 @@ description: Describe the task, when to use it, and when not to use it.
 - Are quality gates concrete?
 - Are references and assets necessary and current?
 - Are scripts non-interactive and documented?
+- Are script dependencies pinned or otherwise controlled?
 - Are secrets absent?
 - Is ownership clear?
 - Is there a test plan for routing and output quality?
@@ -449,10 +452,10 @@ Skills are reusable task playbooks. They turn repeated prompt procedures into re
 | A task repeats and has a stable procedure. | It is repository doctrine: use steering. |
 | The output needs a consistent contract. | It is a workflow trigger: use a slash command. |
 | The task benefits from examples, references, templates, or scripts. | It is hard enforcement: use hooks, permissions, CI, or review gates. |
-| The procedure should improve through tests and reviews. | It is external capability: use a tool or MCP contract. |
+| The procedure should improve through tests and reviews. | It is external capability: use a tool adapter, connector, or governed tool contract. |
 | The workflow is reusable across sessions or people. | It is one-off task context: use a session brief. |
 
-### Skill quality checklist
+### Authoring quality checklist
 
 - One coherent job
 - Clear trigger description
@@ -462,7 +465,7 @@ Skills are reusable task playbooks. They turn repeated prompt procedures into re
 - Ordered procedure
 - Edge cases and stop conditions
 - Quality gates
-- Optional scripts that are deterministic and documented
+- Optional scripts that are deterministic, documented, and dependency-controlled
 - References and assets loaded only when needed
 - No secrets or live sensitive examples
 - Owner and review path
@@ -480,4 +483,4 @@ Pick one repeated prompt your team uses for API changes, reviews, ADRs, release 
 
 This chapter synthesizes official documentation and research on Agent Skills, progressive disclosure, skill folder structure, routing descriptions, optional scripts/references/assets, evaluation, versioning, and governance. The chapter's layered skill model, Nexus example, decision tables, templates, and operating guidance are original to this field manual.
 
-The supporting source catalog is maintained outside the chapter in [`references/bibliography.md`](../references/bibliography.md).
+The supporting source catalog is maintained in the repository at `references/bibliography.md`.
