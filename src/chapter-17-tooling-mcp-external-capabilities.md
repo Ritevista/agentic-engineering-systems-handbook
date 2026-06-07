@@ -1,5 +1,7 @@
 # Chapter 17: Tooling, MCP, and External Capabilities
 
+> Status: To be done.
+
 ## Reader problem
 
 Tools are not agents, and agents are not tools.

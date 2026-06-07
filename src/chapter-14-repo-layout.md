@@ -1,5 +1,7 @@
 # Chapter 14: Repo Layout
 
+> Status: To be done.
+
 ## Reader problem
 
 Agent-ready repositories fail when guidance is scattered.

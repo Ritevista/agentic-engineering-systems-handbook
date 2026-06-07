@@ -1,5 +1,7 @@
 # Chapter 13: Verification, Tests, Evals, and Checklists
 
+> Status: To be done.
+
 ## Reader problem
 
 "Done" is not evidence.

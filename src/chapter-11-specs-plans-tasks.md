@@ -1,5 +1,7 @@
 # Chapter 11: Specs, Plans, and Tasks
 
+> Status: To be done.
+
 ## Reader problem
 
 Agents move too quickly when work is not decomposed.
