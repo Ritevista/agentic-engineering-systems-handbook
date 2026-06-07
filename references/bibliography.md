@@ -40,6 +40,23 @@
 - [Universal Commerce Protocol on Google](https://developers.google.com/merchant/ucp)
 - [AG-UI official documentation](https://docs.ag-ui.com/introduction)
 
+## Context, memory, and retrieval
+
+- [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
+- [The Probabilistic Relevance Framework: BM25 and Beyond](https://ir.webis.de/anthology/2009.ftir_journal-ir0anthology0volumeA3A4.0/)
+- [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906)
+- [BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models](https://arxiv.org/abs/2104.08663)
+- [Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs](https://arxiv.org/abs/1603.09320)
+- [Faiss: A library for efficient similarity search](https://faiss.ai/)
+- [pgvector documentation](https://github.com/pgvector/pgvector)
+- [Redis EXPIRE command documentation](https://redis.io/docs/latest/commands/expire/)
+- [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172)
+- [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560)
+- [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
+- [Late Chunking: Contextual Chunk Embeddings Using Long-Context Embedding Models](https://arxiv.org/abs/2409.04701)
+- [W3C PROV Overview](https://www.w3.org/TR/prov-overview/)
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+
 ## Book publishing
 
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)

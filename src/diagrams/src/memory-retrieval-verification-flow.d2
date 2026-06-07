@@ -1,0 +1,25 @@
+direction: down
+
+request: "User request"
+load: "Load steering\n+ task brief"
+retrieve: "Retrieve lexical\n+ semantic\n+ optional graph"
+select: "Rank / fuse /\nselect bounded context"
+generate: "Generate draft\nanswer or plan"
+check: "Check citations,\npolicy, tests"
+decision: "Supported and\npolicy-compliant?" {
+  shape: diamond
+}
+return: "Return response\nwith provenance"
+write: "Optional typed\nmemory write\nTTL + version"
+recover: "Refresh retrieval /\nescalate /\nrequest approval /\nabstain"
+
+request -> load
+load -> retrieve
+retrieve -> select
+select -> generate
+generate -> check
+check -> decision
+decision -> return: "yes"
+return -> write
+decision -> recover: "no"
+recover -> retrieve
