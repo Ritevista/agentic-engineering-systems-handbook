@@ -1,0 +1,40 @@
+direction: right
+
+surfaces: "Interaction surfaces\nIDE / TUI / CLI / PR / dashboard"
+workflow: "Workflow contract\ncommand + skill + approvals"
+assembler: "Context assembler"
+runtime: "Agent runtime"
+verify: "Verification layer\ncitations / tests / policy"
+response: "Response / plan\nwith provenance"
+write_gate: "Memory write gate"
+
+steering: "Steering"
+brief: "Task brief"
+retrieval: "Retrieval layer"
+summary: "Session summary"
+
+lexical: "Lexical index\nBM25 / FTS"
+vector: "Vector index\nHNSW / IVFFlat"
+graph: "Graph traversal\nrelationships"
+memory: "Typed memory store\nepisodic / semantic"
+artifacts: "Artifact store\nADRs / specs / PR evidence"
+audit: "Audit + provenance"
+
+surfaces -> workflow
+workflow -> assembler
+steering -> assembler
+brief -> assembler
+retrieval -> assembler
+summary -> assembler
+
+retrieval -> lexical
+retrieval -> vector
+retrieval -> graph
+
+assembler -> runtime
+runtime -> verify
+verify -> response
+runtime -> write_gate
+write_gate -> memory
+write_gate -> artifacts
+write_gate -> audit
