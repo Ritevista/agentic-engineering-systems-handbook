@@ -23,21 +23,13 @@ Permissions, approvals, and sandboxing are blast-radius controls. Decide what an
 
 These are four different mechanisms, not four words for the same one. A permission decides whether an action is allowed at all. An approval inserts a human decision before a higher-risk action runs. A sandbox contains where and how execution happens so a mistake cannot reach further than intended. An audit trail records what was attempted, allowed, denied, or performed, so the other three can be reviewed rather than trusted. Conflating them is how teams end up with an "approval" that only sends a notification, or a "sandbox" that can still reach production.
 
+In agentic engineering, most enforcement decisions happen at capability boundaries: shell commands, file writes, network calls, tool invocations, MCP connectors, CI APIs, issue trackers, documentation systems, and data stores. A tool call is not just a convenience. It is an authorization event. Chapter 17 covers how tools and MCP connectors are wired up; this chapter governs whether any given call is permitted to run at all.
+
 Declaration is not enforcement. A role contract names a boundary; these controls make it real.
 
 ![Declaration vs enforcement](diagrams/generated/declaration-vs-enforcement.svg)
 
 Scanners and input/output filters can help detect unsafe content, but they sit alongside these controls, not in place of them. Detection is not enforcement. A filter that flags a dangerous call has not stopped it.
-
-## Declaration vs enforcement
-
-This is the hinge between Chapter 5 and this chapter, and the place most teams quietly fail.
-
-Chapter 5's role contract declares the boundary: "may run tests, may not access production payloads." That is intent, written for humans to review. Enforcement is the separate, runtime machinery that refuses the call when the agent reaches past the boundary. The two are authored by different people, live in different places, and change on different schedules — which is exactly why they drift.
-
-When the declared boundary and the enforced boundary drift apart, the contract becomes fiction. The role contract still reads "may not access production," reviewers still trust it, and the runtime quietly allows the call anyway. Nobody notices until the access shows up in an incident.
-
-The rule that prevents this: every declared action in a role contract should map to an enforced permission. Unmapped declarations are the gap that accidents and attackers both find first. A declaration with no enforcement behind it is the single highest-value thing to hunt for in a review, because it is the boundary everyone believes in and nothing holds.
 
 ## What enforcement defends against
 
@@ -55,6 +47,16 @@ The recurring failure modes of agentic systems are well catalogued — the OWASP
 | Unattributable action | No one can say which agent did what | Unique, scoped agent identity |
 
 These are not separate problems needing separate machines. The same four controls address all of them; the threat model only tells you where to set each one.
+
+## Declaration vs enforcement
+
+This is the hinge between Chapter 5 and this chapter, and the place most teams quietly fail.
+
+Chapter 5's role contract declares the boundary: "may run tests, may not access production payloads." That is intent, written for humans to review. Enforcement is the separate, runtime machinery that refuses the call when the agent reaches past the boundary. The two are authored by different people, live in different places, and change on different schedules — which is exactly why they drift.
+
+When the declared boundary and the enforced boundary drift apart, the contract becomes fiction. The role contract still reads "may not access production," reviewers still trust it, and the runtime quietly allows the call anyway. Nobody notices until the access shows up in an incident.
+
+The rule that prevents this: every declared action in a role contract should map to an enforced permission. Unmapped declarations are the gap that accidents and attackers both find first. A declaration with no enforcement behind it is the single highest-value thing to hunt for in a review, because it is the boundary everyone believes in and nothing holds.
 
 ## Untrusted content does not relax the boundary
 
@@ -75,6 +77,8 @@ A control list is not yet an enforced boundary. Each layer below has a job, an a
 | Sandbox | Where and how does execution happen? | Isolation level, filesystem and network limits, time box | Sandbox in name only; real production access |
 | Audit | What was attempted or done? | Logged action, caller, inputs, decision, outcome | Logs that omit denials or that no one can query |
 | Recovery | How is a bad action undone? | Rollback path, revocation, kill switch | Mutation with no recovery; trust without rollback |
+
+The caller must be identifiable. A permission rule cannot govern "the assistant" in the abstract. It governs a named agent, subagent, workflow, hook, or tool adapter. If the runtime cannot tell which actor made the request, it cannot enforce role boundaries or produce useful audit evidence. This is the same principle Chapter 5 establishes for bounded agent roles: enforcement requires a named, scoped identity.
 
 The hardest layer to get right is Approval, because most teams implement it as a notification rather than a gate. An approval that cannot block is not an approval — it is a message the agent has already moved past. If the action can complete while the human is still reading the alert, the gate is decorative.
 
@@ -118,9 +122,29 @@ Human-in-the-loop is the default for anything irreversible: the action waits. Hu
 
 Whatever the mode, the approval must be demonstrable: a record of who approved, on what basis, tied to the action. An approval no one can later point to is, for review purposes, an approval that did not happen.
 
+## What an approval request must show
+
+An approval request should include enough information for the approver to decide — not merely a yes/no prompt. An approver who cannot see what they are authorising is not providing oversight; they are providing a signature.
+
+At minimum, an approval request must include:
+
+- requested action
+- caller / agent identity
+- target resource
+- reason for the action
+- risk tier
+- expected change
+- rollback or revocation path
+- evidence already produced
+- timeout or escalation behaviour if no response is given
+
+This is what separates a real gate from approval theater. A rubber-stamp approval is usually a symptom of a poorly formed request — not a lazy approver.
+
 ## Sandboxing
 
 A sandbox limits where and how execution happens: which files it can reach, whether it can open the network, how long it can run, which credentials it holds, and how far a failure can spread. The point is to make the worst case small before the agent ever acts.
+
+A sandbox has two jobs: location isolation and behavior control. Location isolation decides where the agent runs. Behavior control decides what the agent can reach from there. A container with broad credentials and unrestricted egress is isolated in name but dangerous in practice — the blast radius of an escape is small, but the blast radius of a successful exfiltration is not.
 
 A sandbox isolates *where* an agent runs; it does not by itself constrain *what* the agent does inside that boundary. An agent confined to a container can still read everything in that container and send it anywhere the network allows. Location isolation and behavioral confinement are two different jobs: the first limits the blast radius of a crash or escape, the second limits the actions the agent can take while perfectly contained. Default-deny network egress is usually the highest-leverage behavioral control, because exfiltration is what turns a contained mistake into an incident.
 
