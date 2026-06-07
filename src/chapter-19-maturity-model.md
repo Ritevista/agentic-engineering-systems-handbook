@@ -1,5 +1,7 @@
 # Chapter 19: Team Maturity Model
 
+> Status: To be done.
+
 ## Reader problem
 
 AI adoption is hard to improve when the team cannot describe its current state.

@@ -1,5 +1,7 @@
 # Chapter 16: Anti-Patterns
 
+> Status: To be done.
+
 ## Reader problem
 
 Bad AI-assisted workflows often look productive at first.

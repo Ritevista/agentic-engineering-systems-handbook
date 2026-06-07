@@ -1,5 +1,7 @@
 # Chapter 12: Artifacts
 
+> Status: To be done.
+
 ## Reader problem
 
 Engineering decisions disappear when chat is the system of record.
