@@ -87,10 +87,15 @@ Keep the portable role contract in a tool-neutral file first. Tool-specific agen
 ```text
 agents/
 ├─ implementation-agent.md
-└─ review-agent.md
+├─ review-agent.md
+└─ adapters/
+   ├─ codex/
+   │  └─ implementation-agent.md
+   └─ kiro/
+      └─ implementation-agent.md
 ```
 
-The exact directory can vary by repository convention. The important rule is that the portable contract remains reviewable as a durable artifact. A Codex, Claude, Gemini, Kiro, Copilot, or internal-runner adapter may reference that contract, import it, or translate it into a runtime-specific format. If the adapter adds runtime-specific permissions, hooks, loading behavior, or UI metadata, keep those details separate from the portable role contract.
+The exact directory can vary by repository convention. Some teams keep adapters under `agents/adapters/`; others use tool-specific directories such as `.codex/`, `.kiro/`, or `.github/`. The important rule is that the portable contract remains reviewable as a durable artifact. A Codex, Claude, Gemini, Kiro, Copilot, or internal-runner adapter may reference that contract, import it, or translate it into a runtime-specific format. If the adapter adds runtime-specific permissions, hooks, loading behavior, or UI metadata, keep those details separate from the portable role contract.
 
 That separation protects the agent-independent interface introduced in Chapter 2. The team should be able to move the role contract across runtimes without rewriting what the agent owns, what it may touch, what it must produce, or when it must stop.
 
@@ -113,6 +118,8 @@ A role contract that says "may run tests, may not access production payloads" is
 An agent may do focused work itself or hand it to a subagent. Chapter 6 is reserved for subagent design; the rule that belongs here is narrower.
 
 The parent agent remains accountable. It may delegate focused analysis or review, but delegation never transfers final responsibility. Do not delegate to add autonomy for its own sake, and never delegate in a way that hides who owns the outcome.
+
+Delegate when the task benefits from context isolation or independent review. Keep the work in the parent agent when shared context is simpler, the risk is low, and delegation would add coordination without improving the evidence.
 
 ## Example: Nexus implementation-agent role contract
 

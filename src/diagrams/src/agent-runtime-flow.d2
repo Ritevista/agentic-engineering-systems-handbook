@@ -1,0 +1,26 @@
+direction: down
+
+inputs: "Inputs\napproved context only"
+scope: "Within scope?" {
+  shape: diamond
+}
+actions: "Allowed actions\ngated tools and writes"
+approval: "Human approval"
+output: "Output\nartifact + evidence"
+verification: "Verification passes?" {
+  shape: diamond
+}
+escalate: "Escalate / stop"
+done: "Done\nhand off with evidence"
+
+inputs -> scope
+scope -> escalate: "no"
+scope -> actions: "yes"
+actions -> approval: "approval needed" {
+  style.stroke-dash: 4
+}
+approval -> actions
+actions -> output
+output -> verification
+verification -> escalate: "no"
+verification -> done: "yes"
