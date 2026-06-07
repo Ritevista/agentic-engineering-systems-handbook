@@ -1,5 +1,13 @@
 # Bibliography
 
+## Permissions, approvals, sandboxing, and enforcement
+
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [NIST SP 800-53 Rev. 5 — Security and Privacy Controls (access control / least privilege)](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final)
+- [NIST SP 800-162 — Guide to Attribute Based Access Control](https://csrc.nist.gov/pubs/sp/800/162/final)
+- [W3C PROV Overview](https://www.w3.org/TR/prov-overview/)
+
 ## Agent guidance and skills
 
 - [AGENTS.md — Open format for guiding coding agents](https://agents.md/)

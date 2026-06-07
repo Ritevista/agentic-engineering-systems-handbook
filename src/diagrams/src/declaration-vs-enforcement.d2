@@ -1,0 +1,24 @@
+direction: right
+
+declared: "Declared boundary\n(Ch5 role contract: Actions)" {
+  style.fill: "#e8f4f8"
+  style.stroke: "#4a90a4"
+}
+
+enforced: "Enforcement (Ch9)" {
+  permission: "Permission"
+  approval: "Approval"
+  sandbox: "Sandbox"
+  audit: "Audit"
+
+  style.fill: "#f0f7f0"
+  style.stroke: "#28a745"
+}
+
+declared -> enforced.permission: "what may run"
+enforced.audit -> declared: "evidence the boundary held"
+
+enforced.permission.style.fill: "#f0f7f0"
+enforced.approval.style.fill: "#f0f7f0"
+enforced.sandbox.style.fill: "#f0f7f0"
+enforced.audit.style.fill: "#f0f7f0"
