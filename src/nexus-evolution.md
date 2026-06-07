@@ -27,7 +27,7 @@ Every chapter should answer:
 | Specs, Plans, and Tasks | Agents jump directly into code. | Structured work decomposition. | Nexus requires specs and task plans for risky changes. | Spec/plan/task template |
 | Artifacts | Important decisions disappear in chat. | Durable outputs. | Nexus stores ADRs, specs, runbooks, PR evidence, and review notes in repos. | Artifact taxonomy |
 | Verification, Tests, Evals, and Checklists | Agents claim work is done without proof. | Evidence and checks. | Nexus requires test output, review checklist, risk notes, and verification evidence. | PR evidence checklist |
-| Tooling, MCP, and External Capabilities | Agents cannot safely access external systems. | External capability layer. | Nexus creates a permissioned tool gateway for CI, issue tracker, docs, and deployment metadata. | MCP/tool gateway contract |
+| Tooling, MCP, and External Capabilities | Agents cannot safely access external systems. | Tools and connectors. | Nexus creates a permissioned tool gateway for CI, issue tracker, docs, and deployment metadata. | Tool adapter / connector contract |
 | Repo Layout | Every repo organizes AI guidance differently. | Standard repo structure. | Nexus defines common layout for steering, specs, docs, artifacts, and skills. | Repository layout |
 | Decision Frameworks | Teams do not know when to use agent vs skill vs tool. | Reusable decision tables. | Nexus creates decision frameworks for workflow design. | Decision framework |
 | Anti-Patterns | Teams repeat the same AI mistakes. | Failure library. | Nexus documents god agents, mega-skills, fake verification, context flooding, and tool overreach. | Anti-pattern library |

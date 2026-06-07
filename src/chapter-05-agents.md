@@ -80,6 +80,20 @@ Do not define an agent because a task is hard. Define one because a responsibili
 
 > If you cannot say what the agent must *not* do, you have not defined an agent yet.
 
+## Where an agent contract lives
+
+Keep the portable role contract in a tool-neutral file first. Tool-specific agent definitions should adapt that contract, not become the source of truth.
+
+```text
+agents/
+├─ implementation-agent.md
+└─ review-agent.md
+```
+
+The exact directory can vary by repository convention. The important rule is that the portable contract remains reviewable as a durable artifact. A Codex, Claude, Gemini, Kiro, Copilot, or internal-runner adapter may reference that contract, import it, or translate it into a runtime-specific format. If the adapter adds runtime-specific permissions, hooks, loading behavior, or UI metadata, keep those details separate from the portable role contract.
+
+That separation protects the agent-independent interface introduced in Chapter 2. The team should be able to move the role contract across runtimes without rewriting what the agent owns, what it may touch, what it must produce, or when it must stop.
+
 ## Reasoning patterns are not the contract
 
 Patterns such as ReAct, Plan-and-Execute, and BDI shape how an agent reasons toward a result. They are internal strategy. They are not the role contract.
@@ -94,11 +108,11 @@ The Actions boundary in a role contract only *declares* what an agent may do. It
 
 A role contract that says "may run tests, may not access production payloads" is a statement of intent. Permissions, approvals, and sandboxing are what make that statement true at run time. Keep the two aligned: the contract is the human-readable boundary, and the permission system is its enforcement. When they drift, the contract becomes fiction. See Chapter 9 for the enforcement mechanisms that back each declared action.
 
-## Delegation boundaries
+## Delegation handoff
 
-An agent may do focused work itself or hand it to a subagent. Chapter 6 is reserved for subagents in full; the rule that belongs here is when an agent should reach for one.
+An agent may do focused work itself or hand it to a subagent. Chapter 6 is reserved for subagent design; the rule that belongs here is narrower.
 
-Delegate when the task benefits from context isolation, independent review, or specialized focus — for example, asking a separate review subagent to assess compatibility risk rather than letting the implementing agent grade its own work. Do not delegate to add autonomy for its own sake, and never delegate in a way that hides who owns the outcome. Accountability stays with the parent agent. A subagent narrows attention; it does not transfer responsibility.
+The parent agent remains accountable. It may delegate focused analysis or review, but delegation never transfers final responsibility. Do not delegate to add autonomy for its own sake, and never delegate in a way that hides who owns the outcome.
 
 ## Example: Nexus implementation-agent role contract
 
@@ -173,6 +187,8 @@ For Nexus, `nexus-service/AGENTS.md` says public response changes must preserve 
 
 Untested agents are unbounded agents with paperwork. A role contract is only real if its boundaries are checked.
 
+This chapter only defines agent-boundary evals: scope, action boundary, output contract, escalation, and authority regression. Chapter 13 generalizes verification across skills, commands, hooks, artifacts, and workflows.
+
 Evaluate at the level of behavior, not output alone. The hardest thing to test, and the most important, is whether the agent stops when it should.
 
 | Eval suite | What it checks | Example |
@@ -202,9 +218,11 @@ A role contract is a privilege grant. Widening it is a privileged change and sho
 
 Do not silently widen a shared agent's authority. Publish a new version of the contract, record what changed and why, and keep the previous boundary recoverable.
 
-## Governance and security
+## Governance handoff
 
-A shared agent contract is a supply-chain artifact. It grants authority, references skills and tools, and encodes assumptions about what is safe. Treat it like a permission change, not like prompt text.
+This chapter defines the role contract. Chapter 9 enforces it. Chapter 19 operationalizes it across teams.
+
+A shared agent contract grants authority, references skills and tools, and encodes assumptions about what is safe. Treat it like a permission change, not like prompt text.
 
 Before sharing or promoting an agent:
 
