@@ -1,0 +1,47 @@
+direction: down
+
+# ── Baseline — always active ──────────────────────────────────────────────────
+global: "Global / organization steering"
+user:   "User steering"
+global -> user
+
+# ── Optional independent contexts ─────────────────────────────────────────────
+code:     "Code context\nRepository + Module"
+worktree: "Local context\nWorktree / local directory"
+testbed:  "Environment context\nTestbed / environment"
+
+# ── Convergence point ─────────────────────────────────────────────────────────
+session: "Session task brief\ndraws from whichever layers are active"
+
+# ── Baseline always reaches session ───────────────────────────────────────────
+user -> session
+
+# ── Optional contexts feed into session when active ───────────────────────────
+code     -> session: {style.stroke-dash: 5}
+worktree -> session: {style.stroke-dash: 5}
+testbed  -> session: {style.stroke-dash: 5}
+
+# ── A worktree may come from a repo — but does not have to ────────────────────
+code -> worktree: {
+  style.stroke-dash: 5
+  label: "optional — git worktree\nor standalone directory"
+}
+
+# ── Styles ────────────────────────────────────────────────────────────────────
+global.style.fill:   "#e8f4f8"
+global.style.stroke: "#4a90a4"
+user.style.fill:     "#e8f4f8"
+user.style.stroke:   "#4a90a4"
+
+code.style.fill:   "#f0f7f0"
+code.style.stroke: "#28a745"
+
+worktree.style.fill:   "#fff8e8"
+worktree.style.stroke: "#e6a817"
+
+testbed.style.fill:   "#fef0f0"
+testbed.style.stroke: "#dc3545"
+
+session.style.fill:   "#ededf8"
+session.style.stroke: "#6666aa"
+session.style.bold:   true

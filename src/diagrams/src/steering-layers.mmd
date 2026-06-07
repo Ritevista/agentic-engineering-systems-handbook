@@ -1,0 +1,30 @@
+flowchart TB
+    subgraph code["Code-side steering"]
+        A[Global / organization] --> B[User]
+        B --> C[Repository]
+        C --> D[Module or directory]
+        D --> E[Local worktree]
+    end
+
+    subgraph env["Environment steering"]
+        G[Testbed / environment]
+        G --> H[Purpose and access]
+        G --> I[Schedule and ownership]
+        G --> J[Evidence requirements]
+    end
+
+    E --> F[Session task brief]
+    G --> F
+
+    style A fill:#e8f4f8,stroke:#4a90a4
+    style B fill:#e8f4f8,stroke:#4a90a4
+    style C fill:#d4edda,stroke:#28a745
+    style D fill:#d4edda,stroke:#28a745
+    style E fill:#fff3cd,stroke:#ffc107
+    style F fill:#e8f4f8,stroke:#4a90a4,font-weight:bold
+    style G fill:#f8d7da,stroke:#dc3545
+    style H fill:#f8d7da,stroke:#dc3545
+    style I fill:#f8d7da,stroke:#dc3545
+    style J fill:#f8d7da,stroke:#dc3545
+    style code fill:#f6fef6,stroke:#28a745
+    style env fill:#fef6f6,stroke:#dc3545

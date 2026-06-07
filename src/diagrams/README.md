@@ -41,50 +41,32 @@ sh /tmp/d2-install.sh --prefix /tmp/d2
 export PATH=/tmp/d2/bin:$PATH
 ```
 
+Run all commands from `src/diagrams/` or adjust paths accordingly.
+
 Regenerate a single diagram:
 
 ```bash
-mmdc -p diagrams/puppeteer-config.json -i diagrams/src/reference-architecture.mmd -o diagrams/generated/reference-architecture.svg
-d2 diagrams/src/nexus-capability-layers.d2 diagrams/generated/nexus-capability-layers.svg
+mmdc -i src/reference-architecture.mmd -o generated/reference-architecture.svg
+d2 src/nexus-capability-layers.d2 generated/nexus-capability-layers.svg
+d2 src/steering-layers.d2 generated/steering-layers.svg
 ```
 
 Regenerate all Mermaid diagrams:
 
 ```bash
-for source in diagrams/src/*.mmd; do
+for source in src/*.mmd; do
   name="$(basename "$source" .mmd)"
-  mmdc -p diagrams/puppeteer-config.json -i "$source" -o "diagrams/generated/$name.svg"
+  mmdc -i "$source" -o "generated/$name.svg"
 done
 ```
 
 Regenerate all D2 diagrams:
 
 ```bash
-for source in diagrams/src/*.d2; do
+for source in src/*.d2; do
   name="$(basename "$source" .d2)"
-  d2 "$source" "diagrams/generated/$name.svg"
+  d2 "$source" "generated/$name.svg"
 done
 ```
 
-Review generated diagrams locally:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000/diagrams/generated/nexus-chapter-progression.svg
-http://localhost:8000/diagrams/generated/nexus-capability-layers.svg
-```
-
-After regenerating diagrams, run:
-
-```bash
-mdbook build
-mkdir -p book/diagrams
-cp -R diagrams/generated book/diagrams/
-```
-
-The GitHub Pages workflow runs the same copy step after `mdbook build` so generated SVGs are included in the published artifact.
+Review generated diagrams locally with `mdbook serve` from the repo root. Because `diagrams/` is inside `src/`, mdBook includes the SVGs automatically — no manual copy step is needed.
