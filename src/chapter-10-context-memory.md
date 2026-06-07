@@ -205,6 +205,8 @@ Do not let agents write durable memory just because a fact looks useful.
 | Retention | When should it expire or be reviewed? |
 | Promotion path | Should it become an artifact instead? |
 
+The gate defines what memory may exist and under what conditions. Enforcement — who can actually block an unapproved write — belongs in Chapter 9's permissions and sandboxing layer.
+
 When in doubt, store less. A missing memory record is easier to repair than a leaked or stale one.
 
 ## Memory versus cache versus artifact
@@ -221,6 +223,8 @@ Teams often call every retained thing "memory." That weakens governance.
 
 The artifact is the reviewed record. Memory may point to it. Memory should not replace it.
 
+Memory is what the agent carries across tasks — typed, scoped, and expiring. An artifact is a durable output with a system of record, governed by Chapter 12. The two are not interchangeable.
+
 ## Governance and security
 
 Memory is a data-handling surface.
@@ -229,60 +233,28 @@ It may contain user preferences, repository facts, policy exceptions, client inf
 
 | Governance control | Chapter 10 rule |
 |---|---|
-| Classification | Label memory by type and sensitivity. |
-| Least privilege | Gate reads and writes by role, scope, and interaction surface. |
-| Data minimization | Store only what is necessary for the stated purpose. |
 | Redaction | Do not write secrets, credentials, raw production payloads, or unnecessary PII. |
 | Retention | Use TTLs or review dates for retained memory. |
 | Provenance | Record source URI, source version/hash, writer, approval, and timestamp. |
 | Deletion | Support removal and re-indexing when a record expires or must be forgotten. |
-| Auditability | Trace which memory records influenced an answer, plan, or patch. |
 
-Hard enforcement still belongs in Chapter 9's permissions, approvals, and sandboxing layer. Chapter 10 defines what memory is allowed to exist and how it should be handled.
+Classification, least-privilege access, data minimisation, and auditability are general security governance — Chapter 9 covers enforcement; Chapter 19 covers the operating model. Chapter 10 defines what memory is allowed to exist and how it should be handled.
 
-## Interaction surfaces and memory
+## Interaction surfaces
 
-The same memory contract may be exposed through different surfaces. The surface changes the review and approval burden.
-
-| Surface | Memory implication |
-|---|---|
-| IDE panel | Prefer workspace-scoped retrieval and visible write prompts. |
-| Local TUI or CLI | Keep local memory explicit, inspectable, and easy to delete. |
-| Pull request comment | Show provenance because reviewers inherit the claim. |
-| Issue comment | Avoid durable writes unless the issue is an approved source. |
-| Web dashboard | Make approvals, retention, and audit history visible. |
-| Slash command surface | Keep memory reads and writes inside the command contract. |
-
-An interaction surface is not the memory. It is where a human invokes or reviews the workflow that may read or write memory.
+The surface where memory is invoked or reviewed changes the approval burden. Chapter 2 maps the full interaction surface vocabulary.
 
 ## Verification and observability
 
-Memory correctness must be measured.
+Memory correctness has two concerns that Chapter 13 does not cover: staleness and unsupported writes.
 
-This chapter defines memory-specific checks. Chapter 13 generalizes verification across the wider workflow.
-
-| Check | What it proves |
+| Memory-specific check | What it proves |
 |---|---|
-| Retrieval recall | Relevant source material can be found. |
-| Citation support | The answer or plan is backed by included sources. |
 | Stale-hit rate | Expired or superseded memories are not being used. |
 | Unsupported-write rate | Memory writes without source or approval are blocked. |
-| Deletion check | Expired or deleted memory is removed from retrieval. |
 | Drift check | Memory still matches the authoritative source. |
-| Permission check | Reads and writes obey scope and approval rules. |
 
-A memory system should log:
-
-- memory records read
-- retrieval sources and ranks
-- source versions or hashes
-- policy decisions
-- approvals
-- write attempts
-- expirations and deletions
-- output artifacts influenced by memory
-
-Without observability, memory failures become invisible.
+Track these three in any memory system. Chapter 13 covers the full verification and observability framework — retrieval recall, citation support, permission checks, and evidence collection.
 
 ## Grounding drift
 
@@ -306,49 +278,15 @@ Controls:
 
 ## Portable memory architecture
 
-Keep the durable memory contract agent-independent.
+Keep the durable memory contract agent-independent. The repository should own schemas, retention rules, and provenance expectations. Runtime adapters expose those records to specific tools — Codex, Claude, Gemini, Kiro, or internal runners — without coupling the contract to any one runtime.
 
-The repository should own schemas, retention rules, and provenance expectations. Runtime adapters may expose those records to Codex, Claude, Gemini, Kiro, Copilot, MCP clients, or internal runners.
-
-```text
-memory/
-├─ contracts/
-│  ├─ context-package.schema.json
-│  └─ memory-record.schema.json
-├─ policies/
-│  └─ context-boundary.md
-└─ indexes/
-   └─ retrieval-profile.yaml
-```
-
-Adapters can live elsewhere:
-
-```text
-memory/adapters/
-├─ mcp/
-│  └─ memory-server.md
-├─ cli/
-│  └─ local-memory.md
-└─ dashboard/
-   └─ approval-flow.md
-```
-
-The adapter may change. The durable memory contract should not.
+Chapter 2's portability principle applies here: the adapter may change; the durable contract should not.
 
 ## Technology choices
 
-Do not choose a memory technology before choosing the memory contract.
+Do not choose a memory technology before defining the memory contract. The practical default for most teams is conservative: SQL metadata, lexical search, vector search where semantic recall matters, versioned artifacts, and a thin connector layer.
 
-| Tech choice | Best fit | Watch for |
-|---|---|---|
-| SQLite + FTS | Local CLI/TUI workflows, small repos, air-gapped work | Weak shared governance |
-| PostgreSQL + full-text + pgvector | Team-scale hybrid retrieval with transactional metadata | Index tuning and operational ownership |
-| Managed vector database + SQL metadata | Large semantic retrieval workloads | Exportability, policy coupling, lock-in |
-| Graph database + full-text/vector search | Relationship-heavy ownership, dependency, or policy questions | Modeling cost and schema drift |
-| Redis or similar cache | TTL, repeated retrieval, cost/latency reduction | Cache is not memory |
-| Versioned object store | Artifacts, snapshots, large source objects | Needs metadata and retention policy |
-
-The practical default for many teams is boring: SQL metadata, lexical search, vector search where useful, versioned artifacts, and a thin connector layer.
+Technology selection belongs in the team's architecture decision record, not in repository steering.
 
 ## Nexus case study
 
