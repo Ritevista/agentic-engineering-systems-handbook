@@ -46,7 +46,7 @@ Run all commands from `src/diagrams/` or adjust paths accordingly.
 Regenerate a single diagram:
 
 ```bash
-mmdc -i src/reference-architecture.mmd -o generated/reference-architecture.svg
+mmdc -p puppeteer-config.json -i src/reference-architecture.mmd -o generated/reference-architecture.svg
 d2 src/nexus-capability-layers.d2 generated/nexus-capability-layers.svg
 d2 src/steering-layers.d2 generated/steering-layers.svg
 ```
@@ -56,7 +56,7 @@ Regenerate all Mermaid diagrams:
 ```bash
 for source in src/*.mmd; do
   name="$(basename "$source" .mmd)"
-  mmdc -i "$source" -o "generated/$name.svg"
+  mmdc -p puppeteer-config.json -i "$source" -o "generated/$name.svg"
 done
 ```
 
@@ -68,5 +68,28 @@ for source in src/*.d2; do
   d2 "$source" "generated/$name.svg"
 done
 ```
+
+### Mermaid rendering note
+
+Mermaid CLI launches Chromium through Puppeteer. Always pass `-p puppeteer-config.json` so the local no-sandbox settings are used. If Chromium still fails with a sandbox error in a restricted agent environment, rerun the same `mmdc` command with the execution approval needed for browser startup.
+
+For published diagrams, prefer D2 when Mermaid output is difficult to inspect, produces renderer-specific SVG problems, or requires layout tuning beyond a simple flow.
+
+## Validating Generated SVGs
+
+After regenerating diagrams, run:
+
+```bash
+file generated/*.svg
+mdbook build ../..
+```
+
+If XML tooling is available, also run:
+
+```bash
+xmllint --noout generated/*.svg
+```
+
+If `xmllint` is not available, use another XML parser before committing generated SVGs. Generated files should be valid SVGs and should render in the built mdBook.
 
 Review generated diagrams locally with `mdbook serve` from the repo root. Because `diagrams/` is inside `src/`, mdBook includes the SVGs automatically — no manual copy step is needed.
