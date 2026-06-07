@@ -17,6 +17,12 @@ contract: "Role contract" {
   escalation: "Escalation"
 }
 
+contract.responsibility -> contract.agent: "owns"
+contract.inputs -> contract.agent: "context"
+contract.agent -> contract.actions: "uses"
+contract.agent -> contract.outputs: "produces"
+contract.agent -> contract.escalation: "stops / hands off"
+
 workflow -> contract.inputs: "task + context"
 contract.outputs -> workflow: "artifact + evidence"
 contract.escalation -> workflow: "stop / hand off"
