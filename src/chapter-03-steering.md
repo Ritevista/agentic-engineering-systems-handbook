@@ -2,21 +2,31 @@
 
 ## Reader problem
 
-Repository rules often live in human memory.
+Engineering rules often live in human memory.
 
-Senior engineers know which commands are safe, which files are dangerous, which modules own which responsibilities, which tests matter, and which reviewers expect evidence before merge. Agents do not know that by default. A stronger prompt does not repair missing repository doctrine.
+Senior engineers know which commands are safe, which files are dangerous, which modules own which responsibilities, which tests matter, and which reviewers expect evidence before merge. They know how to reach the test environment, which team owns it, and what evidence must be captured before handing off. Agents do not know any of that by default. A stronger prompt does not repair missing doctrine.
 
-Agents cannot respect repository rules they cannot see.
+Agents cannot respect rules they cannot see.
 
-When build commands, test commands, unsafe files, ownership boundaries, and review expectations are invisible, AI-assisted work becomes inconsistent. One session follows the local conventions because a senior engineer remembered to explain them. The next session misses them because the same guidance stayed in private chat.
+When build commands, test commands, unsafe files, ownership boundaries, environment access paths, and review expectations are invisible, AI-assisted work becomes inconsistent. One session follows the local conventions because a senior engineer remembered to explain them. The next session misses them because the same guidance stayed in private chat.
 
-Steering is the first repository-level control surface. It moves repeated expectations out of memory and into durable, scoped instructions that humans and agents can both inspect.
+Steering is the first durable control surface. It moves repeated expectations out of memory and into scoped instructions that humans and agents can both inspect — wherever the work happens.
 
-## Design principle: steering is repository doctrine
+## Design principle: steering is scoped doctrine
 
-Steering is doctrine, rules, and context.
+A steering file is the written form of unwritten rules — the constraints, conventions, ownership boundaries, and expectations that experienced engineers carry in their heads and repeat during review. It exists so those rules survive the session, the engineer, and the tool.
 
-It is the persistent, scoped instruction layer that shapes how an agent explores a repository, chooses commands, respects boundaries, validates work, and presents results.
+Steering is doctrine, rules, and context. It is persistent, scoped, and versioned. It does not belong to any one tool. It belongs to the scope it governs.
+
+You have probably already seen steering files — you just may not have called them that. They appear in many forms depending on where they live and what they govern:
+
+- A root `AGENTS.md` that tells every agent what this repository owns, which commands prove a change, and which areas require caution.
+- A `CLAUDE.md` or `.github/copilot-instructions.md` that adapts the same contract into a specific tool's loading model.
+- A nested `AGENTS.md` inside a module that adds local ownership rules and package-specific test commands on top of the root contract.
+- A gitignored `.agent-local.md` in a worktree carrying temporary branch constraints that should not become shared policy.
+- A `testbeds/api-contract/steering.md` describing what a validation environment can access, how it is set up, and what evidence it must produce before handoff.
+
+The form changes. The purpose does not: make the rules visible before the agent acts.
 
 Good steering is:
 
@@ -24,35 +34,23 @@ Good steering is:
 - scoped to the repository, module, worktree, environment, or session it governs
 - versioned when it defines a shared team contract
 - close to the code it governs
-- short enough to be followed
+- short enough to be followed — a root steering file that requires significant scrolling to read is too long; prefer links to canonical docs over copied content
 - reviewed like other engineering guidance
+- updated in the same PR as the change that makes it stale
 
 Steering does not replace judgment. It gives judgment a place to start.
 
-The boundary matters:
-
-| Concept | Role |
-|---|---|
-| steering | doctrine/rules/context |
-| skill | reusable task playbook |
-| slash command | workflow trigger |
-| agent | bounded role |
-| subagent | isolated delegated worker |
-| hook | lifecycle automation/guardrail |
-| permissions/approvals/sandboxing | blast-radius control |
-| context/memory | what the agent knows/carries |
-| specs/plans/tasks | work structure |
-| artifacts | durable outputs |
-| verification | evidence and checks |
-| MCP/tools | external capability layer |
-
-Bad systems hide all of these concerns in one prompt. Governed systems separate them.
+Steering is one control surface among several. [Chapter 2](./chapter-02-core-vocabulary.md) maps the full vocabulary and explains why each concept needs its own surface. Bad systems hide all of those concerns in one prompt. Governed systems separate them.
 
 ## What belongs in steering
 
-Steering should answer the questions a capable engineer asks before changing a repository:
+What belongs in a steering file depends on the scope it governs. A repository steering file carries different content from a testbed steering file, which carries different content from a worktree note. The common thread is the same: make the rules and constraints of this scope visible before the agent acts.
 
-- What does this repository own?
+### Repository and module steering
+
+Repository and module steering answers the questions a capable engineer asks before changing a codebase:
+
+- What does this repository or module own?
 - Where are the local boundaries?
 - Which commands prove a change?
 - Which areas require caution or escalation?
@@ -71,9 +69,37 @@ Steering should answer the questions a capable engineer asks before changing a r
 | Evidence expectations | The minimum proof needed before handoff | Report contract test results, regression tests, docs updates, and known gaps. |
 | Terminology | Repository-specific language | Use "public response field," "contract test," and "downstream client impact" consistently. |
 | Local anti-patterns | Known failure modes to avoid | Do not infer client compatibility from one handler test. |
+| Output conventions | Expected shape of agent-produced outputs | PR description must include compatibility notes, test commands run, and known downstream impact. |
 | Links to canonical docs | Pointers without copying large documentation | Link to API style guide, schema policy, and release checklist. |
 
 For the backward-compatible API contract change, steering should tell the agent where API conventions live, which tests matter, which docs must be updated, and which compatibility rules must not be violated. The agent still has to reason. Steering makes the repository's starting constraints visible.
+
+### Testbed and environment steering
+
+Testbed steering answers a different set of questions: not what the codebase owns, but what this environment is, who can use it, how to reach it, and what the agent must produce before leaving.
+
+| Steering content | What it gives the agent | Example |
+|---|---|---|
+| Environment purpose and scope | What this testbed is for and what it must not be used for | Use this environment to validate nightly contract tests. Do not use it for load testing or exploratory changes. |
+| Access and connectivity | How to reach the environment, including any required path | This environment is accessible only via the team jump server at `bastion.internal`. Connect before running test scripts. |
+| Ownership and authorised users | Which team or role manages and may use this environment | Owned by the API platform team. External contributors must request access before running tests. |
+| Schedule and availability constraints | When the environment is available and any reservation rules | Reserved for nightly test runs from 02:00–04:00 UTC. Do not trigger full suite runs outside this window without prior coordination. |
+| Setup entry points | Where to find provisioning scripts rather than reproducing them in prose | Run `testbeds/api-contract/seed-data.sh` to initialise fixtures. See `compose.yml` for service topology. |
+| Access boundaries | What data, systems, or networks are off limits | Use only synthetic fixtures. Do not connect to production data stores or external client endpoints. |
+| Evidence required | What the agent must capture and where before handoff | Collect contract test output, changed endpoint response sample, and service logs. Store in `testbeds/api-contract/evidence/`. |
+
+### Worktree and local working directory steering
+
+A worktree or local working directory note answers: what is this checkout for, what should the agent not touch, and where does wider context live?
+
+| Steering content | What it gives the agent | Example |
+|---|---|---|
+| Branch or study purpose | The goal of this checkout so the agent does not wander | This worktree is an architectural study of the account service boundary. No production changes. |
+| Scope constraints | What is in and out of bounds for this session | Explore `services/account/` and `services/identity/` only. Do not modify shared infrastructure modules. |
+| Local reference pointers | Where to find related context outside this directory | Wider architecture notes are in `../architecture-notes/account-boundary.md`. Confluence space is linked in `docs/references.md`. |
+| External reference pointers | Links to external systems that inform this work | Current ADR is at `[Confluence: ADR-0042]`. API surface reference is in the shared drive folder linked in `REFERENCES.md`. |
+| Temporary constraints | Rules specific to this branch that should not become shared policy | Use the local fixture dataset at `fixtures/local/`. Do not commit changes to shared fixtures during this study. |
+| Cleanup reminder | What must be done before this note is shared or the branch is merged | Delete or rewrite this file before opening a PR. Promote any rules that should survive into module or root steering. |
 
 ## What does not belong in steering
 
@@ -89,15 +115,17 @@ Steering should contain stable guidance, not everything the agent might ever nee
 | Reusable step-by-step procedures | Skill | A task playbook belongs in a skill, not repository doctrine. |
 | Hard enforcement rules | Hooks, permissions, sandboxing, CI, or review gates | Text can instruct; it usually cannot prevent an unsafe action. |
 | Environment provisioning details | Executable setup scripts or infrastructure automation | Provisioning should be repeatable and auditable, not manually retyped from prose. |
-| One-off personal notes | Gitignored local notes | Personal context should not become a shared repository contract by accident. |
+| Personal context with no team value | Private notes outside the repository | Habits, personal shortcuts, and individual preferences do not belong in shared versioned steering. If the context is operationally useful to others, it belongs in local worktree steering — gitignored, not committed. |
 
 The test is simple: if the guidance should shape many tasks in this scope, it may belong in steering. If it executes a workflow, provisions an environment, stores a secret, or proves completion, it belongs elsewhere.
 
 ## Steering layers
 
-Steering is not one file for all situations. It is a scoped stack.
+Steering is not one file for all situations. It is a set of independent, composable layers. You use the ones that match your work context — not all layers need to be active for every task.
 
 ![Steering layers](diagrams/generated/steering-layers.svg)
+
+*Solid arrows: always active. Dashed arrows: present only when that context applies. The worktree may come from a repository (git worktree) or exist as a standalone local directory with no repo connection.*
 
 | Layer | Scope | Typical location | What belongs there |
 |---|---|---|---|
@@ -105,11 +133,35 @@ Steering is not one file for all situations. It is a scoped stack.
 | User steering | Personal defaults across projects | User profile, home directory instruction file, personal tool settings | Preferred reporting style, personal command habits, accessibility needs, broad defaults. |
 | Repository steering | Shared versioned contract for the codebase | Root `AGENTS.md` or repository instruction file | Repo purpose, layout, commands, architecture boundaries, quality gates, review expectations. |
 | Module or directory steering | Subtree-specific guidance near the code | Nested `AGENTS.md`, directory rules, path-specific instructions | Local ownership, module commands, local invariants, package-specific anti-patterns. |
-| Local worktree steering | Private branch- or checkout-specific notes | Gitignored local note in the worktree | Temporary branch context, local setup quirks, draft constraints that should not be shared. |
-| Testbed or environment steering | Environment contract for execution | `testbeds/<name>/steering.md`, runner docs, environment policy | Runner, setup, services, access boundaries, sandbox, secrets injection, required evidence. |
+| Local worktree steering | Private working directory or checkout-specific notes | Gitignored local note in the worktree | Temporary branch context, local setup quirks, draft constraints that should not be shared. |
+| Testbed or environment steering | Environment contract for execution | See note below. | Environment purpose, access path, ownership, schedule constraints, setup entry points, access boundaries, evidence requirements. |
 | Session steering | Transient task-local guidance | Current prompt, issue, task brief, acceptance criteria | The immediate objective, constraints, and acceptance criteria for this task. |
 
 Repository steering is the first shared layer most teams should fix. It is durable enough to govern repeated work and specific enough to influence actual code changes.
+
+### Where testbed steering lives
+
+The location depends on whether the environment is local or remote.
+
+**Local testbed** — a directory in the repository (a `testbeds/api-contract/` folder with compose files and scripts): steering lives inside it, co-located with the setup scripts it describes. It versions in the same PR as the environment it governs.
+
+```text
+testbeds/api-contract/
+├── steering.md        ← lives here, next to what it describes
+├── compose.yml
+└── seed-data.sh
+```
+
+**Remote or restricted testbed** — requires a jump server, a separate machine, a cloud environment, or a CI runner the agent cannot browse freely: steering must live in the **host repository**, at a predictable path the agent can read before it connects.
+
+```text
+docs/environments/api-contract-testbed.md   ← readable before connection
+.agent/testbeds/api-contract.md             ← alternative host-side location
+```
+
+The rule is simple: **the agent must be able to read the steering before it can reach what the steering describes.** Placing access instructions on a remote environment the agent has not yet reached is a circular dependency — the agent needs the instructions to get there, but cannot get there to read the instructions.
+
+Access and connectivity guidance — jump server path, auth method, network boundaries — always belongs in the host regardless of where the rest of the testbed steering lives.
 
 ## Loading and precedence
 
@@ -124,6 +176,41 @@ Use this tool-agnostic rule:
 That rule is more important than any single vendor's precedence table.
 
 Teams should not rely on implicit precedence. Make exceptions explicit. Keep the canonical repository contract easy to find. If module steering overrides root guidance, say what it overrides and why. If a session instruction asks for something that conflicts with repository safety rules, stop and escalate instead of treating the latest prompt as permission.
+
+Layer conflicts need an explicit resolution rule:
+
+| Conflict type | Resolution |
+|---|---|
+| Module steering adds a local convention not in root steering | Allowed. Module steering extends root steering for its scope. |
+| Module steering relaxes a root convention | Make it explicit — name what it overrides and why. Do not silently diverge. |
+| Session instruction conflicts with module or root steering | Session instructions clarify task scope. They do not override repository safety rules or architecture boundaries. |
+| Module steering conflicts with a root safety rule | Root safety rules win. Stop and escalate rather than treating the narrower scope as permission to proceed. |
+
+When in doubt, the narrower scope adds but does not override. Only the broader scope owner can explicitly relax a safety rule — not a session prompt.
+
+## Keeping steering current
+
+Steering that drifts from the codebase becomes worse than no steering. An agent that follows outdated rules will confidently do the wrong thing.
+
+Staleness is the main operational risk of a steering file.
+
+The practical safeguard is to treat steering updates as part of the change that triggers them — not a separate follow-up that rarely happens.
+
+| Change type | Steering review trigger |
+|---|---|
+| Architecture boundary changes | Review root and module steering for affected areas. |
+| New module or package added | Add module-level steering before agents start working in it. |
+| Build, test, or lint commands change | Update command references in the same PR. |
+| Ownership changes | Update module steering and escalation paths. |
+| Anti-pattern discovered in review | Add it to steering so it is visible to the next agent. |
+| Deprecated pattern removed from codebase | Remove or update the steering that described it. |
+
+Two questions should be on every PR checklist for changes with broad scope:
+
+- Does this change affect any steering file?
+- Does any steering file now describe something that no longer exists?
+
+Ownership matters here. A steering file with no named owner tends to drift. Assign a team or role as the responsible reviewer for each scope level — the same way module ownership is assigned.
 
 ## Steering is advisory, not enforcement
 
@@ -143,7 +230,7 @@ Plain-text steering is advisory. Hard constraints belong in hooks, permissions, 
 
 Prompts can instruct. They cannot govern alone.
 
-## Steering across repositories, worktrees, and testbeds
+## Steering across repositories, local directories, and testbeds
 
 Steering has to match how engineering work actually happens.
 
@@ -157,7 +244,8 @@ When work starts at the repository root, the agent should see broad repository d
 |---|---|---|---|
 | Repository root | Cross-cutting change, repo-wide search, architectural cleanup | Root `AGENTS.md`, repo build/test rules, global constraints | Putting module-specific details into root steering |
 | Module directory | Local package/API/UI change | Root steering plus module-local steering | Launching from repo root and flooding the agent with irrelevant context |
-| Git worktree | Parallel or experimental branch work | Shared repo steering plus gitignored local notes | Duplicating repo policy in temporary notes |
+| Git worktree | Parallel or experimental branch work derived from a repository | Shared repo steering plus gitignored local notes | Duplicating repo policy in temporary notes |
+| Standalone local directory | Architectural study, research, or exploratory analysis with no repo connection | Local worktree note only — scope constraints, reference pointers, purpose, cleanup reminder | Leaving no steering at all, so the agent has no boundary or purpose to work from |
 | Dev container or local sandbox | Reproducible local execution | Repo steering plus executable setup and sandbox boundaries | Describing setup only in prose instead of scripts |
 | Testbed or CI-like runner | Validation, integration testing, rollout simulation | Environment contract, setup scripts, permission policy, evidence expectations | Treating testbed behavior as ordinary repository steering |
 | Session prompt | Current task and acceptance criteria | Task-local constraints and explicit "do not touch" guidance | Using the prompt to carry permanent repository rules |
@@ -290,6 +378,38 @@ The worktree-local note may contain temporary context:
 
 Do not put secrets, tokens, passwords, or live endpoint credentials in worktree-local steering.
 
+## Example: standalone local directory steering
+
+Not every working directory comes from a repository. An architectural study, a comparative analysis, or a research spike may start as a plain local directory with no git remote.
+
+The steering for that context is simple — a single local note that gives the agent a purpose, a boundary, and pointers to wider context:
+
+````md
+# .agent-local.md
+
+## Purpose
+
+Architectural study: comparing account service boundary options.
+No production changes. No commits expected.
+
+## Scope
+
+Work only within this directory and referenced documents.
+Do not reach out to live systems or production endpoints.
+
+## Reference pointers
+
+- Wider architecture notes: ../architecture-notes/account-boundary.md
+- ADR context: see REFERENCES.md for Confluence link
+- API surface reference: see REFERENCES.md for shared drive link
+
+## Cleanup
+
+Delete this file when the study is complete or archived.
+````
+
+This note has no repository behind it. It does the same job a module steering file does for a codebase: it tells the agent what this space is for, what is off limits, and where to look for wider context.
+
 ## Example: testbed steering
 
 A testbed is not just another directory. It is an execution environment.
@@ -358,6 +478,10 @@ The practical stack is simple:
 
 Tool-specific files still have value. They adapt the canonical contract into the loading model of a given tool. The failure mode is letting every tool-specific file become a separate source of truth.
 
+The adapter layer is not just a copy. Different tools expose different native capabilities alongside steering. A `CLAUDE.md` can include tool permissions and hook configuration. A `.github/copilot-instructions.md` carries workspace-scoped behavior that is separate from repository doctrine. A `.kiro/steering/` directory supports structured topic files with frontmatter. These capabilities belong in the tool-specific file — not in `AGENTS.md`.
+
+The rule is: shared doctrine goes in `AGENTS.md`; tool-specific behavior that has no equivalent in other tools goes in the tool-specific file. When the adapter file starts carrying rules that every tool should see, move them back to the canonical contract.
+
 ## Applying steering to the running example
 
 The primary running example is the [backward-compatible API contract change](./running-example.md): adding a new optional response field to a service API without breaking existing clients.
@@ -406,11 +530,11 @@ Nexus has a visible repo-level contract that humans and agents can both use.
 
 An agent asked to add an optional API response field now sees the local compatibility rules before implementation. A reviewer can point to the same contract when asking for missing test evidence or compatibility notes.
 
+As the team adds integration testbeds, the same principle extends: each environment gets its own steering file, co-located when local, host-side when remote. Worktrees used for exploratory analysis carry a local note scoped to the study. The form changes by context. The principle holds.
+
 ### Lesson
 
-Steering is the first place to move repeated repository expectations out of private prompts.
-
-Start with the rules that senior engineers repeat during review. Put those rules where the agent and the next engineer can both find them.
+Steering travels with the work. Start with the scope that causes the most repeated explanations — usually the repository. Then follow the work outward: into modules, local directories, and environments. Each scope that generates repeated guidance is a scope that needs steering.
 
 ## Templates
 
@@ -497,6 +621,11 @@ Start with the rules that senior engineers repeat during review. Put those rules
 
 - ...
 
+## Access and connectivity
+
+- How to reach this environment (jump server, VPN, auth method).
+- For remote environments: document this in the host repository, not here.
+
 ## Setup
 
 - ...
@@ -523,12 +652,13 @@ Start with the rules that senior engineers repeat during review. Put those rules
 | "Start services with this compose file." | Testbed setup script and testbed steering | Executable environment setup |
 | "Capture logs, contract test output, and docs diff." | Testbed steering plus PR evidence template | Evidence expectation |
 | "Block merge if contract tests fail." | CI or review gate | Hard enforcement |
+| "How to reach this testbed / jump server path / auth method." | Host repository — readable before connection | Must be available to the agent before it can reach the environment it describes |
 
 ## Quick Reference
 
 ### Core argument
 
-Steering is the persistent, scoped instruction layer for repository doctrine, rules, and context.
+A steering file is the written form of unwritten rules — the constraints, conventions, ownership boundaries, and expectations that belong to the scope it governs. It exists so those rules survive the session, the engineer, and the tool.
 
 ### Put it in steering when...
 
@@ -574,7 +704,7 @@ Sample repo `AGENTS.md`.
 
 ### Reader action
 
-Create or review one repository steering file. Move one repeated repository expectation out of private prompts and into versioned steering.
+Create or review one steering file for the scope where you work most. Move one repeated expectation out of private prompts and into versioned, scoped instructions.
 
 ## Source Notes
 
