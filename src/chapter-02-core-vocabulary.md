@@ -47,7 +47,7 @@ One concept should map to one primary control surface.
 | Interaction surface | Human-facing entry point | People need a place to invoke, steer, observe, or review agentic work. Examples include chat UI, TUI, CLI, IDE panel, web dashboard, slash command surface, issue comment, and pull request comment. | The agent, workflow, skill, or tool behind the surface. |
 | Slash command | Workflow trigger | A team needs a consistent way to start a known workflow. | The full workflow, the skill it invokes, or the agent that executes it. |
 | Hook | Lifecycle automation/guardrail | A rule should run at a defined workflow point such as pre-change, pre-commit, pre-PR, or pre-release. | Human review, general verification, or a broad policy document. |
-| Tool | Callable capability | An agent, workflow, hook, or human needs to call a shell command, git operation, test runner, browser, CI API, documentation search, ticketing API, schema registry, internal service API, or MCP tool. | The agent role or the connector that exposes the capability. |
+| Tool | Callable capability | An agent, workflow, hook, or human needs to call a specific capability: shell command, git operation, test runner, browser, CI API, documentation search, ticketing API, schema registry, internal service API, or MCP tool. | The agent role, the connector that exposes the capability, or the broader tools-and-connectors layer. |
 | Tool adapter / connector | Safe exposure contract | A callable capability needs a stable interface, input/output contract, permission model, and audit boundary. MCP is one connector/protocol option, not the whole category. | The tool capability itself, the workflow goal, or generic context. |
 | Permissions, approvals, and sandboxing | Blast-radius control | Access, execution, write scope, sensitive data, or risky tool use must be limited or approved. | Context, verification, or trust in the assistant. |
 | Context and memory | What the agent knows/carries | The agent needs task facts, repository facts, retrieved documents, examples, or durable remembered information. | Tool access, durable artifacts, or unrestricted data ingestion. |
@@ -55,7 +55,7 @@ One concept should map to one primary control surface.
 | Artifacts | Durable outputs | A decision, note, runbook, template, PR evidence record, or other result must survive beyond chat. | Temporary conversation, reasoning, or generated prose with no system of record. |
 | Verification | Evidence and checks | The team needs proof that behavior, quality, policy, or acceptance criteria were satisfied. | Confidence, reviewer memory, or an assistant's completion summary. |
 | Agent-independent interface | Portable contract | A prompt, skill, command, tool contract, or workflow surface should survive movement across Codex, Claude, Gemini, Kiro, Copilot, or future agent runtimes. | Vendor-specific hidden behavior, private memory, or chat-only output. |
-| Tools and connectors | External capability layer | A workflow needs governed access to external systems, APIs, repositories, CI, documentation, metadata, or other capabilities. | The agent role itself, ordinary context, or permission approval. |
+| Tools and connectors | External capability layer | A workflow needs governed access to external systems, APIs, repositories, CI, documentation, metadata, or other capabilities. Tool names the capability; tools and connectors names the governed layer that exposes it. | The agent role itself, ordinary context, or permission approval. |
 
 This map is deliberately small. It gives the team a way to stop mixing primitives while leaving the detailed contracts to the chapters that own each one.
 
@@ -84,13 +84,15 @@ The correction is usually simple: ask what kind of control surface the concern n
 
 An interaction surface is the human-facing entry point through which people invoke, steer, observe, or review agentic work. It is not the agent. It is the place where the human meets the workflow.
 
-The same workflow can be exposed through several surfaces: an IDE slash command, a local TUI, a CLI command, a GitHub issue comment, a pull request review command, or a web dashboard approval button. The surface may change by team, repository, or operating model. The workflow contract should remain stable.
+The same workflow can be exposed through several surfaces: an IDE slash command, a local TUI, a CLI command, a GitHub issue comment, a pull request review command, or a web dashboard approval button. The surface may change by team, repository, or operating model. The vocabulary separates surface from contract so the workflow can remain stable as surfaces change.
 
 That separation matters for governance. A team can improve the UX prompt, move a command from an IDE panel to a CLI, or add a PR-comment trigger without redefining the agent role, skill procedure, tool contract, or verification evidence.
 
 ## Tools are capability boundaries
 
-Tools do not own goals. Agents own bounded responsibility. Workflows define sequence and acceptance criteria. Tools expose callable capability.
+> Tools do not own goals.
+
+Agents own bounded responsibility. Workflows define sequence and acceptance criteria. Tools expose callable capability.
 
 A tool might be a shell command, git, a test runner, a browser, a CI API, documentation search, a ticketing API, a schema registry, an internal service API, or an MCP tool. A tool adapter or connector exposes that capability safely through a stable contract. MCP is one way to expose tools, but the architecture should not treat MCP as the whole tool category.
 
@@ -170,7 +172,14 @@ The workflow contract must remain portable across agent runtimes. Nexus prefers 
 
 Nexus introduces the `Nexus vocabulary map`.
 
-`nexus-service`, `nexus-delivery`, and `nexus-playbook` use the same vocabulary when designing AI-assisted workflows. A concern must be classified as steering, skill, interaction surface, slash command, agent, subagent, hook, tool, connector, permission control, context/memory, specs/plans/tasks, artifact, verification, or agent-independent interface before the team decides where it lives.
+`nexus-service`, `nexus-delivery`, and `nexus-playbook` use the same vocabulary when designing AI-assisted workflows. A concern must be classified by concern type before the team decides where it lives:
+
+| Concern type | Vocabulary terms |
+|---|---|
+| Human-facing and workflow surfaces | Interaction surface, slash command, skill, hook |
+| Responsibility and delegation | Agent, subagent |
+| Capability and exposure | Tool, connector |
+| Governance and evidence | Steering, permission control, context/memory, specs/plans/tasks, artifact, verification, agent-independent interface |
 
 For external capability, Nexus routes tool access through explicit adapters and connectors. MCP is one connector option. It is not the vocabulary category itself. A schema diff, test runner, CI status API, documentation search, ticketing API, or internal service API is named as a tool first, then exposed through a governed connector.
 
@@ -197,7 +206,7 @@ Unclear terms produce unclear systems. Clear vocabulary lets teams assign owners
 | Where does the human invoke or review the workflow? | Interaction surface | It names the human-facing entry point without confusing it with the workflow or agent. |
 | How should a known workflow start? | Slash command | It provides a consistent trigger, not the whole workflow. |
 | What should run at a lifecycle point? | Hook | It automates or guards a specific workflow boundary. |
-| What callable capability is being used? | Tool | It separates capability from agent responsibility. |
+| What callable capability is being used? | Tool | It names the specific capability, separate from agent responsibility and from the connector layer. |
 | How is the capability exposed safely? | Tool adapter / connector | It gives the capability a stable contract, permission model, and audit boundary. |
 | What limits risky access or execution? | Permissions, approvals, and sandboxing | It controls blast radius before capability expands. |
 | What information does the agent know or carry? | Context and memory | It distinguishes task input from tools and artifacts. |
@@ -205,7 +214,7 @@ Unclear terms produce unclear systems. Clear vocabulary lets teams assign owners
 | What must survive beyond chat? | Artifacts | It preserves decisions, evidence, templates, and operational knowledge. |
 | What proves the work is acceptable? | Verification | It turns claims into evidence and checks. |
 | Can this workflow survive a change of agent runtime? | Agent-independent interface | It preserves prompts, skills, commands, tool contracts, and workflow surfaces across assistants. |
-| What external capability layer is being governed? | Tools and connectors | It separates system access from the agent role while keeping MCP as one connector option. |
+| What external capability layer is being governed? | Tools and connectors | It names the governed layer that exposes tools through contracts, adapters, permissions, and audit trails. |
 
 ### Chapter asset
 
