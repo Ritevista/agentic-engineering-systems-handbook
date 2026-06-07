@@ -34,7 +34,7 @@ It focuses on the engineering system around agents:
 - specs, plans, and tasks
 - durable artifacts
 - verification evidence
-- MCP and external tool access
+- tools, connectors, and external capability access
 - team maturity and operating models
 
 The **Nexus Engineering Control Plane** case study represents a fictional organization moving from ad-hoc assistant usage to a governed model with reusable skills, clear steering, bounded agents, and evidence-based verification.
@@ -68,13 +68,13 @@ Read:
 Read:
 
 1. Skills
-2. Slash Commands
-3. Agents
-4. Subagents
+2. Agents
+3. Subagents
+4. Slash Commands
 5. Specs, Plans, and Tasks
 6. Artifacts
 
-### I want to integrate tools and MCP safely
+### I want to integrate tools and connectors safely
 
 Read:
 
@@ -96,7 +96,7 @@ Read:
 | L1 | Individual discipline | Personal prompts and manual checks |
 | L2 | Repository steering | AGENTS.md, repo conventions, local verification |
 | L3 | Reusable workflows | Skills, slash commands, templates, repeatable artifacts |
-| L4 | Governed tool use | MCP/tools, approvals, sandboxing, auditability |
+| L4 | Governed tool use | Tools and connectors, approvals, sandboxing, auditability |
 | L5 | Engineering control plane | Metrics, policies, lifecycle management, portability |
 
 Read this field manual as a reference: start with the vocabulary, then adopt chapters as design modules for your own repositories, team processes, and engineering control-plane decisions.

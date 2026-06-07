@@ -1,0 +1,15 @@
+direction: down
+
+steering: "Steering\nrepo doctrine"
+agent: "Agent\naccountable role"
+skill: "Skill\nreusable procedure"
+subagent: "Subagent\nfocused pass"
+artifact: "Artifact + evidence"
+
+steering -> agent: "governs" {
+  style.stroke-dash: 4
+}
+agent -> skill: "invokes"
+agent -> subagent: "delegates"
+subagent -> skill: "invokes"
+agent -> artifact: "produces"
