@@ -1,5 +1,7 @@
 # Chapter 8: Hooks
 
+> Status: To be done.
+
 ## Reader problem
 
 Manual guardrails fail when the team is busy.

@@ -1,5 +1,7 @@
 # Chapter 6: Subagents
 
+> Status: To be done.
+
 ## Reader problem
 
 Main agents become unreliable when every concern stays in one conversation.

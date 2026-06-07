@@ -1,5 +1,7 @@
 # Chapter 7: Slash Commands
 
+> Status: To be done.
+
 ## Reader problem
 
 Good workflows decay when every person starts them differently.
