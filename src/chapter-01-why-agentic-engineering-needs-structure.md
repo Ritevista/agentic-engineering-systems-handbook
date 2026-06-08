@@ -113,7 +113,7 @@ Start by separating the responsibilities. Once the boundaries are visible, each 
 
 ## Nexus case study
 
-Nexus Software Systems begins with useful but inconsistent AI usage. Developers use assistants to draft changes, explain code, and generate tests. The organization has pockets of L1 discipline, but no shared control surface.
+Nexus Engineering Control Plane begins with useful but inconsistent AI usage. Developers use assistants to draft changes, explain code, and generate tests. The organization has pockets of L1 discipline, but no shared control surface.
 
 The running scenario is a backward-compatible API contract change in `nexus-service`. The canonical scenario is defined in [Running Example](./running-example.md). Chapter 1 uses it only to show why structure is needed.
 
