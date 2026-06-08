@@ -31,51 +31,15 @@ A slash command is a workflow trigger. It gives people and agents a standard way
 
 Meta-prompting can help shape command behavior, but the command is an operational interface, not a private prompt.
 
-## Command anatomy
-
-_Planned: walk through each element of the command concern table with examples from the API contract running example._
-
-## When to use a slash command
-
-_Planned: decision criteria for choosing a slash command versus steering, a skill, a hook, or a direct agent invocation._
-
-## Command catalog design
-
-_Planned: how to name, document, and maintain a team command catalog; how to avoid command proliferation._
-
-## Slash commands in the broader workflow
-
-_Planned: how a slash command connects to agents, skills, hooks, and verification — it is an entry point, not the full workflow._
-
-## Applying slash commands to the running example
-
-_Planned: thread the canonical running example (see running-example.md) through this chapter's concept._
-
 ## Nexus case study
 
 ### Before this chapter
 
 Workflows are hard to trigger consistently.
 
-### Design decision
-
-_Planned._
-
-### Implementation
-
-_Planned._
-
 ### After this chapter
 
 Developers use commands like `/plan-change`, `/review-pr`, and `/create-adr`.
-
-### Lesson
-
-_Planned._
-
-## Templates
-
-_Planned: slash command catalog — the named Nexus asset for this chapter._
 
 ## Quick Reference
 
@@ -85,7 +49,3 @@ _Planned: slash command catalog — the named Nexus asset for this chapter._
 | The same task should start consistently. | You need a reusable procedure: skill. |
 | Routing should be explicit. | You need external access: tool contract. |
 | Outputs should be predictable. | You need proof of completion: verification. |
-
-## Source Notes
-
-_Planned. Analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual; source-backed references are added only where tool- or protocol-specific behavior is discussed._

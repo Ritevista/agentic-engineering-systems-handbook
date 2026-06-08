@@ -30,51 +30,15 @@ Specs, plans, and tasks are work structure.
 
 Plan-and-Execute and lightweight spec-driven development patterns belong here when they produce reviewable work structure and execution evidence.
 
-## When to decompose work before acting
-
-_Planned: criteria for when a spec, plan, or task list is required versus when a short task note is enough — based on contract, data, security, and operational risk._
-
-## Writing a spec
-
-_Planned: what a spec must contain; the difference between a spec and a plan; minimum required fields for contract-affecting and security-sensitive work._
-
-## Building a plan
-
-_Planned: how to document approach and trade-offs; how a plan connects to the task list and acceptance criteria._
-
-## Task decomposition and acceptance criteria
-
-_Planned: how to break a plan into reviewable task units; how to write acceptance criteria the agent and reviewer can both use._
-
-## Applying work structure to the running example
-
-_Planned: thread the canonical running example (see running-example.md) through this chapter's concept._
-
 ## Nexus case study
 
 ### Before this chapter
 
 Agents jump directly into code.
 
-### Design decision
-
-_Planned._
-
-### Implementation
-
-_Planned._
-
 ### After this chapter
 
 Nexus requires specs and task plans for risky changes.
-
-### Lesson
-
-_Planned._
-
-## Templates
-
-_Planned: spec/plan/task template — the named Nexus asset for this chapter._
 
 ## Quick Reference
 
@@ -85,7 +49,3 @@ _Planned: spec/plan/task template — the named Nexus asset for this chapter._
 | Contract-affecting | Spec, compatibility notes, and acceptance criteria |
 | Security-sensitive | Spec, risk notes, and explicit review path |
 | Operationally risky | Plan, rollback notes, and verification evidence |
-
-## Source Notes
-
-_Planned. Analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual; source-backed references are added only where tool- or protocol-specific behavior is discussed._

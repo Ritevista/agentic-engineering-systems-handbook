@@ -30,51 +30,15 @@ A hook is lifecycle automation or a guardrail. It runs at a defined point in the
 
 Hooks should make important behavior harder to skip. They should not become opaque policy engines that no one can inspect.
 
-## Hook types and lifecycle points
-
-_Planned: expand the lifecycle points table with examples of check, block, record, and route behaviors at each point._
-
-## Authoring a hook contract
-
-_Planned: what a hook definition must specify — trigger point, check logic, pass/fail criteria, output, and escalation behavior._
-
-## Hook failures and escalation
-
-_Planned: what happens when a hook fails; how the team responds; how to avoid hooks that block silently or without actionable output._
-
-## Guardrail versus automation
-
-_Planned: when a hook should enforce by blocking versus when it should record and alert; the difference between compliance gates and efficiency automation._
-
-## Applying hooks to the running example
-
-_Planned: thread the canonical running example (see running-example.md) through this chapter's concept._
-
 ## Nexus case study
 
 ### Before this chapter
 
 Humans remember guardrails manually.
 
-### Design decision
-
-_Planned._
-
-### Implementation
-
-_Planned._
-
 ### After this chapter
 
 Nexus adds pre-change, pre-commit, pre-release, and evidence-check hooks.
-
-### Lesson
-
-_Planned._
-
-## Templates
-
-_Planned: hook policy — the named Nexus asset for this chapter._
 
 ## Quick Reference
 
@@ -84,7 +48,3 @@ _Planned: hook policy — the named Nexus asset for this chapter._
 | What does it enforce? | A narrow, reviewable rule. |
 | What does it produce? | A clear pass/fail result or evidence record. |
 | How does it fail? | Loudly enough for the team to act. |
-
-## Source Notes
-
-_Planned. Analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual; source-backed references are added only where tool- or protocol-specific behavior is discussed._

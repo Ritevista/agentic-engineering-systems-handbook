@@ -101,6 +101,19 @@ A worktree or local working directory note answers: what is this checkout for, w
 | Temporary constraints | Rules specific to this branch that should not become shared policy | Use the local fixture dataset at `fixtures/local/`. Do not commit changes to shared fixtures during this study. |
 | Cleanup reminder | What must be done before this note is shared or the branch is merged | Delete or rewrite this file before opening a PR. Promote any rules that should survive into module or root steering. |
 
+### License and IP guidance
+
+Steering may record IP and license constraints that shape what the agent may read, reference, copy, or incorporate.
+
+| Steering content | What it gives the agent | Example |
+|---|---|---|
+| Acceptable license list | Which third-party licenses are permitted for new dependencies | Only Apache 2.0, MIT, and BSD licenses. Do not add GPL or AGPL dependencies without a legal review. |
+| IP boundaries | What code or data must not be copied or referenced | Do not copy patterns from the competitor repo cited in ADR-0019. |
+| Attribution expectations | How external source material should be cited | If a design references an external spec or pattern, include the source in the ADR or change note. |
+| Export controls | Jurisdictional restrictions relevant to this codebase | This module may not be exported to certain jurisdictions; see `docs/compliance/export-controls.md`. |
+
+_Planned: how IP rules in steering connect to license gate hooks and permission policy in Chapter 9_
+
 ## What does not belong in steering
 
 Steering should contain stable guidance, not everything the agent might ever need.
