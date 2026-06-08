@@ -154,7 +154,7 @@ This chapter defines the book's core terms. Later chapters and the [appendix](./
 
 ### Before this chapter
 
-Nexus Software Systems has accepted that AI-assisted engineering needs more structure, but teams still use overloaded language. Developers call prompts agents, checklists skills, tool access context, and completion summaries verification.
+Nexus Engineering Control Plane has accepted that AI-assisted engineering needs more structure, but teams still use overloaded language. Developers call prompts agents, checklists skills, tool access context, and completion summaries verification.
 
 That language makes review harder. A reviewer cannot tell whether a proposed change modifies a role, a procedure, a tool, a permission boundary, or an artifact expectation.
 

@@ -1,6 +1,15 @@
 # Chapter 6: Subagents
 
-> Status: To be done.
+> **Status: in progress.** This chapter has a complete structure and plan below.
+> Prose, templates, and worked examples are being written.
+
+## What this chapter will deliver
+
+- When to delegate work to a subagent and when to keep it in the main agent
+- Subagent types and their output contracts
+- Isolation model and context boundary design
+- Delegation accountability and the subagent delegation model
+- Nexus subagent delegation model for API contract review
 
 ## Reader problem
 
@@ -8,7 +17,7 @@ Main agents become unreliable when every concern stays in one conversation.
 
 Implementation, review, security analysis, test planning, and documentation require different attention. A single agent can blur those responsibilities and miss the reason a second pass exists.
 
-## Design principle
+## Design principle: subagents are isolated delegated workers
 
 A subagent is an isolated delegated worker. Use subagents when a task benefits from separation of context, independent review, or specialized focus.
 
@@ -21,13 +30,51 @@ A subagent is an isolated delegated worker. Use subagents when a task benefits f
 
 Subagents are not extra autonomy for its own sake. They are a boundary mechanism.
 
+## When to delegate to a subagent
+
+_Planned: criteria for deciding when isolation adds value versus when it adds unnecessary overhead._
+
+## Subagent types and output contracts
+
+_Planned: define what each subagent type is responsible for, what inputs it receives, and what structured output it must produce._
+
+## Isolation model and context boundaries
+
+_Planned: explain what isolation means for a subagent — what context it receives, what it cannot see, and why that separation matters for review quality._
+
+## Delegation accountability
+
+_Planned: how responsibility is assigned when work is delegated; how the main agent and subagent results are reconciled._
+
+## Applying subagents to the running example
+
+_Planned: thread the canonical running example (see running-example.md) through this chapter's concept._
+
 ## Nexus case study
 
-Before this chapter, Nexus implementation work and review work often happen in the same thread.
+### Before this chapter
 
-Nexus introduces a subagent delegation model for risky changes. For the API contract running example, a review subagent checks compatibility, downstream client impact, authorization boundaries, and documentation impact.
+The main agent role is bounded, but some review and analysis tasks need isolation.
 
-After this chapter, Nexus has a delegation model that separates execution from focused review.
+### Design decision
+
+_Planned._
+
+### Implementation
+
+_Planned._
+
+### After this chapter
+
+Nexus uses subagents for compatibility review, test planning, security checks, and documentation review.
+
+### Lesson
+
+_Planned._
+
+## Templates
+
+_Planned: subagent delegation model — the named Nexus asset for this chapter._
 
 ## Quick Reference
 
@@ -37,3 +84,7 @@ After this chapter, Nexus has a delegation model that separates execution from f
 | Specialized analysis | The main agent already owns the concern |
 | Parallel evidence gathering | Shared context would be simpler and safer |
 | Boundary-sensitive work | Delegation would hide accountability |
+
+## Source Notes
+
+_Planned. Analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual; source-backed references are added only where tool- or protocol-specific behavior is discussed._

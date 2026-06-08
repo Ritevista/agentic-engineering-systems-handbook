@@ -1,6 +1,16 @@
 # Chapter 16: Anti-Patterns
 
-> Status: To be done.
+> **Status: in progress.** This chapter has a complete structure and plan below.
+> Prose, templates, and worked examples are being written.
+
+## What this chapter will deliver
+
+- Named failure patterns across all major primitives
+- God agents and unbounded role failures
+- Mega-skills, fake verification, and completion theater
+- Context flooding and tool overreach
+- Chat as system of record and other persistence failures
+- Nexus anti-pattern library
 
 ## Reader problem
 
@@ -8,7 +18,7 @@ Bad AI-assisted workflows often look productive at first.
 
 The failure is not always obvious. A team may ship patches quickly while accumulating hidden context, weak evidence, unclear responsibility, and unsafe access patterns.
 
-## Design principle
+## Design principle: anti-patterns are named failure modes
 
 Anti-patterns are named failure patterns. They help teams recognize when useful assistant output is masking structural weakness.
 
@@ -23,13 +33,55 @@ Anti-patterns are named failure patterns. They help teams recognize when useful 
 
 Naming the failure makes it easier to design the correction.
 
+## God agents and unbounded roles
+
+_Planned: what a god agent looks like; why unbounded responsibility degrades output quality and accountability; the correction._
+
+## Mega-skills and prompt soup
+
+_Planned: how skills become unreadable; the signs of a mega-skill; how to decompose it._
+
+## Fake verification and completion theater
+
+_Planned: what fake verification looks like; why confident summaries are not evidence; how to require actual proof._
+
+## Context flooding and tool overreach
+
+_Planned: how adding more input hides constraints; how tool access expands without review; the corrections._
+
+## Chat as system of record and other persistence failures
+
+_Planned: why decisions in chat disappear; how this relates to artifacts and durable outputs (Chapter 12)._
+
+## Applying anti-patterns to the running example
+
+_Planned: thread the canonical running example (see running-example.md) through this chapter's concept._
+
 ## Nexus case study
 
-Before this chapter, Nexus treats recurring AI workflow failures as isolated incidents.
+### Before this chapter
 
-Nexus creates an anti-pattern library. For the API contract running example, the library records failures such as changing a response contract without compatibility review or claiming documentation was updated without a linked artifact.
+Teams repeat the same AI mistakes.
 
-After this chapter, Nexus has a failure catalog that improves review and training.
+### Design decision
+
+_Planned._
+
+### Implementation
+
+_Planned._
+
+### After this chapter
+
+Nexus documents god agents, mega-skills, fake verification, context flooding, and tool overreach.
+
+### Lesson
+
+_Planned._
+
+## Templates
+
+_Planned: anti-pattern library — the named Nexus asset for this chapter._
 
 ## Quick Reference
 
@@ -40,3 +92,7 @@ After this chapter, Nexus has a failure catalog that improves review and trainin
 | Confident completion summaries | Missing verification evidence |
 | Pasted logs and docs everywhere | Missing context policy |
 | Broad tool permissions | Missing approval and sandbox rules |
+
+## Source Notes
+
+_Planned. Analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual; source-backed references are added only where tool- or protocol-specific behavior is discussed._
