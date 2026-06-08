@@ -1,4 +1,4 @@
-# Chapter 17: Tooling, MCP, and External Capabilities
+# Chapter 18: Tooling, MCP, and External Capabilities
 
 > **Status: in progress.** This chapter has a complete structure and plan below.
 > Prose, templates, and worked examples are being written.
@@ -32,51 +32,15 @@ MCP/tools are the external capability layer. Treat every tool as an interface wi
 
 MCP remains the primary tool/context capability layer for this field manual. Adjacent protocols such as A2A, AG-UI, AP2, and UCP belong in the appendix unless a chapter needs a specific interoperability comparison.
 
-## Tool contracts and schemas
-
-_Planned: what a tool contract must specify; how schemas define valid inputs and outputs; why informal tool access is a governance gap._
-
-## MCP and the capability layer
-
-_Planned: how MCP works as the tool/context capability layer; what belongs in an MCP server contract versus in context._
-
-## Permission integration for tool use
-
-_Planned: how tool calls become authorization events (see Chapter 9); how permission tiers apply to tool access; allowlists and audit._
-
-## Tool adapter patterns and auditability
-
-_Planned: how to wrap external systems in governed adapters; what the audit record must contain for tool calls._
-
-## Applying tool governance to the running example
-
-_Planned: thread the canonical running example (see running-example.md) through this chapter's concept._
-
 ## Nexus case study
 
 ### Before this chapter
 
 Agents cannot safely access external systems.
 
-### Design decision
-
-_Planned._
-
-### Implementation
-
-_Planned._
-
 ### After this chapter
 
 Nexus creates a permissioned tool gateway for CI, issue tracker, docs, and deployment metadata.
-
-### Lesson
-
-_Planned._
-
-## Templates
-
-_Planned: tool adapter / connector contract — the named Nexus asset for this chapter._
 
 ## Quick Reference
 
@@ -90,7 +54,3 @@ _Planned: tool adapter / connector contract — the named Nexus asset for this c
 ## References and Further Reading
 
 - See [Appendix: Agentic Patterns, Prompting Techniques, and Protocols](./appendix-agentic-patterns-and-protocols.md) for related protocol positioning.
-
-## Source Notes
-
-_Planned. Analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual; source-backed references are added only where tool- or protocol-specific behavior is discussed._

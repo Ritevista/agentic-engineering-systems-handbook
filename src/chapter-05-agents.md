@@ -227,7 +227,7 @@ Do not silently widen a shared agent's authority. Publish a new version of the c
 
 ## Governance handoff
 
-This chapter defines the role contract. Chapter 9 enforces it. Chapter 19 operationalizes it across teams.
+This chapter defines the role contract. Chapter 9 enforces it. Chapter 21 operationalizes it across teams.
 
 A shared agent contract grants authority, references skills and tools, and encodes assumptions about what is safe. Treat it like a permission change, not like prompt text.
 

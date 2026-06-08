@@ -238,7 +238,7 @@ It may contain user preferences, repository facts, policy exceptions, client inf
 | Provenance | Record source URI, source version/hash, writer, approval, and timestamp. |
 | Deletion | Support removal and re-indexing when a record expires or must be forgotten. |
 
-Classification, least-privilege access, data minimisation, and auditability are general security governance — Chapter 9 covers enforcement; Chapter 19 covers the operating model. Chapter 10 defines what memory is allowed to exist and how it should be handled.
+Classification, least-privilege access, data minimisation, and auditability are general security governance — Chapter 9 covers enforcement; Chapter 21 covers the operating model. Chapter 10 defines what memory is allowed to exist and how it should be handled.
 
 ## Interaction surfaces
 

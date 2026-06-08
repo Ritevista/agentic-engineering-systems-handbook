@@ -23,7 +23,7 @@ Permissions, approvals, and sandboxing are blast-radius controls. Decide what an
 
 These are four different mechanisms, not four words for the same one. A permission decides whether an action is allowed at all. An approval inserts a human decision before a higher-risk action runs. A sandbox contains where and how execution happens so a mistake cannot reach further than intended. An audit trail records what was attempted, allowed, denied, or performed, so the other three can be reviewed rather than trusted. Conflating them is how teams end up with an "approval" that only sends a notification, or a "sandbox" that can still reach production.
 
-In agentic engineering, most enforcement decisions happen at capability boundaries: shell commands, file writes, network calls, tool invocations, MCP connectors, CI APIs, issue trackers, documentation systems, and data stores. A tool call is not just a convenience. It is an authorization event. Chapter 17 covers how tools and MCP connectors are wired up; this chapter governs whether any given call is permitted to run at all.
+In agentic engineering, most enforcement decisions happen at capability boundaries: shell commands, file writes, network calls, tool invocations, MCP connectors, CI APIs, issue trackers, documentation systems, and data stores. A tool call is not just a convenience. It is an authorization event. Chapter 18 covers how tools and MCP connectors are wired up; this chapter governs whether any given call is permitted to run at all.
 
 Declaration is not enforcement. A role contract names a boundary; these controls make it real.
 
@@ -226,6 +226,21 @@ If a declared action has no row in this table, that is the gap. The mapping shou
 The division of labor with Chapter 10 is simple. Chapter 10 decides what kind of knowledge a thing is, where it lives, and how long it persists. This chapter decides whether the agent may access or store it at all.
 
 Enforcing a memory boundary means deciding what may be written to durable memory in the first place, what requires approval before it persists, what must be redacted on the way in, and what must never persist regardless of convenience. Apply the same tiering used for tool actions: durable writes of sensitive data sit in the sensitive-data tier, with approval, redaction, and an audit record, and the things that must never persist are denied by default rather than trusted to discretion.
+
+## License and IP gates
+
+Some permission decisions are driven not by operational risk but by legal obligation. License compliance and intellectual property boundaries need the same enforcement mechanism as capability boundaries.
+
+| Gate type | What it enforces | Where it lives |
+|---|---|---|
+| Dependency license check | Only approved licenses reach the build | Hook or CI step; block on unapproved licenses |
+| IP boundary enforcement | Code or data from restricted sources is not incorporated | Pre-commit or review gate; flag and require approval |
+| Attribution requirement | External sources are cited when referenced | Checklist or approval field in the PR evidence template |
+| Export control filter | Restricted modules are not deployed to certain destinations | Deployment gate; deny by default with explicit allow-list |
+
+_Planned: how license gates connect to the permission tier model — most license checks belong at L3 (repo steering hook) or L4 (governed tool use with CI enforcement)_
+
+_Planned: how IP rules stated in steering (Chapter 3) are enforced here via hooks and permission policy_
 
 ## Anti-patterns
 

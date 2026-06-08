@@ -35,6 +35,8 @@ It focuses on the engineering system around agents:
 - durable artifacts
 - verification evidence
 - tools, connectors, and external capability access
+- incident response, rollback, and post-incident review
+- metrics, spend governance, and control-plane feedback loops
 - team maturity and operating models
 
 The **Nexus Engineering Control Plane** case study represents a fictional organization moving from ad-hoc assistant usage to a governed model with reusable skills, clear steering, bounded agents, and evidence-based verification.

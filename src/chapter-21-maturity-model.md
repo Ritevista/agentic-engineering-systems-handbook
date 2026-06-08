@@ -1,4 +1,4 @@
-# Chapter 19: Team Maturity Model
+# Chapter 21: Team Maturity Model
 
 > **Status: in progress.** This chapter has a complete structure and plan below.
 > Prose, templates, and worked examples are being written.
@@ -34,25 +34,23 @@ A maturity model is a measurement tool. It should show what capability exists, w
 
 Methodologies such as BMAD or lightweight spec-driven development can be discussed as adoption patterns. They are not substitutes for measuring the control plane itself.
 
-## Using the maturity ladder as an assessment instrument
+## Adoption and change management
 
-_Planned: how to assess a repository or team against each level; what counts as evidence; how to avoid self-reporting bias._
+A maturity model without an adoption plan stays a diagram. Teams need a practical path from their current level to the next.
 
-## Evidence for each level
+| Transition | Common blocker | Practical move |
+|---|---|---|
+| L0 → L1 | No shared starting point | Add a shared `AGENTS.md` with one concrete rule |
+| L1 → L2 | Rules stay in personal prompts | Commit the first shared skill to the repository |
+| L2 → L3 | Workflows are not triggered consistently | Add one slash command with a defined output contract |
+| L3 → L4 | Tools are used without permission boundaries | Introduce a permission matrix and one enforcement hook |
+| L4 → L5 | No feedback loop on the control plane itself | Instrument one metric; hold a monthly governance review |
 
-_Planned: expand the Evidence column with concrete, inspectable signals for each level — what an auditor would look for._
+Change management for an engineering control plane is not a one-time rollout. Each level adds new obligations, new reviewers, and new maintenance work. Adoption needs ownership: someone must track the current level, set the next target, and keep the evidence current.
 
-## Moving between maturity levels
+_Planned: how to structure a team-level adoption review: who attends, what evidence is reviewed, what gets updated_
 
-_Planned: the practical steps to move from each level to the next; common blockers; how to prioritize the next move._
-
-## Team and repository-wide assessment
-
-_Planned: how to run a maturity assessment across multiple repositories or teams; how to track progress over time._
-
-## Applying the maturity model to the running example
-
-_Planned: thread the canonical running example (see running-example.md) through this chapter's concept._
+_Planned: how to extend the maturity model to a second team or product area without forking the control plane_
 
 ## Nexus case study
 
@@ -60,25 +58,9 @@ _Planned: thread the canonical running example (see running-example.md) through 
 
 Adoption is inconsistent across teams.
 
-### Design decision
-
-_Planned._
-
-### Implementation
-
-_Planned._
-
 ### After this chapter
 
 Nexus becomes a measurable engineering operating model.
-
-### Lesson
-
-_Planned._
-
-## Templates
-
-_Planned: maturity assessment rubric — the named Nexus asset for this chapter._
 
 ## Quick Reference
 
@@ -89,7 +71,3 @@ _Planned: maturity assessment rubric — the named Nexus asset for this chapter.
 | Private prompt libraries | Repository steering and skills |
 | Broad tool access | Governed permissions |
 | Claimed productivity | Evidence-backed engineering outcomes |
-
-## Source Notes
-
-_Planned. Analysis, decision frameworks, and Nexus Engineering Control Plane examples are original to this field manual; source-backed references are added only where tool- or protocol-specific behavior is discussed._

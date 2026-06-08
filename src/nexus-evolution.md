@@ -27,11 +27,13 @@ Every chapter should answer:
 | Specs, Plans, and Tasks | Agents jump directly into code. | Structured work decomposition. | Nexus requires specs and task plans for risky changes. | Spec/plan/task template |
 | Artifacts | Important decisions disappear in chat. | Durable outputs. | Nexus stores ADRs, specs, runbooks, PR evidence, and review notes in repos. | Artifact taxonomy |
 | Verification, Tests, Evals, and Checklists | Agents claim work is done without proof. | Evidence and checks. | Nexus requires test output, review checklist, risk notes, and verification evidence. | PR evidence checklist |
-| Tooling, MCP, and External Capabilities | Agents cannot safely access external systems. | Tools and connectors. | Nexus creates a permissioned tool gateway for CI, issue tracker, docs, and deployment metadata. | Tool adapter / connector contract |
+| Incident Response and Rollback | Agentic changes that regress production are handled by improvisation. | Rollback criteria, escalation paths, and post-incident review. | Nexus has a rollback runbook, escalation path, and post-incident review process for agent-involved failures. | Incident response playbook |
 | Repo Layout | Every repo organizes AI guidance differently. | Standard repo structure. | Nexus defines common layout for steering, specs, docs, artifacts, and skills. | Repository layout |
 | Decision Frameworks | Teams do not know when to use agent vs skill vs tool. | Reusable decision tables. | Nexus creates decision frameworks for workflow design. | Decision framework |
 | Anti-Patterns | Teams repeat the same AI mistakes. | Failure library. | Nexus documents god agents, mega-skills, fake verification, context flooding, and tool overreach. | Anti-pattern library |
+| Tooling, MCP, and External Capabilities | Agents cannot safely access external systems. | Tools and connectors. | Nexus creates a permissioned tool gateway for CI, issue tracker, docs, and deployment metadata. | Tool adapter / connector contract |
 | Tool Portability | Workflows become tied to one vendor. | Concept/tool separation. | Nexus separates core patterns from Codex, Claude Code, Cursor, Kiro, GitHub, and GitLab specifics. | Portability matrix |
+| Metrics, Cost, and Spend Governance | Nexus has an operating model but no feedback loop. Spend is unattributed and verification quality is assumed. | Measurement and review loops. | Nexus instruments spend, verification rate, and governance health. Monthly review loops feed corrections back into steering and permission policy. | Metrics dashboard and spend governance policy |
 | Team Maturity Model | Adoption is inconsistent across teams. | Maturity ladder. | Nexus becomes a measurable engineering operating model. | Maturity assessment rubric |
 
 ## Chapter progression
