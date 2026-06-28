@@ -1,0 +1,26 @@
+config:
+  default: true
+  MD013: false
+  MD022: false
+  MD024:
+    siblings_only: true
+  MD026: false
+  MD032: false
+  MD033:
+    allowed_elements:
+      - br
+      - div
+      - img
+      - span
+  MD034: false
+  MD036: false
+  MD041: false
+  MD046: false
+  MD049: false
+  MD058: false
+  MD060: false
+globs:
+  - "**/*.md"
+ignores:
+  - "book/**"
+  - "node_modules/**"

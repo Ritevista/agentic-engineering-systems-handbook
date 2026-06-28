@@ -360,4 +360,4 @@ Take one agent's role contract from Chapter 5. For each declared action, write t
 
 This chapter synthesizes documentation and research on least-privilege and capability-based security, access-control models, sandboxing and execution isolation, human-in-the-loop and human-on-the-loop oversight, and audit and provenance. The threat framing draws on the common agentic failure modes catalogued in the OWASP Top 10 for LLM applications and the NIST AI Risk Management Framework. The permission-tier model, the enforced-boundary anatomy, the Nexus permission matrix, the declared-versus-enforced mapping, and the templates are original to this field manual.
 
-The supporting source catalog is maintained in the repository at [`references/bibliography.md`](../references/bibliography.md), under `Permissions, approvals, sandboxing, and enforcement`.
+The supporting source catalog is maintained in the repository at `references/bibliography.md`, under `Permissions, approvals, sandboxing, and enforcement`.

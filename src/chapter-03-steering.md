@@ -21,12 +21,13 @@ Steering is doctrine, rules, and context. It is persistent, scoped, and versione
 You have probably already seen steering files — you just may not have called them that. They appear in many forms depending on where they live and what they govern:
 
 - A root `AGENTS.md` that tells every agent what this repository owns, which commands prove a change, and which areas require caution.
+- A `README.md` section that states repository purpose, setup entry points, local commands, and contribution expectations.
 - A `CLAUDE.md` or `.github/copilot-instructions.md` that adapts the same contract into a specific tool's loading model.
 - A nested `AGENTS.md` inside a module that adds local ownership rules and package-specific test commands on top of the root contract.
 - A gitignored `.agent-local.md` in a worktree carrying temporary branch constraints that should not become shared policy.
 - A `testbeds/api-contract/steering.md` describing what a validation environment can access, how it is set up, and what evidence it must produce before handoff.
 
-The form changes. The purpose does not: make the rules visible before the agent acts.
+The form changes. The purpose does not: make the rules visible before the agent acts. A file becomes steering because of the role it plays, not because of its filename. A `README.md` can carry steering when it states durable operating rules for a scope. It is not automatically steering merely because it exists.
 
 Good steering is:
 
@@ -489,6 +490,10 @@ The practical stack is simple:
 
 `AGENTS.md` is recommended as the canonical shared contract, not because it is magic, but because it is portable and predictable. It gives the repository one obvious place for shared agent-facing doctrine.
 
+`README.md` may still carry steering content. Many repositories already use it to explain purpose, setup, local commands, contribution expectations, and links to canonical docs. That content becomes steering when it governs repeated engineering behavior. The risk is that a README often serves several audiences at once: users, contributors, maintainers, release engineers, and agents. If agent-relevant doctrine is buried among installation notes, badges, examples, and product description, it is easy to miss and hard to govern.
+
+Use the README for orientation and links. Use the canonical steering file for the rules an agent must see before it acts. If the README contains stable repository doctrine, either keep that section short and explicit or move the doctrine into `AGENTS.md` and link to it from the README.
+
 Tool-specific files still have value. They adapt the canonical contract into the loading model of a given tool. The failure mode is letting every tool-specific file become a separate source of truth.
 
 The adapter layer is not just a copy. Different tools expose different native capabilities alongside steering. A `CLAUDE.md` can include tool permissions and hook configuration. A `.github/copilot-instructions.md` carries workspace-scoped behavior that is separate from repository doctrine. A `.kiro/steering/` directory supports structured topic files with frontmatter. These capabilities belong in the tool-specific file — not in `AGENTS.md`.
@@ -723,4 +728,4 @@ Create or review one steering file for the scope where you work most. Move one r
 
 This chapter synthesizes official documentation and research on repository instructions, memory files, steering files, custom instructions, hooks, permissions, sandboxing, and environment setup. The chapter's decision frameworks, Nexus example, templates, and tool-agnostic steering stack are original to this field manual.
 
-The supporting source catalog is maintained outside the chapter in [`references/bibliography.md`](../references/bibliography.md).
+The supporting source catalog is maintained outside the chapter in `references/bibliography.md`.

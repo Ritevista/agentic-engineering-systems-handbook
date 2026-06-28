@@ -171,6 +171,23 @@ Do not make Nexus decorative. It should function as a running reference implemen
 
 Follow `src/diagrams/README.md` for diagram source, generated SVGs, naming, and regeneration commands. Keep that file as the single source of truth for diagram conventions.
 
+## Quality Gates
+
+Before raising a PR that changes book content, Markdown guidance, diagrams, or CI, run the relevant local checks:
+
+- `make check`
+- `make serve`
+
+Use the local serve check to confirm the generated book can be viewed in a browser before publishing a PR. Stop the server after verification unless the user asks to keep it running.
+
+GitHub Actions must keep the same quality surface:
+
+- Markdown linting with `markdownlint-cli2`
+- mdBook build validation
+- source and generated HTML link checking
+
+The generated `book/` directory is build output. Do not commit it unless the repository publishing model changes explicitly.
+
 ## Chapter Quality Bar
 
 Each major chapter should include, where relevant:
