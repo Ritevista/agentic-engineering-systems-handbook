@@ -72,8 +72,15 @@ Prerequisites:
 Commands:
 
 ```bash
-mdbook build
-mdbook serve --open
+make build
+make serve
+```
+
+Content quality checks:
+
+```bash
+make check
+make link-check
 ```
 
 ## Project status
