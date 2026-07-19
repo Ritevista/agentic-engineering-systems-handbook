@@ -1,40 +1,25 @@
 # Write Chapter Prompt Template
 
-Write exactly one field manual chapter for this repository.
+Write or revise exactly one field manual chapter for this repository.
+
+Before using this prompt, a spec should exist at `specs/<task-slug>.md` (see `specs/README.md` and `specs/TEMPLATE.md`). If one does not exist for this task, write it first — do not start from an ambiguous instruction.
 
 Inputs:
-- Chapter file path: `<chapter-path>`
-- Chapter title: `<chapter-title>`
-- Primary primitive: `<primitive>`
-- Audience: senior developers, staff engineers, architects, platform engineers, and technical leads
+
+- The spec at `specs/<task-slug>.md`.
+- Chapter file path: `<chapter-path>`.
+- `docs/book-voice.md`.
+- `skills/write-handbook-chapter/SKILL.md` — this is the canonical procedure and required shape. This prompt does not restate it; follow the skill directly rather than a paraphrase of it, so the two never drift apart.
 
 Requirements:
-- Follow `docs/book-voice.md`.
-- Keep a practical, architectural, reference-oriented tone.
-- Use the Nexus Engineering Control Plane case study throughout.
-- Show what Nexus lacked before the chapter and what concrete asset Nexus gains after the chapter.
-- Use mdBook-compatible Markdown.
-- Include concise examples and at least one decision table.
-- Include verification and artifact guidance.
-- Do not publish scaffold headings such as `Purpose`, `Key Questions`, `Planned Sections`, `Nexus Case Study Connection`, or `To be expanded`.
-- Do not publish chapter-meta quick-reference rows such as "What does this chapter add?" or "What is the concrete scenario?"
-- Use the centralized running example in `src/running-example.md` without copying the full scenario into every chapter.
 
-Required chapter structure:
-1. What the primitive means
-2. Why it exists
-3. What problem it solves
-4. How it differs from nearby primitives
-5. Where it should live
-6. Nexus case study
-7. Good patterns
-8. Anti-patterns
-9. Decision table
-10. Quick reference summary
+- Follow the spec's scope exactly. Do not widen or narrow it without flagging the change.
+- Follow `docs/book-voice.md` for tone.
+- Use the Nexus Engineering Control Plane case study, with the exact Before/Design decision/Implementation/After/Lesson continuity the spec copied from `src/nexus-evolution.md`.
+- Use mdBook-compatible Markdown: blank lines around headings, tables, lists, and fenced code blocks; every fence language-tagged; file ends with one trailing newline.
+- Include at least one decision table and one anti-pattern table.
+- Include verification and durable-artifact guidance appropriate to the topic.
+- Do not publish scaffold headings (`Purpose`, `Key Questions`, `Planned Sections`, `Nexus Case Study Connection`, `To be expanded`) or chapter-meta Quick Reference rows.
+- Reference `src/running-example.md`; adapt only the part needed, do not copy the full scenario.
 
-Nexus continuity:
-- what Nexus lacked before this concept
-- what design decision Nexus made
-- what concrete asset Nexus introduced
-- how that asset changes daily engineering behavior
-- what readers can reuse in their own teams
+When done, self-check against `skills/write-handbook-chapter/SKILL.md`'s Verification Checklist line by line and report the result — do not report only "done."

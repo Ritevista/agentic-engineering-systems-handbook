@@ -7,92 +7,71 @@ write-handbook-chapter
 Write one field manual chapter at a time using a consistent architecture-first structure and Nexus-aligned terminology.
 
 ## When to Use
-- A single chapter needs full drafting from placeholder to substantive content.
+- A single chapter needs full drafting from placeholder to substantive content, or a targeted revision.
 - The team needs practical guidance with durable decision patterns.
 
 ## When Not to Use
-- Building initial scaffold placeholders only.
-- Reviewing an existing chapter without rewriting.
+- Building initial scaffold placeholders only (use `prompts/codex/scaffold-book.md`).
+- Reviewing an existing chapter without rewriting (use `review-handbook-chapter`).
 
 ## Procedure
-1. Confirm target chapter path and chapter objective.
-2. Read and follow `docs/book-voice.md`.
-3. Align terms with repository concept distinctions.
-4. Identify the chapter's Nexus evolution asset: what Nexus lacked before, what decision it makes, and what concrete asset it has afterward.
-5. Draft public chapters as finished field-manual guidance, not planning notes.
-6. Use this shape where practical:
-   1. Reader problem
-   2. What breaks without this
-   3. Design principle
-   4. Implementation pattern
-   5. Nexus case study
-   6. Quick Reference
-7. Add concise, mdBook-safe examples.
-8. Add explicit verification and artifact expectations.
-9. Update related references if needed.
+
+1. Confirm a spec exists at `specs/<task-slug>.md` (`specs/TEMPLATE.md`). If not, stop and write one — do not draft from an unscoped instruction.
+2. Read `docs/book-voice.md` and follow it.
+3. Align terms with `AGENTS.md`'s Concept Distinctions table exactly.
+4. Copy the chapter's Nexus continuity (before / adds / after / asset) verbatim from `src/nexus-evolution.md` — do not invent it.
+5. Write the chapter using the **required shape** below. This is not a suggestion; every finished chapter in this book follows it. Omit a numbered item only if the spec states a reason.
+6. Add concise, mdBook-safe examples: fenced code blocks, always language-tagged, blank lines around every heading/table/list/fence.
+7. Add explicit verification and artifact expectations appropriate to the topic.
+8. Update `src/SUMMARY.md` if this is a new chapter.
+
+## Required chapter shape
+
+1. **Reader problem** — one crisp opening naming the failure that happens without this concept. No throat-clearing.
+2. **Design principle** (headed `## Design principle: <the one-sentence rule>`) — the boundary or definition this chapter establishes, usually introduced with a short definitional table.
+3. **Implementation pattern(s)** specific to the topic — as many `##` sections as the topic needs, each answering one concrete "how" question. Include **at least one decision table** somewhere in this range.
+4. **Anti-patterns** — a table: anti-pattern, why it fails, better pattern.
+5. **Nexus case study** — exactly these five `###` subheadings, in order: `Before this chapter`, `Design decision`, `Implementation`, `After this chapter`, `Lesson`. `Implementation` should show a concrete artifact (a template, a YAML/Markdown example, a filled-in contract) whenever the chapter's topic produces one.
+6. **Quick Reference** — at least one operational table (not a summary of the chapter, a table the reader can use), a `Nexus asset` line naming the concrete artifact this chapter leaves Nexus with, and a `Reader action` line telling the reader what to do with their own team's work right now.
+
+Add `## References and Further Reading` (and `## Source Notes` if the chapter leans on named external sources) only when the chapter makes a tool- or vendor-specific claim. Do not add it otherwise.
 
 ## Nexus continuity
 
-Each chapter should advance the Nexus Engineering Control Plane.
-
-Expected early Nexus asset sequence:
-
-1. Chapter 1 -> Nexus problem statement
-2. Chapter 2 -> Nexus vocabulary map
-3. Chapter 3 Steering -> sample repo `AGENTS.md`
-4. Chapter 4 Skills -> sample `SKILL.md`
-5. Chapter 5 Agents -> implementation-agent role contract
-6. Chapter 6 Subagents -> subagent delegation model
-7. Chapter 7 Slash Commands -> slash command catalog
-
-The chapter should explicitly show:
-
-1. what Nexus lacked before this concept
-2. what design decision Nexus made
-3. what concrete asset Nexus introduced
-4. how that asset changes daily engineering behavior
-5. what readers can reuse in their own teams
+Each chapter should advance the Nexus Engineering Control Plane using the exact row from `src/nexus-evolution.md` for that chapter — do not paraphrase the before/after state, copy it.
 
 ## Running example
 
-Use the centralized running example from `src/running-example.md` when a concrete scenario helps the chapter. Reference only the relevant part of the example instead of copying the full scenario into every chapter.
+Use the centralized running example from `src/running-example.md` when a concrete scenario helps the chapter. Reference only the relevant part instead of copying the full scenario into every chapter.
 
-Do not introduce a competing primary running example unless `src/running-example.md`, `src/nexus-evolution.md`, Chapter 1, `AGENTS.md`, and related templates are updated together.
-
-Do not publish internal running-example maintenance guidance or avoid-term lists in chapter content. Keep that material in repo authoring guidance.
-
-Do not copy the full running scenario into every chapter. Reference the canonical page and adapt only the part needed for the chapter.
+Do not introduce a competing primary running example unless `src/running-example.md`, `src/nexus-evolution.md`, Chapter 1, `AGENTS.md`, and related templates are updated together — this is a structural change and needs an ADR in `docs/decisions/`, not a chapter-level spec.
 
 ## Public chapter rules
 
-Public chapters must not expose scaffold headings such as:
+Public chapters must never contain these scaffold headings, anywhere, for any reason:
 
 - Purpose
 - Key Questions
 - Planned Sections
 - Nexus Case Study Connection
 - To be expanded
+- Any sentence starting with `_Planned:` or containing `Status: in progress`
 
-If planning content is useful, convert it into finished prose, a decision table, a Nexus case study, or Quick Reference content.
+If planning content is useful, convert it into finished prose, a decision table, a Nexus case study, or Quick Reference content — or leave it in the spec under `specs/`, which is not published.
 
-Keep Markdown mdBook-compatible with blank lines around headings, tables, lists, and fenced blocks.
-
-Quick Reference sections must be reader-operational. Do not include chapter-meta rows such as "What does this chapter add?", "What is the concrete scenario?", or other authoring rationale.
-
-During review, inspect `src/` as the source of truth and rebuild with `mdbook build` before evaluating generated `book/` output.
+Quick Reference sections must be reader-operational. Do not include chapter-meta rows such as "What does this chapter add?" or "What is the concrete scenario?"
 
 ## Output Expectations
-- One complete chapter with practical depth.
+- One complete chapter with practical depth, following the required shape above.
 - Consistent terminology.
-- At least one decision table.
-- Clear verification guidance and durable artifact outcomes.
-- Explicit Nexus before/after evolution with a concrete new asset.
-- A Quick Reference section.
+- At least one decision table and one anti-pattern table.
+- Explicit Nexus before/after evolution matching `src/nexus-evolution.md`, with a concrete new asset.
+- A Quick Reference section that is operational, not a summary.
 
 ## Verification Checklist
-- Structure follows the field-manual shape requested for the chapter.
-- Terminology matches AGENTS.md distinctions.
-- Nexus case study is present and coherent.
-- Nexus leaves the chapter with a concrete policy, template, skill, command, convention, checklist, contract, artifact, decision table, failure pattern, or maturity assessment.
-- Markdown renders cleanly in mdBook.
-- Anti-patterns and verification are included where they fit the chapter scope.
+- Every numbered item in the required shape is present, or its absence is justified in the spec.
+- Terminology matches `AGENTS.md` exactly.
+- Nexus case study matches `src/nexus-evolution.md`'s row for this chapter.
+- No scaffold headings or `_Planned:` markers anywhere in the file.
+- Markdown renders cleanly in mdBook: fences balanced and language-tagged, blank lines around blocks, file ends with one trailing newline.
+- If tool-specific claims are made, a References and Further Reading section with real, working links is present.

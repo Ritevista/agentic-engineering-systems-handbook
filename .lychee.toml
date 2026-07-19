@@ -5,6 +5,11 @@ exclude_path = [
 
 exclude = [
   "^mailto:",
+  # GitHub Actions status badges are dynamically generated images, not
+  # content links. They 404 for any workflow that doesn't exist yet on
+  # the default branch (e.g. a new workflow added on a feature branch),
+  # which is a CI-timing false positive rather than a real dead link.
+  "^https://github\\.com/[^/]+/[^/]+/actions/workflows/[^/]+/badge\\.svg$",
 ]
 
 accept = [

@@ -29,6 +29,17 @@ jobs:
             **/*.md
             !book/**
 
+  scaffold-guard:
+    name: No published planning scaffolding
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check for scaffold headings and markers in src/
+        run: python3 scripts/check-no-scaffolding.py
+
   book:
     name: mdBook build
     runs-on: ubuntu-latest

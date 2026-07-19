@@ -2,6 +2,10 @@
 
 **Subtitle:** Designing Governed AI-Assisted Software Workflows
 
+[![Content quality](https://github.com/Ritevista/agentic-engineering-systems-handbook/actions/workflows/quality.yml/badge.svg)](https://github.com/Ritevista/agentic-engineering-systems-handbook/actions/workflows/quality.yml)
+[![Deploy mdBook site to Pages](https://github.com/Ritevista/agentic-engineering-systems-handbook/actions/workflows/pages.yml/badge.svg)](https://github.com/Ritevista/agentic-engineering-systems-handbook/actions/workflows/pages.yml)
+[![Scheduled link check](https://github.com/Ritevista/agentic-engineering-systems-handbook/actions/workflows/scheduled-link-check.yml/badge.svg)](https://github.com/Ritevista/agentic-engineering-systems-handbook/actions/workflows/scheduled-link-check.yml)
+
 ## What this field manual is
 
 This repository hosts an mdBook-based field manual for engineering teams that want to move from ad-hoc AI coding experiments to structured, reviewable, reusable, and governable AI-assisted software engineering workflows.

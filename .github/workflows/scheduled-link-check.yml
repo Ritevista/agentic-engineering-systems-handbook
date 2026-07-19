@@ -1,0 +1,48 @@
+name: Scheduled link check
+
+on:
+  schedule:
+    # 06:00 UTC on the 1st of every month, matching the monthly review
+    # cadence in AGENTS.md's "Field Notes and Update Cadence" section.
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+env:
+  MDBOOK_VERSION: 0.5.3
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    name: Monthly link check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install mdBook
+        env:
+          TARGET: x86_64-unknown-linux-gnu
+        run: |
+          mkdir -p "$RUNNER_TEMP/mdbook"
+          curl -fsSL "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-${TARGET}.tar.gz" \
+            | tar -xz -C "$RUNNER_TEMP/mdbook"
+          echo "$RUNNER_TEMP/mdbook" >> "$GITHUB_PATH"
+
+      - name: Build book
+        run: make build
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config .lychee.toml "**/*.md" "book/**/*.html"
+
+      # Unlike the pull_request/push "Content quality" workflow, this job
+      # runs on a schedule independent of content changes, to catch link
+      # rot (external pages moving or disappearing) between chapter edits.
+      # A failure here shows as a red run in the Actions tab and, by
+      # GitHub's default notification behavior for scheduled workflows,
+      # emails the repository owner -- reconciling it is exactly the kind
+      # of item that belongs in the monthly Field Notes review.
