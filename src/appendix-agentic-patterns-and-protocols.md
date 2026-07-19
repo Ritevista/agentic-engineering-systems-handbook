@@ -189,3 +189,11 @@ These appendix-specific references should be reconciled with the repository's cu
 - Universal Commerce Protocol specification repository - https://github.com/universal-commerce-protocol/ucp
 - AG-UI official documentation - https://docs.ag-ui.com/introduction
 - AG-UI GitHub repository - https://github.com/ag-ui-protocol/ag-ui
+
+## Field Notes
+
+Dated, working observations that have not yet been promoted into a chapter or the table above. This section is exempt from the rest of the book's no-planning-notes rule by design — see `AGENTS.md`'s Field Notes and Update Cadence section for what a field note is, and when it graduates into real content.
+
+Format: `YYYY-MM-DD — observation. (status: watching | promote-candidate)`
+
+- 2026-07-19 — This appendix pins specific spec versions (e.g. A2A at v0.3.0) and vendor product names (Codex, Claude Code, Cursor, Kiro, Copilot, Gemini CLI) for fast-moving interoperability protocols. These should be re-verified against current official sources on a recurring cadence rather than assumed current; protocol version numbers in particular are the most likely content in this book to drift. (status: watching)

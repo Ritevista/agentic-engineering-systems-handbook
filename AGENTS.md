@@ -1,5 +1,17 @@
 # AGENTS.md
 
+## Quick-start checklist
+
+Do these in order for any content task. This checklist is intentionally self-sufficient — if you only read this section, you can still do the task correctly.
+
+1. **Find or write the spec.** Nontrivial work (a chapter revision, a new chapter, a structural change) should have a spec at `specs/<task-slug>.md`. If none exists, write one from `specs/TEMPLATE.md` before touching `src/`. A one-line link or typo fix does not need a spec.
+2. **Use the skill, not your own judgment about structure.** For chapter work, follow `skills/write-handbook-chapter/SKILL.md` exactly — it names the required shape. Do not improvise a different chapter structure.
+3. **Copy Nexus continuity, do not invent it.** Every chapter's before/after state and its new Nexus asset come from `src/nexus-evolution.md`. If your change isn't in that table, stop and ask before proceeding.
+4. **Never publish scaffolding.** No `Purpose` / `Key Questions` / `Planned Sections` / `Nexus Case Study Connection` / `To be expanded` headings, and no `_Planned:` markers, in anything under `src/`.
+5. **Check terminology against the Concept Distinctions table** (below) before using any primitive name.
+6. **Run the real checks before claiming done**: `make check` and `make build` if the tooling is available in your environment; if it is not, say so explicitly rather than asserting the build passed. CI (`Content quality` workflow) runs markdownlint, an mdBook build, and a lychee link check on every push — it is the source of truth if you cannot run these locally.
+7. **Leave the working tree clean**: no stray spec files for finished work (delete a spec once its task is merged, per `specs/README.md`), no debug output committed.
+
 ## Repository Intent
 
 This repository contains the mdBook source for **Agentic Engineering Field Manual: Designing Governed AI-Assisted Software Workflows**.
@@ -171,6 +183,32 @@ Do not make Nexus decorative. It should function as a running reference implemen
 
 Follow `src/diagrams/README.md` for diagram source, generated SVGs, naming, and regeneration commands. Keep that file as the single source of truth for diagram conventions.
 
+## Repository Layout for Authoring Work
+
+This repository applies its own Chapter 15 (Repo Layout), Chapter 11 (Specs, Plans, and Tasks), and Chapter 12 (Artifacts) guidance to itself:
+
+| Concern | Location | Purpose |
+|---|---|---|
+| Book content | `src/` | The published field manual. Source of truth for readers. |
+| Repository steering | `AGENTS.md` (this file) | Doctrine for anyone — human or model — authoring in this repo. |
+| Voice and tone | `docs/book-voice.md` | How chapters should sound. |
+| Reusable authoring procedures | `skills/` | `write-handbook-chapter`, `review-handbook-chapter`, `create-decision-table`. |
+| Bounded authoring roles | `agents/` | Role contracts for planner, implementer, and reviewer work on this repo, following Chapter 5's own shape. |
+| In-flight task specs | `specs/` | One spec per nontrivial task; see `specs/README.md`. Deleted once the task is merged. |
+| Durable decisions about the repo itself | `docs/decisions/` | ADRs for structural changes — repo layout, workflow, running example. Not for chapter content decisions; those live in the chapter's own Nexus case study. |
+| Ready-to-run task prompts | `prompts/codex/` | Thin wrappers that point to the skill; they do not restate it. |
+
+Do not duplicate a rule across two of these locations. If `prompts/codex/write-chapter.md` and `skills/write-handbook-chapter/SKILL.md` ever say different things about chapter structure, the skill wins — fix the prompt, not the other way around.
+
+## Working with Smaller or Cheaper Models
+
+Do not assume every contributor — human or model — will hold this entire file, `docs/book-voice.md`, `src/nexus-evolution.md`, and `src/running-example.md` in working memory at once. A smaller or cheaper model in particular will do better with less synthesis and more explicit, bounded input.
+
+- Prefer handing off one self-contained spec (`specs/TEMPLATE.md`, filled in) over a bare instruction. The spec should inline the Nexus continuity fields and the required shape so the implementer does not have to cross-reference four files to start.
+- Prefer the checklist-style Verification Checklists in `skills/write-handbook-chapter/SKILL.md` and `skills/review-handbook-chapter/SKILL.md` over open-ended "review for quality" instructions — a checklist a weak model can execute mechanically is more reliable than judgment it may not consistently apply.
+- Keep each task scoped to one chapter or one clearly bounded change. Do not ask for multi-chapter consistency passes in one unscoped instruction; split them into one spec per chapter instead.
+- When in doubt about whether an instruction is explicit enough for a weaker model to follow without guessing, tighten it — this repository would rather have a slightly longer checklist than a rule that depends on inference.
+
 ## Quality Gates
 
 Before raising a PR that changes book content, Markdown guidance, diagrams, or CI, run the relevant local checks:
@@ -273,6 +311,18 @@ Place them where they affect engineering behavior:
 - methodology frameworks go in appendices or adoption/maturity chapters
 
 Chapter 2 should define the book's core vocabulary only.
+
+## Field Notes and Update Cadence
+
+The field this book covers moves fast — vendor surfaces, protocol versions, and adoption patterns change on a shorter cycle than a chapter revision does. This section defines how the book stays current without forcing every observation into a full chapter rewrite immediately.
+
+**Capture first, promote later.** When something new or changed is worth recording — a protocol version bump, a new vendor surface, a pattern seen repeatedly in practice — add a dated entry to the `Field Notes` section at the bottom of `src/appendix-agentic-patterns-and-protocols.md`. A field note is terse and does not need the chapter quality bar; it is explicitly exempt from the no-planning-notes rule elsewhere in this document, because it is published, dated, working material by design, not a scaffold.
+
+**Promotion criterion.** A field note graduates into real chapter or appendix-table content when it becomes load-bearing: it would change a decision table, it contradicts something a chapter currently asserts, or it has recurred enough times to be more than a one-off observation. Until then, it stays a field note. Promotion follows the normal path: write a spec (`specs/TEMPLATE.md`), then use `skills/write-handbook-chapter/SKILL.md` or `skills/create-decision-table/SKILL.md` as appropriate.
+
+**Cadence.** Review the Field Notes list on a recurring basis — monthly is a reasonable default, mirroring the governance review cadence Chapter 20 recommends for Nexus itself. A review either promotes a note, deletes it as no longer relevant, or leaves it for next time. A note that has sat unreviewed for multiple cycles is a sign the cadence isn't being followed, not a sign nothing changed.
+
+**Versioning.** Record every meaningful change in `CHANGELOG.md`, per [Semantic Versioning](https://semver.org/): a patch bump (0.1.x) for link fixes, corrections, and authoring-infrastructure changes that do not alter chapter content; a minor bump (0.x.0) when a field note is promoted or a chapter changes meaningfully; a major bump only for a structural change to the book itself (a new primary running example, a reordered chapter sequence).
 
 ## Running Example Rule
 
