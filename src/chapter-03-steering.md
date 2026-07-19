@@ -113,7 +113,7 @@ Steering may record IP and license constraints that shape what the agent may rea
 | Attribution expectations | How external source material should be cited | If a design references an external spec or pattern, include the source in the ADR or change note. |
 | Export controls | Jurisdictional restrictions relevant to this codebase | This module may not be exported to certain jurisdictions; see `docs/compliance/export-controls.md`. |
 
-_Planned: how IP rules in steering connect to license gate hooks and permission policy in Chapter 9_
+Stating these rules in steering is doctrine, not enforcement. Chapter 9 turns each row above into an enforced gate — a dependency license check, an IP boundary hook, an export control filter — so the rule holds even when no one is reading the steering file at the moment it matters.
 
 ## What does not belong in steering
 

@@ -238,9 +238,9 @@ Some permission decisions are driven not by operational risk but by legal obliga
 | Attribution requirement | External sources are cited when referenced | Checklist or approval field in the PR evidence template |
 | Export control filter | Restricted modules are not deployed to certain destinations | Deployment gate; deny by default with explicit allow-list |
 
-_Planned: how license gates connect to the permission tier model — most license checks belong at L3 (repo steering hook) or L4 (governed tool use with CI enforcement)_
+License and IP gates slot into the same tier model as any other permission: a dependency license check is a read-only automated gate, sitting comfortably at the maturity level where hooks first appear (Chapter 21's L3). Export control and IP boundary enforcement on production-bound artifacts belong at L4, alongside the rest of governed tool use, because they require the same CI-enforced, audited gate as any mutating or sensitive-data action.
 
-_Planned: how IP rules stated in steering (Chapter 3) are enforced here via hooks and permission policy_
+Steering (Chapter 3) is where a team states its IP rules — which sources are restricted, which licenses are unapproved, what must be attributed. This chapter is where that doctrine becomes an enforced gate rather than a sentence a reviewer is trusted to remember. The rule that governs every other control in this chapter applies here unchanged: a declared IP boundary with no hook or permission gate behind it is fiction, no different from a declared action boundary with no enforcement.
 
 ## Anti-patterns
 

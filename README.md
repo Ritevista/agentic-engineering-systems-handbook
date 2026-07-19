@@ -85,7 +85,9 @@ make link-check
 
 ## Project status
 
-This repository is an active mdBook source tree. Some chapters are concise field-manual entries that will be expanded iteratively, but public chapters should read as finished guidance rather than planning notes.
+**Version 0.1.0.** All 21 chapters plus the introduction and appendix are complete, finished field-manual guidance — not planning notes or stubs. Each chapter follows a consistent shape (reader problem, design principle, implementation pattern, Nexus case study, quick reference) and advances the Nexus Engineering Control Plane running case study cumulatively; see [How Nexus Evolves Through This Field Manual](src/nexus-evolution.md) for the full chapter-by-chapter progression.
+
+This is a v0.1 release, not a claim that the book is finished forever. Later versions may deepen existing chapters, add worked examples, or extend coverage — see [CHANGELOG.md](CHANGELOG.md). Content quality gates (Markdown lint, mdBook build, link check) run in CI on every change.
 
 ## Additional example coverage
 
